@@ -1,8 +1,46 @@
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
-        // ваш код начнется здесь
-        // вы не должны ограничиваться только классом Main и можете создавать свои классы по необходимости
-        System.out.println("Привет Мир");
+        System.out.println("Здравствуйте! На сколько человек нужно разделить счет?");
+        int numberPeople = guestInputCheck();
+
+        Calculate calc = new Calculate();
+        System.out.println(Calculate.jobCalculate(calc.fullNamePosition, calc.fullPricePosition, conversationCase(calc.fullPricePosition, numberPeople), numberPeople));
+        System.out.printf("Каждый человек должен заплатить - %.2f руб" + conversationCase(calc.fullPricePosition, numberPeople), Calculate.billPerPerson);
+    }
+    public static String conversationCase(float pricePosition, int numberPeople) { // в методе реализована логика подстановки окончания слова "рубль"
+        float splitAccount = pricePosition / numberPeople;
+        int lastRank = (int) (splitAccount % 10);
+        String cases;
+        if (lastRank == 1) {
+            cases = "ль";
+        } else if (lastRank >= 2 && lastRank <= 4) {
+            cases = "ля";
+        } else if (lastRank >= 5 && lastRank <= 9) {
+            cases = "лей";
+        } else {
+            cases = "лей";
+        }
+        return cases;
+    }
+    public static int guestInputCheck() { // в этом методе производится проверка не валидный ввод пользователем
+        Scanner scanner = new Scanner(System.in);
+        int numberPeople;
+        while (true) {
+            if (scanner.hasNextInt()) {
+                numberPeople = Integer.parseInt(scanner.nextLine());
+                if (numberPeople <= 1) {
+                    System.out.println("Ошибка! Значение не корректно для подсчета. Попробуйте снова! \nНа сколько человек нужно разделить счет?");
+                } else {
+                    break;
+                }
+            } else {
+                System.out.println("Не корректный ввод! Напишите количество человек цифрами.");
+                scanner.nextLine();
+            }
+        }
+        return numberPeople;
     }
 }
