@@ -7,21 +7,24 @@ public class Main {
         int numberPeople = guestInputCheck();
 
         Calculate calc = new Calculate();
-        System.out.println(Calculate.jobCalculate(calc.fullNamePosition, calc.fullPricePosition, conversationCase(calc.fullPricePosition, numberPeople), numberPeople));
-        System.out.printf("Каждый человек должен заплатить - %.2f руб" + conversationCase(calc.fullPricePosition, numberPeople), Calculate.billPerPerson);
+        calc.addingPosition();
+
+        float bilPerPerson = calc.fullPricePosition / (float) numberPeople;
+        System.out.printf("Каждый человек должен заплатить: 2.f%" + conversationCase(calc.fullPricePosition, numberPeople), bilPerPerson);
     }
+
     public static String conversationCase(float pricePosition, int numberPeople) { // в методе реализована логика подстановки окончания слова "рубль"
         float splitAccount = pricePosition / numberPeople;
         int lastRank = (int) (splitAccount % 10);
-        String cases;
+        String cases = " ";
         if (lastRank == 1) {
-            cases = "ль";
+            cases = "рубль";
         } else if (lastRank >= 2 && lastRank <= 4) {
-            cases = "ля";
+            cases = "рубля";
         } else if (lastRank >= 5 && lastRank <= 9) {
-            cases = "лей";
+            cases = "рублей";
         } else {
-            cases = "лей";
+            cases = "рублей";
         }
         return cases;
     }
