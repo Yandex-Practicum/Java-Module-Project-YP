@@ -7,10 +7,10 @@ public class Main {
         int numberPeople = guestInputCheck();
 
         Calculate calc = new Calculate();
-        calc.addingPosition();
+        System.out.println(calc.addingPosition());
 
         float bilPerPerson = calc.fullPricePosition / (float) numberPeople;
-        System.out.printf("Каждый человек должен заплатить: 2.f%" + conversationCase(calc.fullPricePosition, numberPeople), bilPerPerson);
+        System.out.printf("\nКаждый человек должен заплатить: %.2f " + conversationCase(calc.fullPricePosition, numberPeople), bilPerPerson);
     }
 
     public static String conversationCase(float pricePosition, int numberPeople) { // в методе реализована логика подстановки окончания слова "рубль"
