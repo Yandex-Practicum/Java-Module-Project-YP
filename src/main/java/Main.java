@@ -66,7 +66,7 @@ public class Main {
         int sum = (int)fsum;
     if (sum%10==1) return "рубль";
     else
-    if ((sum%10==0)||(sum%100)/10==1||(sum%10>4&&sum%10<10)) return "рублей";
+    if ((sum%10==0)||(sum%100)/10==1||(sum%10>4)) return "рублей";
     else
         return "рубля";
 

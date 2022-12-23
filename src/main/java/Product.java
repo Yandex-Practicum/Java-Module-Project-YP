@@ -24,7 +24,6 @@ public class Product {
 
     public static boolean checkForNormalNumber (String price){
         return price.matches("\\d+(|\\.)\\d{2}");
-
     }
 
 }
