@@ -6,8 +6,7 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("На скольких человек необходимо разделить счёт?");
-        Scanner count = new Scanner(System.in);
-        String scountOfFriends = count.next();
+        String scountOfFriends = scannerIn();
         int countOfFriends = isGoodCount(scountOfFriends);
 
         float sum = 0%.2f;
@@ -20,8 +19,7 @@ public class Main {
             listProducts.add(newProduct.name);
             String benchNow = String.format("Полная стоимость покупок: %.2f\nДобавленные товары:\n%s",sum,listProducts);
             System.out.println(benchNow + "\nДобавить еще товар?");
-            Scanner stop = new Scanner(System.in);
-            String stopIt = stop.next();
+            String stopIt = scannerIn();
             if (stopIt.equalsIgnoreCase("Завершить")) break;
         }
         String result = String.format("Вы потратили %.2f %s\nСписок покупок:\n%s\nВам нужно скинуться по %.2f %s",sum,endOfSum(sum),listProducts, sum / (float) countOfFriends, endOfSum((int) (sum / (float) countOfFriends)));
@@ -32,6 +30,11 @@ public class Main {
     public static void productAdded(Product newProduct){
         String outStr = String.format("Добавлен Товар %s, цена: %.2f",newProduct.name,newProduct.priсe);
         System.out.println(outStr);
+    }
+
+    public static String scannerIn(){
+        Scanner input = new Scanner(System.in);
+        return input.next();
     }
 
     public static int isGoodCount(String scount) {
@@ -57,9 +60,8 @@ public class Main {
 
 
     public static String isCorrectNum() {
-        Scanner testCount = new Scanner(System.in);
         System.out.println("Введите корректное число");
-        return testCount.next();
+        return scannerIn();
     }
 
     public static String endOfSum(float fsum) {

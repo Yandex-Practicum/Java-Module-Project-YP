@@ -9,14 +9,13 @@ public class Product {
     }
 
     public static Product addNewProduct(){
-        Scanner product = new Scanner(System.in);
         System.out.println("Введите название товара");
-        String productName = product.next();
+        String productName = scannerIn();
         System.out.println("Введите цену товара");
-        String sproductPrice = product.next();
+        String sproductPrice = scannerIn();
         while (!checkForNormalNumber(sproductPrice)){
             System.out.println("Введите корректную цену, рубли.копейки, например 10.45 или 11.40., c двумя числами после запятой!");
-             sproductPrice = product.next();
+             sproductPrice = scannerIn();
         }
 
         return new Product(productName,Float.parseFloat(sproductPrice));
@@ -24,6 +23,10 @@ public class Product {
 
     public static boolean checkForNormalNumber (String price){
         return price.matches("\\d+(|\\.)\\d{2}");
+    }
+    public static String scannerIn(){
+        Scanner input = new Scanner(System.in);
+        return input.next();
     }
 
 }
