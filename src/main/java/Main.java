@@ -9,7 +9,7 @@ public class Main {
         String scountOfFriends = scannerIn();
         int countOfFriends = isGoodCount(scountOfFriends);
 
-        float sum = 0%.2f;
+        float sum = 0;
         StringJoiner listProducts = new StringJoiner("\n");
 
         while (true) {

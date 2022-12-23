@@ -14,7 +14,7 @@ public class Product {
         System.out.println("Введите цену товара");
         String sproductPrice = scannerIn();
         while (!checkForNormalNumber(sproductPrice)){
-            System.out.println("Введите корректную цену, рубли.копейки, например 10.45 или 11.40., c двумя числами после запятой!");
+            System.out.println("Введите корректную цену, в формате рубли.копейки, например 10.45 или 11.40, c двумя числами после запятой!");
              sproductPrice = scannerIn();
         }
 
