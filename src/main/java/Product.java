@@ -20,10 +20,10 @@ public class Product {
         return new Product(productName,Float.parseFloat(sproductPrice));
     }
 
-    public static boolean checkForNormalNumber (String price){
+    private static boolean checkForNormalNumber (String price){
         return price.matches("\\d+(|\\.)\\d{2}");
     }
-    public static String scannerIn(){
+    private static String scannerIn(){
         Scanner input = new Scanner(System.in);
         return input.next();
     }
