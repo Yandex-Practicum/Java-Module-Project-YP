@@ -17,7 +17,6 @@ public class Product {
             System.out.println("Введите корректную цену, в формате рубли.копейки, например 10.45 или 11.40, c двумя числами после запятой!");
              sproductPrice = scannerIn();
         }
-
         return new Product(productName,Float.parseFloat(sproductPrice));
     }
 
