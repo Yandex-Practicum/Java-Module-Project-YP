@@ -1,8 +1,10 @@
 public class FoodElement {
+    int counter;
     String foodName;
-    float foodPrice;
+    String foodPrice;
 
-    FoodElement(String foodName, float foodPrice) {
+    FoodElement(int counter, String foodName, String foodPrice) {
+        this.counter = counter;
         this.foodName = foodName;
         this.foodPrice = foodPrice;
     }

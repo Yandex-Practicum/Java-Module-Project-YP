@@ -3,7 +3,7 @@ import java.util.Scanner; // импортируем модуль Scanner
 
 public class SplitTheBill {
     int personsQuantity;      // Количество человек
-    List<FoodElement> billElementList = new ArrayList<FoodElement>();
+    ArrayList<FoodElement> billElementList = new ArrayList<FoodElement>();
     void quantityQuestionaire () {
         while (true) {
             Scanner scanner = new Scanner(System.in);
