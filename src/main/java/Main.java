@@ -22,6 +22,9 @@ public class Main {
         специальная переменная, чтобы выходить из цикла while через слово "Завершить" на любом этапе
         а также не создавать экземпляр товара в случае если
         пользователь введёт "Завершить" на этапе ввода цены товара.
+
+        Пункт задания После добавления товара нужно спрашивать у пользователя, хочет ли он добавить ещё один товар.
+        считаю избыточным, так как мы сразу предупредили, что команда <Завершить> прекратит ввод.
         */
         while (!stopped) { //цикл перечисления товаров по порядку.
             //System.out.println("Увеличили счетчик на +1");
@@ -56,7 +59,7 @@ public class Main {
                     break;
                 }
                 while (!stopped) { //цикл ожидания ввода корректной стоимости товара
-                    System.out.println("Введите стоимость позиции #" + i);
+                    System.out.println("Введите стоимость позиции (руб.коп) #" + i);
                     positionPriceStr = scanner.next();
                     positionPriceStr = positionPriceStr.toLowerCase();
                     if (positionPriceStr.equals("завершить")) {
@@ -67,6 +70,14 @@ public class Main {
                     } else if (positionPriceStr.contains(".")) {
                         int decimalLen = positionPriceStr.length()-(positionPriceStr.indexOf(".")+1);
                         if (decimalLen>2) {
+                            /*
+                            Запросите у пользователя название товара и его стоимость.
+                            Стоимость должна быть в формате рубли.копейки,
+                            например 10.45 или 11.40.
+
+                            Проверяем правильно ли пользователь ввёл рубли.копейки,
+                            нет ли третьего знака после запятой
+                             */
                             System.out.println("Кажется вы ввели более чем 2 знака после запятой, попробуйте ещё раз");
                         } else {
                             System.out.println("Благополучно распознали число в вводе");
@@ -74,13 +85,16 @@ public class Main {
                         }
                     } else {
                         //positionPrice = Float.parseFloat(positionPriceStr);
-                        System.out.println("Благополучно распознали число в вводе");
+                        //System.out.println("Благополучно распознали число в вводе");
                         break;
                     }
                 }
                 if (!stopped && !(positionPriceStr.trim().isEmpty() || positionName.trim().isEmpty())) {
                     bill.billElementList.add(new FoodElement(i,positionName,positionPriceStr));
-                    System.out.println("Благополучно записали элемент #"+i);
+                    /*
+                    После добавления товара в калькулятор нужно показать пользователю сообщение об успешном добавлении товара.
+                     */
+                    System.out.println("Позиция #"+i + "Добавлена");
                     break;
                 } else {
                     break;
@@ -88,12 +102,14 @@ public class Main {
             }
 
         }
+        System.out.println("================");
+        System.out.println("Вот все добавленные товары:\n");
         System.out.println(bill.billElementList.toString());
-
+        System.out.println("================");
         // ваш код начнется здесь
         // вы не должны ограничиваться только классом Main и можете создавать свои классы по необходимости
         System.out.println("================");
-        System.out.println(bill.CalculatorPerPerson());
+        pricePrinter(bill.calculatorPerPerson());
     }
 
     public static boolean isFloat(String str) {
@@ -102,6 +118,23 @@ public class Main {
             return true;
         } catch(NumberFormatException e){
             return false;
+        }
+    }
+
+    public static void pricePrinter (float price) {
+        // берём округление вниз (пол) и остаток от деления на 10 покажет последнюю часть числа
+        int integerPart = (int) Math.floor(price);
+        int lastDigitInt = integerPart % 10;
+        String messageTemplate = "Сумма, которую должен заплатить каждый участник счёта — %.2f %s";
+        switch (lastDigitInt) {
+            case 1:
+                System.out.println(String.format(messageTemplate,price,"рубль"));
+            case 2:
+            case 3:
+            case 4:
+                System.out.println(String.format(messageTemplate,price,"рубля"));
+            default:
+                System.out.println(String.format(messageTemplate,price,"рублей"));
         }
     }
 

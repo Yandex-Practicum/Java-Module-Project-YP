@@ -3,6 +3,11 @@ import java.util.Scanner; // импортируем модуль Scanner
 
 public class SplitTheBill {
     int personsQuantity;      // Количество человек
+    /*
+    Полученный в ходе выполнения товар должен быть добавлен в калькулятор.
+    Для этого используем улучшенный массив неопределенной длинны,
+    состоящий из элементов класса FoodElement
+     */
     ArrayList<FoodElement> billElementList = new ArrayList<FoodElement>();
     void quantityQuestionaire () {
         while (true) {
@@ -37,7 +42,7 @@ public class SplitTheBill {
         }
     }
 
-    float CalculatorPerPerson () {
+    float calculatorPerPerson () {
         float totalCost = 0;
         float result;
         for (int i = 0; i < billElementList.size(); i++) {
@@ -70,4 +75,5 @@ public class SplitTheBill {
         }
         return result;
     }
+
 }
