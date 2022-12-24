@@ -4,12 +4,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+
+        //TODO задание 1 пункт 1: спрашивать сколько человек делят счёт
+
         /* 1. После запуска программа должна спрашивать у пользователя,
         на скольких человек необходимо разделить счёт.*/
         System.out.println("Привет, на скольких людей мы хотим разделить счёт?");
         SplitTheBill bill = new SplitTheBill();
-        bill.quantityQuestionaire();
-        System.out.println("Число пользователей "+bill.personsQuantity);
+        bill.quantityQuestionaire(); //специальный опросник в классе SplitTheBill
+        //System.out.println("Число пользователей "+bill.personsQuantity);
         System.out.println("=============");
         System.out.println("Начните вводить список позиций из счёта.\nДля прекращения введите <Завершить>");
         System.out.println("=============");
@@ -21,7 +24,7 @@ public class Main {
         пользователь введёт "Завершить" на этапе ввода цены товара.
         */
         while (!stopped) { //цикл перечисления товаров по порядку.
-            System.out.println("Увеличили счетчик на +1");
+            //System.out.println("Увеличили счетчик на +1");
             i++; //переводим счётчик на одну позицию в плюс. перед запуском i=0
             while (!stopped) { // цикл ожидания ввода корректного названия товара
                 System.out.println("Позиция счёта #" + i);
@@ -32,6 +35,11 @@ public class Main {
                 /*
                 Если цена или имя в конце цикла окажутся пустыми хотя бы у одной позиции
                 мы не будем добавлять ее в ArrayList <FoodElement>
+                Для этого делаем проверку через trim().isEmpty()
+
+                До метода калькулятора мы не работаем с числами
+                храним строки
+
                  */
                 float positionPrice;
                 positionName = scanner.next();
@@ -56,6 +64,14 @@ public class Main {
                         break;
                     } else if (!isFloat(positionPriceStr)) {
                         System.out.println("Кажется вы ввели НЕ число, попробуйте еще раз");
+                    } else if (positionPriceStr.contains(".")) {
+                        int decimalLen = positionPriceStr.length()-(positionPriceStr.indexOf(".")+1);
+                        if (decimalLen>2) {
+                            System.out.println("Кажется вы ввели более чем 2 знака после запятой, попробуйте ещё раз");
+                        } else {
+                            System.out.println("Благополучно распознали число в вводе");
+                            break;
+                        }
                     } else {
                         //positionPrice = Float.parseFloat(positionPriceStr);
                         System.out.println("Благополучно распознали число в вводе");
@@ -76,7 +92,8 @@ public class Main {
 
         // ваш код начнется здесь
         // вы не должны ограничиваться только классом Main и можете создавать свои классы по необходимости
-
+        System.out.println("================");
+        System.out.println(bill.CalculatorPerPerson());
     }
 
     public static boolean isFloat(String str) {
