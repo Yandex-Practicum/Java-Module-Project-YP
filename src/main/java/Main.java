@@ -72,7 +72,7 @@ public class Main {
             }
 
         }
-        System.out.println(Arrays.deepToString(bill.billElementList.toArray()));
+        System.out.println(bill.billElementList.toString());
 
         // ваш код начнется здесь
         // вы не должны ограничиваться только классом Main и можете создавать свои классы по необходимости

@@ -8,4 +8,8 @@ public class FoodElement {
         this.foodName = foodName;
         this.foodPrice = foodPrice;
     }
+
+    public String toString(){
+        return "\n#"+counter+" — Название блюда: "+foodName+" — Цена в счёте: "+foodPrice;
+    }
 }
