@@ -1,12 +1,10 @@
 import java.util.Scanner; // импортируем модуль Scanner
 
 public class SplitTheBill {
-    int personsQuantity = 0;      // Количество человек
+    int personsQuantity;      // Количество человек
 
-    public static int quantityQuestionaire (int personsQuantity) {
-        boolean isCorrect = false;
-        personsQuantity = personsQuantity;
-        while (!isCorrect) {
+    void quantityQuestionaire () {
+        while (true) {
             Scanner scanner = new Scanner(System.in);
             personsQuantity = scanner.nextInt();
             if (personsQuantity == 1) {
@@ -15,13 +13,13 @@ public class SplitTheBill {
             В этом случае нет смысла ничего считать и делить.
              */
                 System.out.println("Для одного человека не надо ничего считать.");
-                isCorrect = false; // перегружаем код, чтобы упростить читабельность
+                System.out.println("Пожалуйста введите число больше 1.");
             } else if (personsQuantity < 1) {
             /*
             Количество человек меньше 1. Это некорректное значение для подсчёта.
              */
                 System.out.println("Некорректное значение! Чек не мог быть выписан в отсутствии людей.");
-                isCorrect = false;
+                System.out.println("Пожалуйста введите число больше 1.");
             } else {
             /*
             Если пользователь ввёл корректное значение > 1,
@@ -32,12 +30,11 @@ public class SplitTheBill {
             пока не будет введено корректное значение > 1.
              */
                 System.out.println("Прекрасно, начинаем считать счёт!");
-                isCorrect = true; // когда число больше 1 выходим из цикла.
+                break;
 
             }
 
         }
-        return personsQuantity;
     }
 
 }
