@@ -86,12 +86,18 @@ public class Modules {
         System.out.println("\n СПИСОК ДОБАВЛЕННЫХ ТОВАРОВ : ");
         for (Products prod: products) {
             sumPriceProducts = sumPriceProducts + prod.getPrice();
-            System.out.printf("\n Добавленные товары : \n Название : %s;    Цена : %.2f ", prod.getName(), prod.getPrice());
+            if (prod.getPrice() < 2 && prod.getPrice() >= 1) {
+                System.out.printf("\n Добавленные товары : \n Название : %s;    Цена : %.2f рубль", prod.getName(), prod.getPrice());
+            }else if ((prod.getPrice() < 5 && prod.getPrice() >= 2) || (prod.getPrice() < 1 && prod.getPrice() >= 0)){
+                System.out.printf("\n Добавленные товары : \n Название : %s;    Цена : %.2f рубля", prod.getName(), prod.getPrice());
+            } else if (prod.getPrice() > 4){
+                System.out.printf("\n Добавленные товары : \n Название : %s;    Цена : %.2f рублей", prod.getName(), prod.getPrice());
+            }
         }
         /* Вывод результата */
-        if (sumPriceProducts/countPeople < 2) {
+        if (sumPriceProducts/countPeople < 2 && sumPriceProducts/countPeople >= 1) {
             System.out.printf("\n\n Каждый из %d друзей должен заплатить по %.2f рубль. \n", countPeople, sumPriceProducts/countPeople);
-        } else if (sumPriceProducts/countPeople < 5) {
+        } else if ((sumPriceProducts/countPeople < 5 && sumPriceProducts/countPeople >= 2) || (sumPriceProducts/countPeople < 1 && sumPriceProducts/countPeople >= 0)) {
             System.out.printf("\n\n Каждый из %d друзей должен заплатить по %.2f рубля. \n", countPeople, sumPriceProducts/countPeople);
         } else if (sumPriceProducts/countPeople > 4){
             System.out.printf("\n\n Каждый из %d друзей должен заплатить по %.2f рублей. \n", countPeople, sumPriceProducts/countPeople);
