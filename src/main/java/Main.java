@@ -12,12 +12,11 @@ public class Main {
         /* Вводим количество гостей */
         int countPeople = getCountPeople();
         //System.out.println(" Значение переменной countPeople = " + countPeople);
-
         /* Создаем список товаров для калькулятора */
         ArrayList<Products> products = getAddProductsFromUser();
-//        for (Products prod: products) {
-//            System.out.println(prod + " \n ");
-//        }
+        for (Products prod: products) {
+            System.out.println(prod + " \n ");
+        }
 
 
 
