@@ -1,5 +1,6 @@
 import static modules.Modules.getAddProductsFromUser;
 import static modules.Modules.getCountPeople;
+import static modules.Modules.makeResult;
 
 import java.util.ArrayList;
 
@@ -11,14 +12,11 @@ public class Main {
         /* Начало */
         /* Вводим количество гостей */
         int countPeople = getCountPeople();
-        //System.out.println(" Значение переменной countPeople = " + countPeople);
+
         /* Создаем список товаров для калькулятора */
         ArrayList<Products> products = getAddProductsFromUser();
-        for (Products prod: products) {
-            System.out.println(prod + " \n ");
-        }
 
-
-
+        /* Распаковка результата */
+        makeResult(products, countPeople);
     }
 }
