@@ -107,4 +107,5 @@ public class Modules {
             System.out.printf("\n\n Каждый из %d друзей должен заплатить по %.2f копеек. \n", countPeople, sumPriceProducts/countPeople);
         }
     }
+    /* Comment for end push=) */
 }
