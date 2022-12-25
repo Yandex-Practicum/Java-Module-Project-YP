@@ -41,7 +41,7 @@ public class Modules {
         while (!command.isEmpty()) {
             if (command.equalsIgnoreCase("Добавить")) {
                 /* Наименование товара */
-                System.out.println("\n Введите наименование товара (любое значение): \n");
+                System.out.println("\n Введите наименование товара (любое значение, кроме \" \"): \n");
                 name = scanner.next();
                 /* Цена товара */
                 System.out.println("\n Введите цену товара (в консоли числа типа float, double вводим через запятую - 1,7; 2,7 и т.д.): \n");
@@ -92,6 +92,8 @@ public class Modules {
                 System.out.printf("\n Добавленные товары : \n Название : %s;    Цена : %.2f рубля", prod.getName(), prod.getPrice());
             } else if (prod.getPrice() > 4){
                 System.out.printf("\n Добавленные товары : \n Название : %s;    Цена : %.2f рублей", prod.getName(), prod.getPrice());
+            } else if (prod.getPrice() > 4){
+                System.out.printf("\n Добавленные товары : \n Название : %s;    Цена : %.2f копеек", prod.getName(), prod.getPrice());
             }
         }
         /* Вывод результата */
@@ -101,6 +103,8 @@ public class Modules {
             System.out.printf("\n\n Каждый из %d друзей должен заплатить по %.2f рубля. \n", countPeople, sumPriceProducts/countPeople);
         } else if (sumPriceProducts/countPeople > 4){
             System.out.printf("\n\n Каждый из %d друзей должен заплатить по %.2f рублей. \n", countPeople, sumPriceProducts/countPeople);
+        } else if (sumPriceProducts/countPeople >= 0 && sumPriceProducts/countPeople < 1){
+            System.out.printf("\n\n Каждый из %d друзей должен заплатить по %.2f копеек. \n", countPeople, sumPriceProducts/countPeople);
         }
     }
 }
