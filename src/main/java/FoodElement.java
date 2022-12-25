@@ -15,6 +15,6 @@ public class FoodElement {
     }
 
     public String toString(){
-        return "\n#"+counter+" — Название блюда: "+foodName+" — Цена в счёте: "+foodPrice;
+        return "\n#"+counter+" — Название блюда: "+foodName+" — Цена в счёте: "+foodPrice+" р.";
     }
 }

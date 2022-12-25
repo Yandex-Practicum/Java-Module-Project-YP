@@ -65,8 +65,8 @@ public class Main {
                     if (positionPriceStr.equals("завершить")) {
                         stopped = true;
                         break;
-                    } else if (!isFloat(positionPriceStr)) {
-                        System.out.println("Кажется вы ввели НЕ число, попробуйте еще раз");
+                    } else if ((!isFloat(positionPriceStr)) || positionPriceStr.contains("-")) {
+                        System.out.println("Кажется вы ввели НЕ число или ОТРИЦАТЕЛЬНОЕ число, попробуйте еще раз");
                     } else if (positionPriceStr.contains(".")) {
                         int decimalLen = positionPriceStr.length()-(positionPriceStr.indexOf(".")+1);
                         if (decimalLen>2) {
