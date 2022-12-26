@@ -18,5 +18,7 @@ public class Main {
 
         /* Распаковка результата */
         makeResult(products, countPeople);
+      
+        /* Comment for create branch dev */
     }
 }
