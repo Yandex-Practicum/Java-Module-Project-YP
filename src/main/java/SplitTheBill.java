@@ -9,9 +9,15 @@ public class SplitTheBill {
     состоящий из элементов класса FoodElement
      */
     ArrayList<FoodElement> billElementList = new ArrayList<FoodElement>();
-    void quantityQuestionaire () {
+
+    void quantityQuestionaire() {
         while (true) {
             Scanner scanner = new Scanner(System.in);
+            while (!scanner.hasNextInt()) {
+                System.out.println("Похоже, что вы ввели не число. Введите число.");
+                scanner.next(); // this is important!
+            }
+
             personsQuantity = scanner.nextInt();
             // TODO Задание 1 пункт 2 — проверки на некорректные значения количества людей
             if (personsQuantity == 1) {
@@ -42,7 +48,7 @@ public class SplitTheBill {
         }
     }
 
-    float calculatorPerPerson () {
+    float calculatorPerPerson() {
         float totalCost = 0;
         float result;
         for (int i = 0; i < billElementList.size(); i++) {
@@ -59,21 +65,23 @@ public class SplitTheBill {
         Вторая проблема: после округления может получиться, что сумма платежей каждого участника будет
         меньше чем сумма всего счета, в такой ситуации мы добавляем к счету каждого участника по одной копейке 0.01
          */
-        result = (float) Math.round(100*totalCost/personsQuantity)/100;
+        result = (float) Math.round(100 * totalCost / personsQuantity) / 100;
         System.out.println(result);
-        if ((totalCost - result*personsQuantity) > 0) {
+        if ((totalCost - result * personsQuantity) > 0) {
             System.out.println("ВНИМАНИЕ");
             String messageTemplate = "Разделили %.2f на %d человек. Получили %.2f.\nПри умножении на %d получим сумму меньше чем сумма всего счёта: %.2f";
-            System.out.println(String.format(messageTemplate, totalCost, personsQuantity,result,personsQuantity,(float) result*personsQuantity));
+            System.out.printf(messageTemplate, totalCost, personsQuantity, result, personsQuantity, (float) result * personsQuantity);
+
             System.out.println("Если не увеличить оплату каждого на 1 копейку, то заведение недополучит денег");
             System.out.println("Добавили +0.01 к каждому платежу");
             result += 0.01;
-            System.out.println("После оплаты останется сдача (на чай): "+ (float) Math.round(100*(result*personsQuantity-totalCost))/100);
-        } else if ((totalCost-result*personsQuantity) < 0) {
+            System.out.println("После оплаты останется сдача (на чай): " + (float) Math.round(100 * (result * personsQuantity - totalCost)) / 100);
+        } else if ((totalCost - result * personsQuantity) < 0) {
             System.out.println("ВНИМАНИЕ");
-            System.out.println("После оплаты останется сдача (на чай): "+ (float) Math.round(100*(result*personsQuantity-totalCost))/100);
+            System.out.println("После оплаты останется сдача (на чай): " + (float) Math.round(100 * (result * personsQuantity - totalCost)) / 100);
         }
         return result;
     }
+
 
 }

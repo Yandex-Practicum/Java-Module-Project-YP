@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -31,7 +30,7 @@ public class Main {
             i++; //переводим счётчик на одну позицию в плюс. перед запуском i=0
             while (!stopped) { // цикл ожидания ввода корректного названия товара
                 System.out.println("Позиция счёта #" + i);
-                System.out.println("Введите название позиции #"+i);
+                System.out.println("Введите название позиции #" + i);
                 Scanner scanner = new Scanner(System.in);
                 String positionName = ""; //инициируем пустые позиции, иначе будет ошибка компилятора
                 String positionPriceStr = "";
@@ -44,7 +43,6 @@ public class Main {
                 храним строки
 
                  */
-                float positionPrice;
                 positionName = scanner.next();
                 positionName = positionName.toLowerCase();
 
@@ -68,8 +66,8 @@ public class Main {
                     } else if ((!isFloat(positionPriceStr)) || positionPriceStr.contains("-")) {
                         System.out.println("Кажется вы ввели НЕ число или ОТРИЦАТЕЛЬНОЕ число, попробуйте еще раз");
                     } else if (positionPriceStr.contains(".")) {
-                        int decimalLen = positionPriceStr.length()-(positionPriceStr.indexOf(".")+1);
-                        if (decimalLen>2) {
+                        int decimalLen = positionPriceStr.length() - (positionPriceStr.indexOf(".") + 1);
+                        if (decimalLen > 2) {
                             /*
                             Запросите у пользователя название товара и его стоимость.
                             Стоимость должна быть в формате рубли.копейки,
@@ -90,11 +88,12 @@ public class Main {
                     }
                 }
                 if (!stopped && !(positionPriceStr.trim().isEmpty() || positionName.trim().isEmpty())) {
-                    bill.billElementList.add(new FoodElement(i,positionName,positionPriceStr));
+                    bill.billElementList.add(new FoodElement(i, positionName, positionPriceStr));
                     /*
-                    После добавления товара в калькулятор нужно показать пользователю сообщение об успешном добавлении товара.
+                    После добавления товара в калькулятор нужно показать пользователю сообщение
+                    об успешном добавлении товара.
                      */
-                    System.out.println("Позиция #"+i + "Добавлена");
+                    System.out.println("Позиция #" + i + "Добавлена");
                     break;
                 } else {
                     break;
@@ -108,36 +107,42 @@ public class Main {
         System.out.println("================");
         // ваш код начнется здесь
         // вы не должны ограничиваться только классом Main и можете создавать свои классы по необходимости
-        System.out.println("================");
-        pricePrinter(bill.calculatorPerPerson());
+        //pricePrinter(bill.calculatorPerPerson());
     }
 
     public static boolean isFloat(String str) {
         try {
             Float.parseFloat(str);
             return true;
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    public static void pricePrinter (float price) {
+    public static void pricePrinter(float price) {
         // берём округление вниз (пол) и остаток от деления на 10 покажет последнюю часть числа
+        // также делаем проверку деления на 100, так как 11,12,13,14 рублей дают исключение
         int integerPart = (int) Math.floor(price);
         int lastDigitInt = integerPart % 10;
         String messageTemplate = "Сумма, которую должен заплатить каждый участник счёта — %.2f %s";
-        switch (lastDigitInt) {
-            case 1:
-                System.out.println(String.format(messageTemplate,price,"рубль"));
-            case 2:
-            case 3:
-            case 4:
-                System.out.println(String.format(messageTemplate,price,"рубля"));
-            default:
-                System.out.println(String.format(messageTemplate,price,"рублей"));
+        if ((integerPart % 100) >= 11 && (integerPart % 100) <= 14) {
+            System.out.printf(messageTemplate, price, "рублей");
+        } else {
+            switch (lastDigitInt) {
+                case 1:
+                    System.out.printf(messageTemplate, price, "рубль");
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    System.out.printf(messageTemplate, price, "рубля");
+                    break;
+                default:
+                    System.out.printf(messageTemplate, price, "рублей");
+                    break;
+            }
         }
     }
-
 }
 
 
