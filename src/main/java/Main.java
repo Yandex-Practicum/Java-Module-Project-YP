@@ -18,7 +18,8 @@ public class Main {
 
         /* Распаковка результата */
         makeResult(products, countPeople);
-      
-        /* Comment for create branch dev */
+        
+        /* Этот комментарий, чтобы показать Pull Request между двумя ветками моего репозитория main и dev. */ 
+        /* Сам код уже написан, но при первом ревью я создал Pull Request между моим репозиторием и репозиторием Yandex-Practicum. */
     }
 }
