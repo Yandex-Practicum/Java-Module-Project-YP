@@ -43,7 +43,7 @@ public class Main {
 
         String ruble = "";
         int e = ((int) (pricePersonal)) % 10; //сюда записываем последнюю цифру
-        int f = (int) ((pricePersonal / 10) % 10); //сюда записываем предпоследнюю цифру
+        int f = (int) ((pricePersonal / 10) % 10); //здесь записываем предпоследнюю цифру
         if (f == 1) {
             ruble = "рублей";
         } else {

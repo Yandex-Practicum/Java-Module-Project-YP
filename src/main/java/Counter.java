@@ -13,7 +13,7 @@ public class Counter {
                 if (number < 2) {
                     System.out.println("Счет можно разделить только на несколько человек.");
                 } else {
-                    persons = number;
+                    persons = number; //количество персон
                     break;
                 }
             } else {
