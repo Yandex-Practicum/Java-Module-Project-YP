@@ -107,7 +107,7 @@ public class Main {
         System.out.println("================");
         // ваш код начнется здесь
         // вы не должны ограничиваться только классом Main и можете создавать свои классы по необходимости
-        //pricePrinter(bill.calculatorPerPerson());
+        pricePrinter(bill.calculatorPerPerson());
     }
 
     public static boolean isFloat(String str) {
