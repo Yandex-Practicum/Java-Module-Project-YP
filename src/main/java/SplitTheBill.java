@@ -66,7 +66,7 @@ public class SplitTheBill {
         меньше чем сумма всего счета, в такой ситуации мы добавляем к счету каждого участника по одной копейке 0.01
          */
         result = (float) Math.round(100 * totalCost / personsQuantity) / 100;
-        System.out.println(result);
+        //System.out.println(result);
         if ((totalCost - result * personsQuantity) > 0) {
             System.out.println("ВНИМАНИЕ");
             String messageTemplate = "Разделили %.2f на %d человек. Получили %.2f.\nПри умножении на %d получим сумму меньше чем сумма всего счёта: %.2f";
