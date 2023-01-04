@@ -87,12 +87,14 @@ public class Main {
                     float sumForPerson;
 
                     System.out.println("Добавленные товары:");
-                    System.out.print( personPurchases.nameOfPurchases );    //вывод общей строки наименования товаров
+                    //System.out.print( personPurchases.nameOfPurchases );    //вывод общей строки наименования товаров
+                    System.out.print( personPurchases.namePriceOfPurchases ); //вывод общей строки наименования товаров + цена
 
                     if( personPurchases.numPeopleOfGroup > 0){
                         sumForPerson = personPurchases.sumOfPurchases / (float)personPurchases.numPeopleOfGroup ;    //сумма на каждого
-                        System.out.print( String.format("Сумма на каждого: %.2f ", sumForPerson) ); //вывод суммы
-                        System.out.println( createStrRub(sumForPerson) );           //добавка - рублей/рубля/рубль
+                        System.out.println( String.format("Общая сумма: %.2f ", personPurchases.sumOfPurchases) + createStrRub(personPurchases.sumOfPurchases) ); //вывод суммы
+                        System.out.println( String.format("Сумма на каждого: %.2f ", sumForPerson) + createStrRub(sumForPerson) ); //вывод суммы
+
                     }
                     else System.out.print( "Сумма не определена" ); //вывод суммы
 
@@ -141,19 +143,22 @@ public class Main {
 //--------------------------------------------------------------------------------------------------
 //описание класса Purchase
 class Purchase {
-    String nameOfPurchases;  //общая строка названий добавленных продуктов
-    float sumOfPurchases;    //общая сумма добавленных продуктов
-    int numPeopleOfGroup;    //число людей в группе
+    String nameOfPurchases;             //общая строка названий добавленных продуктов
+    String namePriceOfPurchases;        //общая строка названий + цена добавленных продуктов
+    float sumOfPurchases;               //общая сумма добавленных продуктов
+    int numPeopleOfGroup;               //число людей в группе
 
     //constructor
     Purchase( ){
         this.nameOfPurchases = "";
+        this.namePriceOfPurchases = "";
         this.sumOfPurchases = 0.0f;
         this.numPeopleOfGroup = 1;
     }
     //добавить новый продукт
     public void addNewProduct(String nameOfProduct, float valueOfProduct){
         nameOfPurchases = nameOfPurchases + nameOfProduct + "\n";
+        namePriceOfPurchases = namePriceOfPurchases +  nameOfProduct + String.format( " Цена:%.2fр.", valueOfProduct) + "\n";
         sumOfPurchases += valueOfProduct;
     }
 }
