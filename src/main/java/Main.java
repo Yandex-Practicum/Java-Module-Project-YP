@@ -84,7 +84,7 @@ public class Main {
                     }
                 break;
                 case 2: //вывожу результаты
-                    float sumForPerson = 0.0f;
+                    float sumForPerson;
 
                     System.out.println("Добавленные товары:");
                     System.out.print( personPurchases.nameOfPurchases );    //вывод общей строки наименования товаров
