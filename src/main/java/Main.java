@@ -101,10 +101,10 @@ public class Main {
 
                     enPrgExit=true;     //завершение выполнения цикла программы
                 break;
-                /*case 3:
+                case 3:
                     for(int i=0;i<1000;i++) System.out.println( i+ " " + createStrRub((float) i) );
                     enPrgExit=true;
-                    break;*/
+                    break;
             }
         }
         consoleScanner.close();
