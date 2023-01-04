@@ -1,9 +1,13 @@
 package modules;
 
+import com.sun.tools.javac.util.StringUtils;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import entity.Products;
+import sun.jvm.hotspot.oops.Array;
 
 public class Modules {
     final static Scanner scanner = new Scanner(System.in);
@@ -86,6 +90,8 @@ public class Modules {
         System.out.println("\n СПИСОК ДОБАВЛЕННЫХ ТОВАРОВ : ");
         for (Products prod: products) {
             sumPriceProducts = sumPriceProducts + prod.getPrice();
+
+
             if (prod.getPrice() < 2 && prod.getPrice() >= 1) {
                 System.out.printf("\n Добавленные товары : \n Название : %s;    Цена : %.2f рубль", prod.getName(), prod.getPrice());
             }else if ((prod.getPrice() < 5 && prod.getPrice() >= 2) || (prod.getPrice() < 1 && prod.getPrice() >= 0)){
@@ -107,5 +113,70 @@ public class Modules {
             System.out.printf("\n\n Каждый из %d друзей должен заплатить по %.2f копеек. \n", countPeople, sumPriceProducts/countPeople);
         }
     }
-    /* Comment for end push=) */
+
+    /* Преобразователь Double чисел */
+    public static void choiceForCost(double money){
+        /* Массив слов */
+        String[][] someWords = {{"Рубль","Рубля","Рублей"},{"Копейка","Копеек","Копейки"}};
+
+        /* Для записи результата */
+        String rub = null;
+        String kop = null;
+
+        /* Разбиваем на целое и дробное */
+        double moneyDouble = money - (int) money; //дробная часть числа
+        String m = String.format("%.2f", moneyDouble);
+        int moneyInt = (int) money; // Целая часть числа, можно и через floor
+
+        /* Последний символ целой части */
+        String moneyIntStr = Integer.toString(moneyInt);
+        int indexForIntMoney = moneyIntStr.length()-1;
+        char lastElemStrMoneyInt = moneyIntStr.charAt(indexForIntMoney);
+        int lastInt = Integer.parseInt(String.valueOf(lastElemStrMoneyInt));
+        /* Предпоследний символ целой части */
+        int indexPreLastInt = 0;
+        int preLastInt = 0;
+        if (moneyInt > 9) {
+            indexPreLastInt = indexForIntMoney-1;
+            char prelastElemStrMoneyInt = moneyIntStr.charAt(indexPreLastInt);
+            preLastInt = Integer.parseInt(String.valueOf(prelastElemStrMoneyInt));
+        }
+
+        /* Преобразуем дробную часть до двух знаков */
+        //String moneyDoubleStr = Double.toString(m);
+        //System.out.println(moneyDouble);
+        String[] b = m.split(".",3);
+        String vv = b[2];
+        int indexForDoubleMoney = vv.length()-1;
+        char lastElemStrMoneyDouble = m.charAt(indexForDoubleMoney);
+        int c = Integer.parseInt(String.valueOf(lastElemStrMoneyDouble));
+
+        System.out.println(m);
+
+
+
+
+
+
+
+
+            switch (lastInt) {
+                case 1:
+                    rub = someWords[0][0];
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    rub = someWords[0][1];
+                    break;
+                default:
+                    rub = someWords[0][2];
+                    break;
+
+        }
+
+        System.out.println(rub + "   ===  " + lastElemStrMoneyInt + " += " + preLastInt + " +== " + lastInt);
+
+    }
+
 }
