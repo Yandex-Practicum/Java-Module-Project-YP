@@ -1,19 +1,15 @@
 package modules;
 
-import com.sun.tools.javac.util.StringUtils;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 import entity.Products;
-import sun.jvm.hotspot.oops.Array;
 
 public class Modules {
     final static Scanner scanner = new Scanner(System.in);
 
     /* Вводим количество человек/гостей (целое положительное число, больше 1)*/
-    public static int getCountPeople(){
+    public static int getCountPeople() {
         int countPeople;
         do {
             System.out.print(" На сколько человек разделить счёт (должно быть целое число > 1) : \n");
@@ -22,7 +18,7 @@ public class Modules {
                 scanner.next();
             }
             countPeople = scanner.nextInt();
-            if (countPeople < 2){
+            if (countPeople < 2) {
                 System.out.println("\n Ошибка. Введенное значение < 2 \n");
             }
         } while (countPeople <= 1);
@@ -31,7 +27,7 @@ public class Modules {
     }
 
     /* Создание списка товаров */
-    public static ArrayList<Products> getAddProductsFromUser(){
+    public static ArrayList<Products> getAddProductsFromUser() {
         String name;
         double price;
         String command;
@@ -55,7 +51,7 @@ public class Modules {
                         scanner.next();
                     }
                     price = scanner.nextDouble();
-                    if (price <= 0.00f){
+                    if (price <= 0.00f) {
                         System.out.println("\n Ошибка. Введенное значение <= 0 \n");
                     }
                 } while (price <= 0.00f);
@@ -84,51 +80,29 @@ public class Modules {
     }
 
     /* Распаковка результата */
-    public static void makeResult(ArrayList<Products> products, int countPeople){
+    public static void makeResult(ArrayList<Products> products, int countPeople) {
         /* Вывод списка товаров и подсчет общей стоимости */
         double sumPriceProducts = 0;
         System.out.println("\n СПИСОК ДОБАВЛЕННЫХ ТОВАРОВ : ");
-        for (Products prod: products) {
+        for (Products prod : products) {
             sumPriceProducts = sumPriceProducts + prod.getPrice();
-
-
-            if (prod.getPrice() < 2 && prod.getPrice() >= 1) {
-                System.out.printf("\n Добавленные товары : \n Название : %s;    Цена : %.2f рубль", prod.getName(), prod.getPrice());
-            }else if ((prod.getPrice() < 5 && prod.getPrice() >= 2) || (prod.getPrice() < 1 && prod.getPrice() >= 0)){
-                System.out.printf("\n Добавленные товары : \n Название : %s;    Цена : %.2f рубля", prod.getName(), prod.getPrice());
-            } else if (prod.getPrice() > 4){
-                System.out.printf("\n Добавленные товары : \n Название : %s;    Цена : %.2f рублей", prod.getName(), prod.getPrice());
-            } else if (prod.getPrice() > 4){
-                System.out.printf("\n Добавленные товары : \n Название : %s;    Цена : %.2f копеек", prod.getName(), prod.getPrice());
-            }
+            String[] wordsCost = choiceForCost(prod.getPrice());
+            String[] numCost = createPartNum(prod.getPrice());
+            System.out.printf("\n Добавленный товар : \n Название : %s;    Цена : %s %s %s %s \n", prod.getName(), numCost[0], wordsCost[0], numCost[1], wordsCost[1]);
         }
         /* Вывод результата */
-        if (sumPriceProducts/countPeople < 2 && sumPriceProducts/countPeople >= 1) {
-            System.out.printf("\n\n Каждый из %d друзей должен заплатить по %.2f рубль. \n", countPeople, sumPriceProducts/countPeople);
-        } else if ((sumPriceProducts/countPeople < 5 && sumPriceProducts/countPeople >= 2) || (sumPriceProducts/countPeople < 1 && sumPriceProducts/countPeople >= 0)) {
-            System.out.printf("\n\n Каждый из %d друзей должен заплатить по %.2f рубля. \n", countPeople, sumPriceProducts/countPeople);
-        } else if (sumPriceProducts/countPeople > 4){
-            System.out.printf("\n\n Каждый из %d друзей должен заплатить по %.2f рублей. \n", countPeople, sumPriceProducts/countPeople);
-        } else if (sumPriceProducts/countPeople >= 0 && sumPriceProducts/countPeople < 1){
-            System.out.printf("\n\n Каждый из %d друзей должен заплатить по %.2f копеек. \n", countPeople, sumPriceProducts/countPeople);
-        }
+        String[] wordsCost = choiceForCost(sumPriceProducts/countPeople);
+        String[] numCost = createPartNum(sumPriceProducts/countPeople);
+        System.out.printf("\n\n Каждый из %d друзей должен заплатить по %s %s %s %s. \n\n\n\n",countPeople, numCost[0], wordsCost[0], numCost[1], wordsCost[1]);
     }
 
-    /* Преобразователь Double чисел */
-    public static void choiceForCost(double money){
-        /* Массив слов */
-        String[][] someWords = {{"Рубль","Рубля","Рублей"},{"Копейка","Копеек","Копейки"}};
-
-        /* Для записи результата */
-        String rub = null;
-        String kop = null;
-
+    /* Преобразователь Double чисел, разбиваем число и выбираем последние два символа целой и дробной части */
+    public static String[] choiceForCost(double money){
         /* Разбиваем на целое и дробное */
-        double moneyDouble = money - (int) money; //дробная часть числа
-        String m = String.format("%.2f", moneyDouble);
+        double moneyDouble = money - (int) money; // Дробная часть числа
+        String doubleTwoNum = String.format("%.2f", moneyDouble);// Строка с округленной до двух чисел дробной частью
         int moneyInt = (int) money; // Целая часть числа, можно и через floor
-
-        /* Последний символ целой части */
+        /* Последний и предпоследний символ целой части */
         String moneyIntStr = Integer.toString(moneyInt);
         int indexForIntMoney = moneyIntStr.length()-1;
         char lastElemStrMoneyInt = moneyIntStr.charAt(indexForIntMoney);
@@ -141,25 +115,29 @@ public class Modules {
             char prelastElemStrMoneyInt = moneyIntStr.charAt(indexPreLastInt);
             preLastInt = Integer.parseInt(String.valueOf(prelastElemStrMoneyInt));
         }
+        /* Последний и предпоследний символ после запятой */
+        String[] twoNumRight = doubleTwoNum.split(".",3);
+        String twoNumNotInt = twoNumRight[2];
+        int indexForDoubleMoney = twoNumNotInt.length()-1;
+        char lastElemStrMoneyDouble = twoNumNotInt.charAt(indexForDoubleMoney);
+        int lastDoubleNum = Integer.parseInt(String.valueOf(lastElemStrMoneyDouble));
+        int indexForDoubleMoneyPreLast = twoNumNotInt.length()-2;
+        char preLastElemStrMoneyDouble = twoNumNotInt.charAt(indexForDoubleMoneyPreLast);
+        int preLastDoubleNum = Integer.parseInt(String.valueOf(preLastElemStrMoneyDouble));
 
-        /* Преобразуем дробную часть до двух знаков */
-        //String moneyDoubleStr = Double.toString(m);
-        //System.out.println(moneyDouble);
-        String[] b = m.split(".",3);
-        String vv = b[2];
-        int indexForDoubleMoney = vv.length()-1;
-        char lastElemStrMoneyDouble = m.charAt(indexForDoubleMoney);
-        int c = Integer.parseInt(String.valueOf(lastElemStrMoneyDouble));
+        String[] result = choiceWords(lastInt, preLastInt, lastDoubleNum, preLastDoubleNum);
+        return result;
+    }
 
-        System.out.println(m);
-
-
-
-
-
-
-
-
+    /* Подбираем слова с нужными окончаниями */
+    public static String[] choiceWords(int lastInt, int preLastInt, int lastDoubleNum, int preLastDoubleNum){
+        /* Массив слов */
+        String[][] someWords = {{"Рубль","Рубля","Рублей"},{"Копейка","Копейки", "Копеек"}};
+        /* Для записи результата */
+        String rub = null;
+        String kop = null;
+        /* Для целой части Double числа */
+        if ((preLastInt > 1)||(preLastInt == 0)) {
             switch (lastInt) {
                 case 1:
                     rub = someWords[0][0];
@@ -173,10 +151,50 @@ public class Modules {
                     rub = someWords[0][2];
                     break;
 
+            }
+        } else if (preLastInt == 1){
+            switch (lastInt) {
+                default:
+                    rub = someWords[0][2];
+                    break;
+
+            }
         }
+        /* Для чисел после запятой */
+        if ((preLastDoubleNum > 1) || (preLastDoubleNum == 0)){
+            switch (lastDoubleNum) {
+                case 1:
+                    kop = someWords[1][0];
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    kop = someWords[1][1];
+                    break;
+                default:
+                    kop = someWords[1][2];
+                    break;
 
-        System.out.println(rub + "   ===  " + lastElemStrMoneyInt + " += " + preLastInt + " +== " + lastInt);
-
+            }
+        } else if (preLastDoubleNum == 1) {
+            switch (lastDoubleNum) {
+                default:
+                    kop = someWords[1][2];
+                    break;
+            }
+        }
+        String[] result = {rub,kop};
+        return result;
     }
 
+    /* Разбиение числа на целую и дробную часть */
+    public static String[] createPartNum(double money){
+        String moneyIntStr = Integer.toString((int) money);
+        double moneyDouble = money - (int) money; // Дробная часть числа
+        String doubleTwoNum = String.format("%.2f", moneyDouble);// Строка с округленной до двух чисел дробной частью
+        String[] twoNumRight = doubleTwoNum.split(".",3);
+        String twoNumNotInt = twoNumRight[2];
+        String[] result = {moneyIntStr, twoNumNotInt};
+        return result;
+    }
 }
