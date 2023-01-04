@@ -100,7 +100,11 @@ public class Main {
                     consoleScanner.next();   //пауза на ввод любого символа
 
                     enPrgExit=true;     //завершение выполнения цикла программы
-                    break;
+                break;
+                /*case 3:
+                    for(int i=0;i<1000;i++) System.out.println( i+ " " + createStrRub((float) i) );
+                    enPrgExit=true;
+                    break;*/
             }
         }
         consoleScanner.close();
@@ -110,13 +114,11 @@ public class Main {
     public static String createStrRub(float sumReal){
         int sumInt,sumInt100;
 
-        String retString="рублей";
+        String retString="";
         sumInt = (int) sumReal; //из float to int
         sumInt100 = sumInt % 100;
         //проверка на x11-x14 рублей
-        if((sumInt >= 11 && sumInt <= 14) && (sumInt100>=11 && sumInt100<=14)) {
-            retString="рублей";
-        }
+        if(  (sumInt100>=11 && sumInt100<=14)) retString="рублей";
         else{
             switch (sumInt % 10) {
                 case 1:
@@ -126,6 +128,9 @@ public class Main {
                 case 3:
                 case 4:
                     retString = "рубля";
+                    break;
+                default:
+                    retString = "рублей";
                     break;
             }
         }
