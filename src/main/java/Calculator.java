@@ -20,9 +20,6 @@ public class Calculator {
                 name = console.next();
             }
 
-            if (name.equalsIgnoreCase("Завершить")) {
-                break;
-            } else {
                 System.out.println("Введите цену ");
                 if (!console.hasNextDouble()){
                     System.out.println("Введите цену в формате 00.00, пробуем заново");
@@ -30,7 +27,7 @@ public class Calculator {
                 }
                 double price = console.nextDouble();
                 products.add(new Product(price, name));
-            }
+
             System.out.println("Завершить подсчет?");
             String answer = console.next();
             if (answer.equalsIgnoreCase("Завершить"))
