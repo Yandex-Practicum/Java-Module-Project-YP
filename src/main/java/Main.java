@@ -1,4 +1,5 @@
 // dev branch for Y.Practicum
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,27 +11,38 @@ public class Main {
         Calculator calculator = new Calculator();
         List<Product> products = calculator.calculateBill();
         System.out.println("------------------------");
-        Product.calculation(persons,SumTotal(products));
+        Product.calculation(persons, sumTotal(products));
 
     }
 
-   public static void firstStep(){
-       System.out.println("Добрый день! Это консольное приложение пожет вам разделить счет");
-       System.out.println("Введите количество персон");
-   }
+    public static void firstStep() {
+        System.out.println("Добрый день! Это консольное приложение пожет вам разделить счет");
+        System.out.println("Введите количество персон");
+    }
 
-    public static int checkInput(){
-        Scanner scanner =  new Scanner(System.in);
+    public static int checkInput() {
+        Scanner scanner = new Scanner(System.in);
+
         int input;
         while (true) {
-            input = scanner.nextInt();
-            if (input > 1)
-                break;
-            System.out.println("Ошибка! Введите количество персон больше 1 человека");
+
+            if (!scanner.hasNextInt()) {
+                System.out.println("Введите число виде числа персон!");
+                scanner.next();
+                continue;
+            } else input = scanner.nextInt();
+
+            if (input <= 1) {
+                System.out.println("Ошибка! Введите количество персон больше 1 человека");
+                continue;
+            }
+
+            break;
         }
         return input;
     }
-    public static double SumTotal(List<Product> productList) {
+
+    public static double sumTotal(List<Product> productList) {
         double total = 0;
         for (Product product : productList) {
             total = total + product.price;
@@ -39,7 +51,6 @@ public class Main {
         }
         return total;
     }
-
 
 
 }
