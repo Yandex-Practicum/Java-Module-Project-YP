@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class peopleCounter {
+public class PeopleCounter {
 
     public static int countPeople (){
         System.out.println("Приветствую! На сколько человек поделим счет?");
@@ -16,7 +16,6 @@ public class peopleCounter {
                 }
             } else {
                 System.out.println("Это не целое число, возможно, вы ошиблись. Попробуем еще раз?");
-                peopleScanner.next();
             }
         }
         return peopleNumber;

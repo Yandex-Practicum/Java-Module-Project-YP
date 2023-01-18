@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int peopleNumber = peopleCounter.countPeople();
+        int peopleNumber = PeopleCounter.countPeople();
 
         System.out.println("Введите название блюда.");
         String foodName;
@@ -36,7 +36,6 @@ public class Main {
                     }
                 } else {
                     System.out.println("Возможно, вы ошиблись. Введите стоимость блюда в формате ХХ,ХХ");
-                    priceScanner.next();
                 }
             }
             foodList = String.format("%s\n%s", foodList, foodName);
@@ -61,14 +60,11 @@ public class Main {
                     break;
                 default:
                     ruble = "рублей";
-
-        System.out.println(foodList + "\n" + String.format(totalResult, priceSum) + " руб." + "\n" + String.format(personalResult, eachPay) + " " + ruble);
-
+            }
+                    System.out.println(foodList + "\n" + String.format(totalResult, priceSum) + " руб." + "\n" + String.format(personalResult, eachPay) + " " + ruble);
             }
         }
     }
-
-}
 
 
 
