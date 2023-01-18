@@ -44,7 +44,7 @@ public class Main {
 
         double eachPay = priceSum / peopleNumber;
         String totalResult = "Общая сумма - %.2f";
-        String personalResult = "Каждый должен заплатить по %.2f";
+        String personalResult = "Каждый должен заплатить %.2f";
         String ruble;
         if ((int) eachPay % 100 >= 10 && (int) eachPay % 100 <= 20) {
             ruble = "рублей";
@@ -60,13 +60,7 @@ public class Main {
                     break;
                 default:
                     ruble = "рублей";
-            }
-                    System.out.println(foodList + "\n" + String.format(totalResult, priceSum) + " руб." + "\n" + String.format(personalResult, eachPay) + " " + ruble);
+            }}
+            System.out.println(foodList + "\n" + String.format(totalResult, priceSum) + " руб." + "\n" + String.format(personalResult, eachPay) + " " + ruble + ".");
             }
         }
-    }
-
-
-
-
-
