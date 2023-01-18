@@ -46,6 +46,7 @@ public class Main {
         String totalResult = "Общая сумма - %.2f";
         String personalResult = "Каждый должен заплатить %.2f";
         String ruble;
+
         if ((int) eachPay % 100 >= 10 && (int) eachPay % 100 <= 20) {
             ruble = "рублей";
         } else {
