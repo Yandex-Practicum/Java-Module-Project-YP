@@ -23,7 +23,7 @@ public class Rub {
             case (61) :
             case (71) :
             case (81) :
-            case (91) : {
+            case (91) :  {
                 System.out.println(String.format(templatePut, amountForPersons) + " рубль");
                 break;
             }
