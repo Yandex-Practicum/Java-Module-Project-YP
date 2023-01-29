@@ -3,36 +3,39 @@ import java.util.Scanner;
 
 // dev branch for Y.Practicum
 public class Main {
+    static CountPersons countPersons = new CountPersons();
     static int persons = 0;
     static double sum = 0;
 
     public static void main(String[] args) {
-        quantityOfPersons();
+        countPersons.quantityOfPersons();
         addProduct();
         finish();
 
     }
+    public static class CountPersons {
 
-    public static void quantityOfPersons() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Сколько вас человек?");
-        while (true) {
-            if (scanner.hasNextDouble()) {
-                persons = scanner.nextInt();
-                if (persons == 1) {
-                    System.out.println("Вы один, нет смысла делить.");
-                } else if (persons < 1) {
-                    System.out.println("Неверное значение меньше 1");
-                } else if (persons > 1) {
-                    break;
-                } else {
-                    System.out.println("Вы ввели не число");
-                    scanner.nextLine();
+
+        void quantityOfPersons() {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Сколько вас человек?");
+            while (true) {
+                if (scanner.hasNextDouble()) {
+                    persons = scanner.nextInt();
+                    if (persons == 1) {
+                        System.out.println("Вы один, нет смысла делить.");
+                    } else if (persons < 1) {
+                        System.out.println("Неверное значение меньше 1");
+                    } else if (persons > 1) {
+                        break;
+                    } else {
+                        System.out.println("Вы ввели не число");
+                        scanner.nextLine();
+                    }
                 }
             }
         }
     }
-
     public static void addProduct() {
         Scanner scanner = new Scanner(System.in);
         double price = 0;
