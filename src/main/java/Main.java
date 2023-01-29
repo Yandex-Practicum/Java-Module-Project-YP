@@ -20,7 +20,7 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Сколько вас человек?");
             while (true) {
-                if (scanner.hasNextDouble()) {
+                if (scanner.hasNextInt()) {
                     persons = scanner.nextInt();
                     if (persons == 1) {
                         System.out.println("Вы один, нет смысла делить.");
@@ -28,11 +28,13 @@ public class Main {
                         System.out.println("Неверное значение меньше 1");
                     } else if (persons > 1) {
                         break;
-                    } else {
-                        System.out.println("Вы ввели не число");
-                        scanner.nextLine();
                     }
                 }
+                else {
+                    System.out.println("Вы ввели не число");
+                    scanner.next();
+                }
+
             }
         }
     }
@@ -64,11 +66,13 @@ public class Main {
                         System.out.println(str);
                         System.out.println("напишите блюдо");
                         break;
-                    } else {
-                        System.out.println("Введено не число");
-                        scanner.nextLine();
                     }
                 }
+                else {
+                    System.out.println("Введено не число");
+                    scanner.next();
+                }
+
             }
         scanner.nextLine();
         }
