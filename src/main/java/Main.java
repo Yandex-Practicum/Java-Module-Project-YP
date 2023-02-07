@@ -27,7 +27,7 @@ public class Main {
     public static void main(String[] args) {
         // 1. Запрашиваем количество людей (с проверкой правильности ввода). Получаем целое число N
 
-        int N = amountFriends();
+        int countOfFriends = amountFriends();
 
         // 2. Запрашиваем наименование заказа и его стоимость до слова завершить. Получаем строку заказов и общую стоимость
 
@@ -35,35 +35,39 @@ public class Main {
 
         // 3. Получаем результат деления общей стоимости заказа на количество людей в компанию
 
-        double partPayment = order.costOfTheDish / N;
+        double partPayment = order.costOfTheDish / countOfFriends;
 
         // 4. Форматируем результат в рублях и с двумя знаками после запятой
 
         String printLineCost = payRubles(partPayment);
 
         // 5. Выводим результат
-
+        System.out.println("_______________________________________");
         System.out.println("Уважаемые посетители нашего заведения!");
-        System.out.println("Ваш общий заказ: \n" + order.dishInOrder);
-        System.out.println("Общая сумма заказа: " + payRubles(order.costOfTheDish));
-        System.out.println("Каждый из Вас должен заплатить сегодня по: " + printLineCost);
+        System.out.println("Ваш заказ сегодня: \n" + order.dishInOrder);
+        System.out.println("на общую сумму: " + payRubles(order.costOfTheDish));
+        System.out.println("Каждый из Вас должен заплатить по: " + printLineCost);
     }
 
 
-    //Метод вызывается для ввода количества застольных пацанов,с кем делить счет
+    //Метод вызывается для ввода количества застольных человек,с кем делить счет
     public static int amountFriends() {
         int N;
         while (true) {
             System.out.println("Введите количество человек на сколько делить заказ");
-            N = scanner.nextInt();
 
+            if(scanner.hasNextInt()) { // если введено целое число - работаем с ним
+                N = scanner.nextInt();
+                if (N > 1) {  break;  }   //Если введенное значение число и оно больше 1 - прерываем. В противном случаем цикл повторяется до бесконечности
+            } else {
+                scanner.next();;
+            }
             // Проверка введенного значения
-            if (N > 1) {  break;  }   //Если введенное значение число и оно больше 1 - прерываем. В противном случаем цикл повторяется до бесконечности
         }
         return N;
     }
 
-    // Создаем метод расчета и возврата списка блюд и общей стоимости заказа (Order.название, Order.цена)
+    // Метод расчета и возврата списка блюд и общей стоимости заказа (Order.название, Order.цена)
     public static Order getOrder() {
         // Задаем начальные значения для возврата при обьявлении переменных
         String dishInOrder = "";
@@ -72,19 +76,37 @@ public class Main {
         double cost ;
         Scanner scanner = new Scanner(System.in);
 
-        while (!(dish.equalsIgnoreCase("Чаевые")))   // цикл работает пока вместо названия блюда не будет введено "Завершение"  - без учета регистра. При вводе "Завершение" - !true - прервет цикл
+        System.out.println("*************************************************************");
+        System.out.println("Введите последовательно название и стоимость заказанных блюд.");
+        System.out.println("Справочно: для окончания подсчета введите слово ЧАЕВЫЕ и их стоимость, или ЗАВЕРШИТЬ");
+        System.out.println(" ");
+
+        while (!(dish.equalsIgnoreCase("Чаевые")))   // цикл работает пока вместо названия блюда не будет введено "Завершение"  - без учета регистра. При вводе "Чаевые" - !true - прервет цикл
         {
-            System.out.println("Введите название блюда");
+            System.out.println("Введите название блюда (или кодовое слово 'Завершить'): ");
             dish = scanner.next();            // Считываем название
-            if (dish.equalsIgnoreCase("Завершение")) {  break; }
+            if (dish.equalsIgnoreCase("Завершить")) {  break; }
+
             dishInOrder = (dishInOrder + dish + "\n");        // Формируем список блюд
 
-            System.out.println("Введите стоимость");
-            cost = scanner.nextDouble();                // Считываем цену
-            if (cost > 0)                                    // Проверяем ввод пользователя. Если не число - не суммируем. Можно и переспросить
-            {
-                costOfTheDish = costOfTheDish + cost;       // Суммируем
+            System.out.println("Введите стоимость блюда (или размер чаевых): ");
+
+            while (true) {
+
+                if (scanner.hasNextDouble() || scanner.hasNextInt() ) { // если введено  число - работаем с ним
+                    cost = scanner.nextDouble();                // Считываем цену
+                    if (cost > 0)                                    // Проверяем ввод пользователя. Если не число - не суммируем. Можно и переспросить
+                    {
+                        costOfTheDish = costOfTheDish + cost;       // Суммируем
+                        break;
+                    }
+                } else {
+
+                    System.out.println("Введите, пожалуйста, правильно стоимость указанного блюда, а не это  " + scanner.next()); //выводим в консоль сообщение
+
+                }
             }
+
         }
 
         return new Order(dishInOrder, costOfTheDish);
