@@ -1,6 +1,5 @@
 import java.util.LinkedList;
 import java.util.Scanner;
-// это дубль пулл реквеста, так как первый я случайно замерджил
 public class Check {
     LinkedList<String> name = new LinkedList<>();
     LinkedList<Double> price = new LinkedList<>();

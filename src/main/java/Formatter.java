@@ -1,5 +1,4 @@
 public class Formatter {
-    // это дубль пулл реквеста, так как первый я случайно замерджил
     String format(double input) {
         String rub;
         int ending = (int)input % 100;
