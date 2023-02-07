@@ -34,6 +34,7 @@ public class Main {
 
         // Часть 2 - создание чека и добавление товаров (в конструкторе)
         Calculator check = new Calculator();
+        check.addGoods();
 
         // Часть 3 - вывод результатов
         check.print();

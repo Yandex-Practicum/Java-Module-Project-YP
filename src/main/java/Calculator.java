@@ -1,14 +1,14 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Calculator {
-    LinkedList<String> name = new LinkedList<>();
-    LinkedList<Double> price = new LinkedList<>();
+    ArrayList<String> name = new ArrayList<>();
+    ArrayList<Double> price = new ArrayList<>();
     int count;
     double sum;
 
     double getSum() {return sum;}
 
-    Calculator(){
+    void addGoods (){
         Scanner scanner = new Scanner(System.in);
         while (true){
             System.out.println("Введите товар №"+(count+1)+" или \"Завершить\", чтобы завершить ввод:");
@@ -27,8 +27,8 @@ public class Calculator {
                     scanner.nextLine();
                 }
             }
-            name.addLast(nameInput);
-            price.addLast(priceInput);
+            name.add(nameInput);
+            price.add(priceInput);
             count++;
             sum += priceInput;
             System.out.println("Товар №"+count+" \"" + nameInput + "\" успешно добавлен!\n");
