@@ -6,6 +6,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("На сколько человек разделить счет?");
         Scanner scanner = new Scanner(System.in);
+        Calculator calc = new Calculator();
         while (true) {
             int count;
             try {
@@ -24,7 +25,8 @@ public class Main {
                 continue;
             }
             // если попали сюда - было больше одного
-            System.out.println(count);
+            calc.persons = count;
+            calc.calculate();
         }
     }
 }
