@@ -1,8 +1,10 @@
 public class RubFormat {
     String format(double input) {
         String rub;
-        int ending = (int) input % 100;
-        switch (ending % 10) {
+
+
+        int ending = (int)(Math.floor(input)) % 10;
+         switch (ending) {
             case 1: {
                 rub = " рубль";
                 break;
@@ -10,7 +12,7 @@ public class RubFormat {
             case 2:
             case 3:
             case 4:
-            {rub = " рубля";
+            {rub = " рубля"; //// как сделать 114 рублей? не могу понять
                 break;}
             default : {
                 rub = " рублей";
