@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Calculator {
  ArrayList<String> name = new ArrayList<>();
  ArrayList<Double> price = new ArrayList<>();
- int count = 1;
+ int countter = 0;
  double sum;
  double getSum() {return sum;}
 
@@ -12,7 +12,7 @@ public class Calculator {
 public void newTovar() {
   Scanner scanner = new Scanner(System.in);
   while (true) {
-   System.out.println("Введите товар № "+(count)+" или \"Завершить\", чтобы завершить ввод:");
+   System.out.println("Введите товар № "+(countter+1)+" или \"Завершить\", чтобы завершить ввод:");
    String nameInput = scanner.nextLine();
    if (nameInput.equalsIgnoreCase("Завершить")) {
     break;
@@ -22,23 +22,27 @@ public void newTovar() {
    while (true) {
     if (scanner.hasNextDouble()) {
      priceInput = scanner.nextDouble();
-     break;
-    } else {
+     scanner.nextLine();
+      if (priceInput < 1){
+     System.out.println("Введите число больше 0");
+     }
+    else {break;}}
+    else {
      System.out.println("Некорректный ввод, попробуйте еще раз");
-    }
+     scanner.nextLine();
+     }
    }
    name.add(nameInput);
    price.add(priceInput);
-   count++;
+   countter++;
    sum += priceInput;
-   System.out.println("Товар №"+count+ "\"" + nameInput + "\" успешно добавлен!");
+   System.out.println("Товар №"+countter+ "\"" + nameInput + "\" успешно добавлен!");
   }
-
  }
  void print() {
-  System.out.println("Добавленные товары: \n"+"\n"+"\n");
+  System.out.println("Добавленные товары: \n");
   RubFormat rub = new RubFormat();
-  for (int i = 0; i < count; i++) {
+  for (int i = 0; i < countter; i++) {
    System.out.println(String.format("%2d ",(i + 1)) + String.format(" |%-27s|",name.get(i)) + String.format("%7.2f", price.get(i))
            + rub.format(price.get(i))+ "\n"+ "\n");
   }

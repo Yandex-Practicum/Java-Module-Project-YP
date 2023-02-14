@@ -1,37 +1,29 @@
 import java.util.Scanner;
 
 public class Count {
-    public static int count() {
 
+    static int count() {
+        int number ;
         int persons;
-        int number;
         Scanner sc = new Scanner(System.in);
+        System.out.println("На скольких человек необходимо разделить счет?");
         while (true) {
-            System.out.println("На скольких человек необходимо разделить счет?");
-            while (true) {
-                if (sc.hasNextInt()) {
-                     number = sc.nextInt();
-                    break;
-                }
-                else {
-                    sc.next();
-                    System.out.println("Некорректный ввод, попробуйте еще раз");
-                }
-            }
             if (sc.hasNextInt()) {
-                if (number < 1) {
-                    System.out.println("Некорректный ввод, попробуйте еще раз");
-                } else if (number == 1) {
+                number = sc.nextInt();
+                if (number == 1) {
                     System.out.println("Вы один, вам за все и платить!");
+                } else if (number < 1) {
+                    System.out.println("Введите целое положительное число.");
                 } else {
                     persons = number;
                     break;
                 }
             }
+                else {
+                    System.out.println("Введите число.");
+                    sc.nextLine();
+                }
         }
         return persons;
     }
-
-
 }
-
