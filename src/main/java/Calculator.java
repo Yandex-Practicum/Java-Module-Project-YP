@@ -52,11 +52,12 @@ public class Calculator {
         double pay = this.computePay();
         String rub = "рублей";
         int last = (int)(Math.floor(pay)) % 10;
+        int decimal = (int)(Math.floor(pay) % 100);
 
-        if (last == 1) {
+        if (last == 1 && decimal < 11 && decimal > 19 ) {
             rub = "рубль";
         }
-        if (last >= 2 && last <= 4) {
+        if (last >= 2 && last <= 4 && decimal < 11 && decimal > 19) {
             rub = "рубля";
         }
 

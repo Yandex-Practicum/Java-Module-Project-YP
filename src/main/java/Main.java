@@ -8,11 +8,12 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Calculator calc = new Calculator();
         while (true) {
-            int count;
+            int count = 0;
             try {
                 count = scanner.nextInt();
             } catch (Exception e) {
                 System.out.println("Введите количество людей");
+                scanner.nextLine();
                 continue;
             }
 
@@ -27,6 +28,7 @@ public class Main {
             // если попали сюда - было больше одного
             calc.persons = count;
             calc.calculate();
+            break;
         }
     }
 }
