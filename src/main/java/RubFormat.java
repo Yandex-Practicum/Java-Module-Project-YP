@@ -11,7 +11,7 @@ public class RubFormat {
         if ((ending % 100 >= 11) && (ending % 100 <= 20)) {
             rub  = "рублей";
         }
-        return (rub);
+        return rub;
     }
 }
 
