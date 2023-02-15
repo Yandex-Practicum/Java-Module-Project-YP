@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Persons persons = new Persons();
@@ -6,11 +6,10 @@ public class Main {
         Formatter formatter = new Formatter();
         Calculator calculator = new Calculator();
         calculator.calculate();
-        String str = "Добавленные товары:\n%sСумма с человека: %.2f";
+        String str = "Добавленные товары:\n%sСумма с человека: %d %s";
         String formatRubl = calculator.sumNameProduct;
-        double formatDouble = calculator.sumPriceProduct / persons.newpersone;
-        System.out.println(String.format(str, formatRubl, formatDouble));
-        String pad = formatter.padejRub();
-        System.out.println(pad);
+        int formatDouble = (int) (calculator.sumPriceProduct / persons.newpersone);
+        String s = formatter.padejRub(formatDouble);
+        System.out.println(String.format(str, formatRubl, formatDouble, s));
     }
 }

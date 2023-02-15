@@ -8,20 +8,27 @@ public class Calculator {
 
     public void calculate() {
         while (true) {
-            System.out.println("Введите название товара:");
+            System.out.println("Введите название блюда:");
             product.nameProduct = scanner.next();
             if (product.nameProduct.equalsIgnoreCase("Завершить")) {
-                System.out.println("Добавление товара завершено.");
+                System.out.println("Добавление блюда завершено.");
                 break;
             }
             System.out.println("Введите цену блюда:");
-            while (!scanner.hasNextDouble()){
+            while (!scanner.hasNextDouble()) {
                 scanner.next();
                 System.out.println("Введите число!");
             }
-            product.priceProduct = scanner.nextDouble();
-
-            sumPriceProduct = sumPriceProduct + product.priceProduct;
+            while (true) {
+                product.priceProduct = scanner.nextDouble();
+                if (product.priceProduct > 1) {
+                    break;
+                } else if (product.priceProduct < 1) {
+                    System.out.println("Цена блюда не может быть отрицательной");
+                } else {
+                    System.out.println("Некорректные данные");
+                }
+            }sumPriceProduct = sumPriceProduct + product.priceProduct;
             sumNameProduct = sumNameProduct + product.nameProduct + "\n";
         }
     }

@@ -1,13 +1,11 @@
 public class Formatter {
-    Calculator calculator = new Calculator();
 
-    public String padejRub() {
-        double num = calculator.sumPriceProduct;
-        calculator.sumPriceProduct = num % 100 / 10;
-        if (calculator.sumPriceProduct == 1) {
-            return "дней";
+    public String padejRub(double sum) {
+        int num = (int) Math.floor(sum);
+        if (num == 1) {
+            return "рублей";
         }
-        switch ((int) (num % 10)) {
+        switch (num % 10) {
             case 1:
                 return "рубль";
             case 2:
