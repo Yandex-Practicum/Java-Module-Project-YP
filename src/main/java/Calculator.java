@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Calculator {
     ArrayList<String> name = new ArrayList<>();
     ArrayList<Double> price = new ArrayList<>();
-    int count;
+    //int count;
     double sum;
 
     double getSum() {return sum;}
@@ -11,7 +11,7 @@ public class Calculator {
     void addGoods (){
         Scanner scanner = new Scanner(System.in);
         while (true){
-            System.out.println("Введите товар №"+(count+1)+" или \"Завершить\", чтобы завершить ввод:");
+            System.out.println("Введите товар №"+(name.size()+1)+" или \"Завершить\", чтобы завершить ввод:");
             String nameInput = scanner.nextLine();
             if (nameInput.equalsIgnoreCase("Завершить")) break;
             System.out.println("Сколько стоит " + nameInput + "? (формат ввода: \"0,00\"):");
@@ -29,9 +29,9 @@ public class Calculator {
             }
             name.add(nameInput);
             price.add(priceInput);
-            count++;
+            //count++;
             sum += priceInput;
-            System.out.println("Товар №"+count+" \"" + nameInput + "\" успешно добавлен!\n");
+            System.out.println("Товар №"+name.size()+" \"" + nameInput + "\" успешно добавлен!\n");
         }
         scanner.close();
     }
@@ -41,7 +41,7 @@ public class Calculator {
         System.out.println("Добавленные товары:");
         System.out.println("-----------------------------------------------");
         Formatter rub = new Formatter();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < name.size(); i++) {
             System.out.println(String.format("%2d ",(i + 1)) + String.format(" |%-27s|",name.get(i)) + String.format("%7.2f", price.get(i)) + rub.format(price.get(i)));
         }
         System.out.println("-----------------------------------------------");
