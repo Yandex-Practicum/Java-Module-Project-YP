@@ -2,27 +2,27 @@ import java.util.Scanner;
 
 // dev branch for Y.Practicum
 public class Main {
+    static final String PEEKING_EYE = "\uD83E\uDEE3";
+    static final String THINKING_FACE = "\uD83E\uDD14";
+
+    public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        String peekingEye = "\uD83E\uDEE3"; // Имеет ли смысл записывать их как константы?
-        String thinkingFace = "\uD83E\uDD14";
-
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Привет! Надеюсь, что Вы вкусно покушали! " +
                 "Введите количество человек на которых нужно разделить чек.");
 
         while (true) {
 
             if (!scanner.hasNextInt()) {
-                System.out.println("Целое число, пожалуйста!" + peekingEye);
+                System.out.println("Целое число, пожалуйста!" + PEEKING_EYE);
                 scanner.nextLine();
             } else {
 
                 int numberOfPersons = scanner.nextInt();
 
                 if (numberOfPersons == 1) {
-                    System.out.println("Кажется, что Вы ели в одиночестве " + thinkingFace +
+                    System.out.println("Кажется, что Вы ели в одиночестве " + THINKING_FACE +
                             " или опечатались.\n" + "Попробуем снова?");
                 } else if (numberOfPersons < 1) {
                     System.out.println("Ooopss, ошибочка вышла! Попробуем снова!");

@@ -1,31 +1,32 @@
 import java.text.DecimalFormat;
-import java.util.Scanner;
 
 import static java.lang.StrictMath.floor;
 
 public class Menu {
+    static final String MONEY = "\uD83D\uDCB0";
+
     public static void foodList(int numberOfPersons) {
-        String money = "\uD83D\uDCB0";
+
         double totalPrice = 0.0;
         double share;
         StringBuilder food = new StringBuilder("Ваша еда: ");
 
         while (true) {
 
-            Scanner scanner = new Scanner(System.in);
 
             System.out.println("Введите название блюда:");
-            String itemName = scanner.nextLine();
+
+            String itemName = Main.scanner.nextLine();
 
             System.out.println("Введите стоимость блюда:");
             while (true) {
 
 
-                if (!scanner.hasNextDouble()) {
+                if (!Main.scanner.hasNextDouble()) {
                     System.out.println("Я же попросил ввести цену. Зачем мне твои буквы?");
-                    scanner.nextLine();
+                    Main.scanner.nextLine();
                 } else {
-                    double price = scanner.nextDouble();
+                    double price = Main.scanner.nextDouble();
 
                     if (price == 0) {
                         System.out.println("Бесплатный сыр, только в мышеловке!");
@@ -42,10 +43,10 @@ public class Menu {
             }
 
             System.out.println("Желаете добавить что то еще? Для подсчета введите Завершить");
-            String answer = scanner.next();
+            String answer = Main.scanner.next();
 
             if (answer.equalsIgnoreCase("Завершить")) {
-                scanner.close();
+                Main.scanner.close();
                 break;
             }
         }
@@ -53,7 +54,7 @@ public class Menu {
         System.out.println(food);
         System.out.println("******");
         System.out.println("Чек на:  " + rubles(totalPrice));
-        System.out.println("Скидываемся по: " + rubles(share) + money);
+        System.out.println("Скидываемся по: " + rubles(share) + MONEY);
         System.out.println("******");
         System.out.println("Рекомендуем: \n5% " + rubles(totalPrice * 5 / 100) + " Среднее обслуживание\n7% "
                 + rubles(totalPrice * 7 / 100) + " Хорошее обслуживание\n10% " + rubles(totalPrice * 10 / 100)
@@ -62,8 +63,10 @@ public class Menu {
     }
 
     public static String rubles(double a) {
-        if (floor(a) % 10 >= 2 && floor(a) % 10 <= 4) return format(a) + " рубля";
-        else if (floor(a) % 10 == 1) return format(a) + " рубль";
+        double b = floor(a);
+        if (b % 100 >= 11 && b % 100 <= 14) return format(a) + " рублей";
+        else if (b % 10 >= 2 && b % 10 <= 4) return format(a) + " рубля";
+        else if (b % 10 == 1) return format(a) + " рубль";
         else return format(a) + " рублей";
     }
 
