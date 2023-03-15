@@ -1,5 +1,5 @@
 public class Calculator {
-    public String GetRubleAddition(double num) {
+    public String getRubleAddition(double num) {
 
         int preLastDigit = (int) ((num % 100)/10);
             if (preLastDigit == 1)
@@ -21,7 +21,7 @@ public class Calculator {
         void calculate(double totalAmount, int numberOfPersons) {
         double payBill = totalAmount / numberOfPersons;
         String SumForOnePerson = "Каждый должен оплатить по:  %.2f";
-        System.out.println(String.format(SumForOnePerson, payBill) + " " + GetRubleAddition(payBill));
+        System.out.println(String.format(SumForOnePerson, payBill) + " " + getRubleAddition(payBill));
     }
 }
 
