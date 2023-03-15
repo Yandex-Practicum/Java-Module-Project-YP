@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.function.Function;
 
 // dev branch for Y.Practicum
 public class Main {
@@ -7,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         Calculator calc = new Calculator(); {
-        Scanner scanner = new Scanner(System.in)
+        Scanner scanner = new Scanner(System.in);
         String nameOfProduct = "";
         double priceOfProduct = 0.0;
         String fullList = "";
