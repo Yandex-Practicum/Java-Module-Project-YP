@@ -27,18 +27,18 @@ public class Calculator {
             System.out.println("\n");
 
             if (input.equalsIgnoreCase("Завершить")) {
-                Formatter formatter = new Formatter();
-                int x = (int) Math.floor(totalAmount);
-                String end_declension = formatter.GetRubleAddition(x);
-
                 System.out.println("Добавленные товары: \n" + foodNameList);
                 System.out.println("\n");
+
+                Formatter formatter = new Formatter();
+                int round_number = (int) Math.floor(totalAmount);
+                String end_declension = formatter.GetRubleAddition(round_number);
                 System.out.printf("Общая стоимость: %.2f %s", totalAmount, end_declension);
                 System.out.println("\n");
 
                 double priceForOnePerson = totalAmount / numberOfPerson;
-                x = (int) Math.floor(priceForOnePerson);
-                end_declension = formatter.GetRubleAddition(x);
+                round_number = (int) Math.floor(priceForOnePerson);
+                end_declension = formatter.GetRubleAddition(round_number);
                 System.out.printf("Счет на одного человека: %.2f %s", priceForOnePerson, end_declension);
 
                 scanner.close();
