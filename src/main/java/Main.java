@@ -15,9 +15,6 @@ public class Main {
                 System.out.println("Некорректное значение");
             } else {
                 System.out.println("Делим счет на " + numberOfPerson);
-
-                // while (scanner == 'Завершить')
-                System.out.println("Делим счет на " + numberOfPerson);
                 Calculator calculator = new Calculator();
                 calculator.calculate(numberOfPerson);
                 scanner.close();
