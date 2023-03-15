@@ -1,6 +1,6 @@
 public class Formatter {
     public String GetRubleAddition(int num) {
-        var preLastDigit = num % 100 / 10;
+        int preLastDigit = num % 100 / 10;
         if (preLastDigit == 1) {
             return "рублей";
         }
