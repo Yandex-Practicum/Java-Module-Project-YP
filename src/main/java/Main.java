@@ -31,17 +31,19 @@ public class Main {
         System.out.println("Итоговый счёт: " + prices);
         double total = AllPrices / AmountOfPeople;
         String result = String.format("%.2f", total);
-        System.out.println("Итоговая сумма с каждого гостя: " + result + " " + Formarter(total));
+        System.out.println("Итоговая сумма с каждого гостя: " + result + " " + Format.Formarter(total));
     }
 
-    public static String Formarter(double x) {
+    public static class Format {
+        public static String Formarter(double x) {
 
-        if (x % 10 == 1) {
-            return "рубль";
-        } else if (x % 10 == 2 || x % 10 == 3 || x % 10 == 4) {
-            return "рубля";
-        } else {
-            return "рублей";
+            if (x % 10 == 1) {
+                return "рубль";
+            } else if (x % 10 == 2 || x % 10 == 3 || x % 10 == 4) {
+                return "рубля";
+            } else {
+                return "рублей";
+            }
         }
     }
 }
