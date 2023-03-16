@@ -1,28 +1,58 @@
 // dev branch for Y.Practicum
+
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("На скольких человек необходимо разделить счёт?");
         Scanner scan = new Scanner(System.in);
-        int AmountOfPeople = scan.nextInt();
         String AllNames = "";
-        double AllPrices = 0;
+        double AllPrices = 0.0;
+        int AmountOfPeople = 0;
+        while (true) {
+            if (scan.hasNextInt()) {
+                AmountOfPeople = scan.nextInt();
+                if (AmountOfPeople <= 1) {
+                    System.out.println("Введеное значение некоректно.");
+                    scan.nextLine();
+                } else {
+                    scan.nextLine();
+                    break;
+                }
 
-        while (AmountOfPeople == 1 || AmountOfPeople < 1) {
-            System.out.println("Введеное значение некоректно.");
-            AmountOfPeople = scan.nextInt();
+            } else {
+                System.out.println("Введеное значение некоректно.");
+                scan.nextLine();
+            }
+
         }
         while (true) {
             System.out.println("Напишите название товара:");
-            String name = scan.next();
+            String name = scan.nextLine();
             AllNames += name + " ";
-
             System.out.println("Напишите цену товара:");
-            double price = scan.nextDouble();
-            AllPrices += price;
+            while (true) {
+                double price = 0;
+                if (scan.hasNextDouble()) {
+                    price = scan.nextDouble();
+                    if (price < 1) {
+                        System.out.println("Введеное значение некоректно.");
+                        scan.nextLine();
+                    } else {
+                        AllPrices += price;
+                        break;
+                    }
+                } else {
+                    System.out.println("Введеное значение некоректно.");
+                    scan.nextLine();
+                }
+
+
+            }
             System.out.println("Хотите добавить ещё товар?");
-            String answer = scan.next();
-            if (answer.equals("Завершить")) {
+            scan.nextLine();
+            String answer = scan.nextLine();
+            if (answer.equalsIgnoreCase("Завершить")) {
                 break;
             }
         }
@@ -33,17 +63,15 @@ public class Main {
         String result = String.format("%.2f", total);
         System.out.println("Итоговая сумма с каждого гостя: " + result + " " + Format.Formarter(total));
     }
-
-    public static class Format {
+}
+    class Format {
         public static String Formarter(double x) {
-
-            if (x % 10 == 1) {
+            if (x % 10 == 1 && x != 11 || x == 1) {
                 return "рубль";
-            } else if (x % 10 == 2 || x % 10 == 3 || x % 10 == 4) {
+            } else if (x % 10 == 2 && x != 12 || x % 10 == 3 && x != 13 || x % 10 == 4 && x != 14) {
                 return "рубля";
             } else {
                 return "рублей";
             }
         }
     }
-}
