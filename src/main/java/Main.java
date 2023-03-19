@@ -8,39 +8,48 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-
+        Calculator calcPersonBill = new Calculator("", 0, 0);
         System.out.println("Привет мир!!!");
         System.out.println("На сколько человек желаете разделить счёт?");
+
         int numPerson = scanner.nextInt();
+        scanner.nextLine();
 
         while (numPerson <= 1) {
-            System.out.println("Значение не подходит, введите значение больше 1");
+            System.out.println("Значение не подходит, введите другое значение");
             numPerson = scanner.nextInt();
+            scanner.nextLine();
         }
-
-        Calculator calcPersonBill = new Calculator("", 0, 0);
 
         while (true) {
             System.out.println("Введите Название товара");
-// Новый элемент добавляется в указанную позицию (в данном случае — в начало)
-            //arrayList.add(0, "Watson");
-            calcPersonBill.itemNameList = scanner.nextLine();
-            System.out.println(calcPersonBill.itemNameList);
+
+            calcPersonBill.itemNameList = calcPersonBill.itemNameList + "\n" + scanner.nextLine(); // добавляем имя в строку
 
             System.out.println("Введите цену товара");
-            calcPersonBill.price =+ scanner.nextFloat();
+            calcPersonBill.price = calcPersonBill.price + scanner.nextFloat(); //  Складываем полученые цены по мере ввода
+            scanner.nextLine(); // специфичный метод для завершения ввода...
 
             System.out.println("Товар добавлен");
             System.out.println("Еще добавим?");
-            //String keyWord = scanner.nextLine();
-            if  ((scanner.nextLine()).equalsIgnoreCase("Завершить")) {
+
+            if  ((scanner.nextLine()).equalsIgnoreCase("Завершить")) { // проверка если пользователь завершил ввод
                 break;
             } else calcPersonBill.numItems++;
         }
+        float eachPrice = calcPersonBill.price/numPerson;
+
+        System.out.print("Добавленные товары:");
         System.out.println(calcPersonBill.itemNameList);
-       System.out.println(calcPersonBill.price);
+        System.out.println(" ");
+
+        //String totalSum = "Общая сумма товаров: %.2f";
+        System.out.print("Общая сумма товаров: ");
+        calcPersonBill.moneyUnitformat(calcPersonBill.price); // печать суммы товаров правильным с окончанием рублей
+
+        System.out.print("Сумма к оплате с человека: ");
+        calcPersonBill.moneyUnitformat(eachPrice); // печать Сумма к оплате с человека правильным с окончанием рублей
 
         }
-
     }
 
