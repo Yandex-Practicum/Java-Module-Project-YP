@@ -9,9 +9,15 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         Calculator calcPersonBill = new Calculator("", 0, 0);
-        System.out.println("Привет мир!!!");
+        //System.out.println("Привет мир!!!");
         System.out.println("На сколько человек желаете разделить счёт?");
 
+        while (true) {  // проверка типа ввода
+            if (!scanner.hasNextInt()) {
+                System.out.println("Извините, но это явно не число. Перезапустите программу и попробуйте снова!");
+                scanner.nextLine();}
+            else break;
+        }
         int numPerson = scanner.nextInt();
         scanner.nextLine();
 
