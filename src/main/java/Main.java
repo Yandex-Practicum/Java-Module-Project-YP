@@ -41,10 +41,10 @@ public class Main {
 
         //String totalSum = "Общая сумма товаров: %.2f";
         System.out.print("Общая сумма товаров: ");
-        checkAndFormat.moneyUnitformat(calcPersonBill.price); // печать суммы товаров правильным с окончанием рублей
+        checker.moneyUnitformat(calcPersonBill.price); // печать суммы товаров правильным с окончанием рублей
 
         System.out.print("Сумма к оплате с человека: ");
-        checkAndFormat.moneyUnitformat(eachPrice); // печать Сумма к оплате с человека правильным с окончанием рублей
+        checker.moneyUnitformat(eachPrice); // печать Сумма к оплате с человека правильным с окончанием рублей
 
         }
     }
