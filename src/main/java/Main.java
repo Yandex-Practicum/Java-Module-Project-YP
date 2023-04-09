@@ -4,6 +4,18 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        int guests = Calculator.getGuestsNumber(scanner);
+        String itemList = Calculator.getItemsList(scanner);
+        double costPerPerson = Calculator.getCostPerPerson(itemList, guests);
+
+        String rubleSuffix = Calculator.getRubleSuffix(costPerPerson);
+        System.out.println("Каждый гость должен заплатить " + String.format("%.2f", costPerPerson) + " " + rubleSuffix + ".");
+    }
+}
+
+class Calculator {
+
+    public static int getGuestsNumber(Scanner scanner) {
         int guests = 0;
         boolean guestsNum = false;
         while (!guestsNum) {
@@ -20,7 +32,10 @@ public class Main {
                 scanner.next();
             }
         }
+        return guests;
+    }
 
+    public static String getItemsList(Scanner scanner) {
         double totalValue = 0.0;
         boolean isGoodsEnough = true;
         String itemList = "";
@@ -56,28 +71,31 @@ public class Main {
 
         System.out.println("Добавленные товары: ");
         System.out.println(itemList);
+        return itemList;
+    }
 
-        double costPerPerson = totalValue / guests;
-        String formattedCost = String.format("%.2f", costPerPerson);
+    public static double getCostPerPerson(String itemList, int guests) {
+        double totalValue = 0;
+        String[] items = itemList.split("\n");
+        for (String item : items) {
+            String costString = item.substring(item.lastIndexOf(" ") + 1, item.lastIndexOf(" руб."));
+            totalValue += Double.parseDouble(costString);
+        }
+        return totalValue / guests;
+    }
+
+    public static String getRubleSuffix(double costPerPerson) {
         int rubles = (int) costPerPerson;
-        String rubleSuffix;
-
         int lastDigit = rubles % 10;
         int lastTwoDigits = rubles % 100;
-
         if (lastTwoDigits >= 11 && lastTwoDigits <= 19) {
-            rubleSuffix = "рублей";
+            return "рублей";
         } else if (lastDigit == 1) {
-            rubleSuffix = "рубль";
+            return "рубль";
         } else if (lastDigit >= 2 && lastDigit <= 4) {
-            rubleSuffix = "рубля";
+            return "рубля";
         } else {
-            rubleSuffix = "рублей";
+            return "рублей";
         }
-
-        System.out.println("Каждый гость должен заплатить " + formattedCost + " " + rubleSuffix + ".");
     }
 }
-
-
-
