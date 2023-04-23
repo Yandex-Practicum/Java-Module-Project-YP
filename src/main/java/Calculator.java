@@ -1,6 +1,8 @@
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class Calculator {
+
     private ArrayList<ProductAndPrice> bill = new ArrayList<ProductAndPrice>();
     private double total = 0;
     private int numberPerson;
