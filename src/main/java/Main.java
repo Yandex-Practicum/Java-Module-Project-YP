@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         //Часть 1. Количество поевших человек
         int numberFriends = 0;
 
@@ -10,7 +11,6 @@ public class Main {
                 //Укажите количество человек для разеления счёта
                 while (true) { //проверяем ввод количества человек, пока не введут число
                 System.out.println("Укажите количество человек для разделения счёта:");
-                Scanner scanner = new Scanner(System.in);
                      String input = scanner.next();
                     //проверяем, что там такое внесли в количество друзей
                     InputCheckFriends ICF = new InputCheckFriends(input);
@@ -25,7 +25,7 @@ public class Main {
                 } else if (numberFriends == 1) {
                     System.out.println("За всё платите сами!!!");
                 } else {
-                    System.out.println("Количество гостей для разделения счёта = " + numberFriends);
+                    System.out.println("Количество человек для разделения счёта = " + numberFriends);
                     break;
                 }
             }
@@ -38,10 +38,11 @@ public class Main {
             System.out.println("Добавьте блюда из списка и их цены.");
             System.out.println("Укажите наименование блюда:");
             while (true) { //просим вводит товары, пока не введут "завершить"
-                Scanner scanner = new Scanner(System.in);
+                //    Scanner scanner = new Scanner(System.in);
                 String goodName = scanner.next();
                 if (goodName.equalsIgnoreCase("Завершить")) {
-                    System.out.println(listGoods + "\nна общую сумму " + String.format("%.2f", total) + " руб.");
+                    String rubForm = RubFormatter.rubFormatter(total);
+                    System.out.println(listGoods + "\nна общую сумму " + String.format("%.2f", total) + " "+ rubForm + ".");
                     break;
                 }
                 System.out.println("Укажите цену блюда:");
@@ -49,7 +50,7 @@ public class Main {
                 String input = scanner.next();
                 InputCheck IC = new InputCheck(input); //проверяем в классе, что там указали в цене
                 if (IC.correct) {
-                        goodPrice = IC.FloatValue;
+                        goodPrice = IC.floatValue;
                         total = total + goodPrice;
                         break;
                     } else {
@@ -63,10 +64,12 @@ public class Main {
                 System.out.println("Если вы хотите добавить ещё позиции в список, укажите название следующего блюда, иначе напишите 'Завершить'");
             }
         //Часть 3. Подсчёт
-        float PersonalPrice = total / numberFriends;
-        RubFormatter RF = new RubFormatter(PersonalPrice);
-        System.out.println ("Каждый должен заплатить по " + String.format("%.2f", PersonalPrice) + " " + RF.rubl + ".");
+        float personalPrice = total / numberFriends;
+        String rubForm = RubFormatter.rubFormatter(personalPrice);
+        System.out.println ("Каждый должен заплатить по " + String.format("%.2f", personalPrice) + " " + rubForm + ".");
     }
+
+
 }
 
 

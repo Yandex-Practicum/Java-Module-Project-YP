@@ -1,5 +1,5 @@
 public class InputCheck {
-    Float FloatValue;
+    Float floatValue;
     String input;
     boolean correct;
 
@@ -7,8 +7,12 @@ public class InputCheck {
         input = InputPrice;
         correct = isNumeric(InputPrice);
         if (correct) {
-            FloatValue = Float.parseFloat(input);
+            floatValue = Float.parseFloat(input);
+            if (floatValue < 0.01) {
+                correct = false;
+            }
         }
+
      }
     public static boolean isNumeric(String s)
     {
