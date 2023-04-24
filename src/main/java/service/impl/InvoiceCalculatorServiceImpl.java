@@ -14,18 +14,22 @@ public class InvoiceCalculatorServiceImpl implements InvoiceCalculatorService {
     public int chooseNumberOfPeopleNeedToSplitBill() {
         while (true) {
             System.out.println("На скольких человек необходимо разделить счёт?");
-            int counterPeople = SCANNER.nextInt();
-            if (counterPeople < 1) {
-                System.out.println("Это некорректное значение для подсчёта");
-                continue;
-            } else if (counterPeople == 1) {
-                System.out.println("Нет смысла ничего считать и делить");
-                continue;
+            if (SCANNER.hasNextInt()) {
+                int counterPeople = SCANNER.nextInt();
+                if (counterPeople < 1) {
+                    System.out.println("Это некорректное значение для подсчёта");
+                    continue;
+                } else if (counterPeople == 1) {
+                    System.out.println("Нет смысла ничего считать и делить");
+                    continue;
+                }
+                return counterPeople;
+            } else {
+                System.out.println("Ошибка: введите число.");
+                SCANNER.next();
             }
-            return counterPeople;
         }
     }
-
     @Override
     public void calculateTheAmountForEachPerson(int counterPeople, List<Product> productList) {
         System.out.println("Добавленные товары: ");
