@@ -16,7 +16,7 @@ public class Main {
 
         double calculator = 0;
         double price = 0;
-        String nameProduct = " ";
+        String nameProduct = "";
         String product = "";
         String finish = "Завершить";
         while (true) {
