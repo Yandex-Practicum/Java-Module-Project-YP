@@ -5,69 +5,48 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
         Scanner scanner = new Scanner(System.in);
-        int peopleCount = 0;
-        while (peopleCount <= 1) {
+        String input = "";
+        int peopleCount = -1;
+        while (peopleCount <= 0 ) {
             System.out.println("Введите количество гостей");
-            peopleCount = scanner.nextInt();
-            if (peopleCount <= 1) {
+            try {
+                input = scanner.nextLine();
+                peopleCount = Integer.parseInt(input);
+            } catch (Exception error) {
                 System.out.println("Пожалуйста введите корректное значение");
+
             }
         }
+        System.out.println("Количество человек " + peopleCount);
 
-        double calculator = 0;
-        double price = 0;
-        String nameProduct = "";
-        String product = "";
-        String finish = "Завершить";
-        while (true) {
-            System.out.println("Введите название товара");
-            product = scanner.next();
-            nameProduct += product + "; \n";
-            System.out.println("Введите стоимость продукта");
-            price = scanner.nextDouble();
-            calculator = calculator + price;
-            System.out.println("Товар успешно добавлен.\nХотите ли Вы добавить ещё товар?\nЕсли нет, то нажмите \"Завершить\".");
-            String answer = scanner.next();
-            if (answer.equalsIgnoreCase("Завершить")) {
+        ProductAndPrice productAndPrice = new ProductAndPrice();
+        productAndPrice.Calc();
+
+        double everyCheck = productAndPrice.calculator / peopleCount;
+        System.out.println("Каждому нужно заплатить " + String.format("%.2f", everyCheck) + " " + detectSuffix(everyCheck) + ".");
+        System.out.println(productAndPrice.nameProduct);
+
+    }
+    public static String detectSuffix(double everyCheck) {
+        String rub = "";
+        int sumCheck1 = (int) ((Math.floor(everyCheck))%10);
+        switch (sumCheck1) {
+            case 1:
+                rub = "Рубль";
                 break;
-            }
-
-            double everyCheck = calculator / peopleCount;
-            String.format("%.2f", everyCheck);
-            String rub = "";
-            int sumCheck = (int) ((Math.floor(everyCheck))%10);
-            switch (sumCheck) {
-                case 1:
-                    rub = "Рубль";
-                    break;
-                case 2:
-                    rub = "Рубля";
-                    break;
-                case 3:
-                    rub = "Рубля";
-                    break;
-                case 4:
-                    rub = "Рубля";
-                    break;
-                case 5:
-                    rub = "Рублей";
-                    break;
-                case 9:
-                    rub = "Рублей";
-                    break;
-                case 12:
-                    rub = "Рублей";
-                    break;
-                case 18:
-                    rub = "Рублей";
-                    break;
-                default:
-                    rub = "Рублей";
-                    break;
-            }
-            System.out.println("Каждому нужно заплатить " + String.format("%.2f", everyCheck) + " " + rub + ".");
-
+            case 2:
+            case 3:
+            case 4:
+                rub = "Рубля";
+                break;
+            default:
+                rub = "Рублей";
+                break;
         }
+        int sumCheck2 = (int) ((Math.floor(everyCheck))%100);
+        if (11 <= sumCheck2 & sumCheck2 <= 19) {
+            rub = "Рублей";
+        }
+        return rub;
     }
 }
-
