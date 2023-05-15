@@ -1,17 +1,25 @@
 import java.sql.SQLOutput;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         //1. После запуска программа должна спрашивать у пользователя, на скольких человек необходимо разделить счёт.
         System.out.println("Привет! На сколько человек мне разделить счет?");
         //2. Программа должна выводить сообщение об ошибке, когда:
         //- Количество человек, введённых пользователем, равно 1. В этом случае нет смысла ничего считать и делить.
         Scanner scanner = new Scanner(System.in);
-        int sumGuests;
+        int sumGuests = 0;
 
         while (true) {
-            sumGuests = scanner.nextInt();
+            try {
+                sumGuests = scanner.nextInt();
+            } catch (InputMismatchException ex) {
+                System.out.println("Введите число!");
+            } finally {
+                scanner.nextLine();
+            }
             //- Количество человек меньше 1. Это некорректное значение для подсчёта.
             if (sumGuests > 1) {
                 System.out.println("Вас " + sumGuests + " человека? Класс, тогда давайте поделим счет!");
@@ -27,7 +35,6 @@ public class Main {
             System.out.println("Давайте попробуем снова: ");
 
         }
-        scanner.nextLine();
         //System.out.println("Давайте попробуем снова: ");
         var c = new Calculator(sumGuests);
         while (true) {
@@ -36,19 +43,16 @@ public class Main {
             System.out.println("Какой у вас товар?");
             productName = scanner.nextLine();
             System.out.println("Напишите стоимость продукта: ");
-            double price;
-            price = scanner.nextDouble();
-            //Сделать цикс while
-            scanner.nextLine();
+            double price = inputPrice(scanner);
+
 //Полученный товар должен быть добавлен в калькулятор.
             var p = new Product(productName, price);
             c.add(p);
 //При добавлении товара в калькулятор нужно считать текущую общую сумму всех товаров.
 //Калькулятор должен запоминать названия всех добавленных товаров, чтобы выводить все товары, которые были в него добавлены.
 //После добавления товара в калькулятор нужно показать пользователю сообщение об успешном добавлении товара.
-            System.out.println("Товар успешно добавлен!");
+            System.out.println("Товар успешно добавлен!\nМожет еще по одной;)");
             //После добавления товара нужно спрашивать у пользователя, хочет ли он добавить ещё один товар.
-            System.out.println("Может еще по одной;)");
 //Пользователь должен ввести команду "Завершить" для того, чтоб завершить процесс добавления товаров.
 //Введение любого другого символа или слова должно запрашивать у пользователя следующий товар до тех пор, пока пользователь не введёт команду "Завершить" после добавления товара.
 //Пользователь может ввести команду "Завершить" в любом регистре (завершить, ЗАВЕРШИТЬ, заВЕрШиТь и пр.), и это должно завершать процесс добавления товара.
@@ -57,7 +61,6 @@ public class Main {
 
             if (input.equalsIgnoreCase("завершить")) {
                 break;
-
 
             }
         }
@@ -70,6 +73,26 @@ public class Main {
         //Сумма считается в рублях. Ваша задача — обработать правильный вывод. Если сумма 1.45, то вы должны вывести "1.45 рубль", а если сумма будет 3.20 или 4.00, вы
         // должны вывести 3.20 рубля или 4.00 рубля. Окончания в слове "рубль" должны зависеть от целочисленной части.
         System.out.println(c.getResult());
+    }
+
+
+    private static double inputPrice(Scanner scanner) {
+        while (true) {
+            try {
+                var r = scanner.nextDouble();
+                if (r <= 0) {
+                    System.out.println("Цена должна быть положительной!");
+                    continue;
+                }
+                return r;
+            } catch (InputMismatchException ext) {
+                System.out.println("Введите число!");
+            } finally {
+                scanner.nextLine();
+            }
+
+        }
+
     }
 }
 
