@@ -14,9 +14,6 @@ public class Main {
 //        System.out.println("Привет " + name);
         System.out.println("Сколько человек вас будет?");
 
-        boolean sizePeople;
-        int quantityPeople;
-
         myReadline.twoLine();
         clientMenu.menuClient();
     }

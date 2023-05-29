@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Format {
     ReadLine sizePeople = new ReadLine();
     Calculator calculator = new Calculator();
+    Menu menu = new Menu();
     public void endingPeople() {
         for (int i = 0; i == sizePeople.quantityPeople; i++){
             if (i >= 2 && i <= 4) {
@@ -15,10 +16,8 @@ public class Format {
 
 
     public double sumPriceMenu() {
-        return calculator.sumPriceMenu() / sizePeople.quantityPeople;
+        return menu.sumPriceMenu() / sizePeople.quantityPeople;
     }
-
-
 
     public void endingMoney() {
 

@@ -1,7 +1,13 @@
-public class Menu {
-    String menuClient2;
+import java.util.ArrayList;
 
-    String[] basket = {};
+public class Menu {
+    ArrayList<String> nameDishMenuClient = new ArrayList<>();
+    ArrayList<Double> priceDishMenuClient = new ArrayList<>();
+    String menuClient2;
+    SumPriceMenu sSum = new SumPriceMenu();
+    ReadLine readLine = new ReadLine();
+    int maxQuantity = readLine.quantityPeople;
+
     Calculator calc = new Calculator();
 
     double[] saladPrice = {1280.0, 1350.0, 1550.0};
@@ -46,20 +52,22 @@ public class Menu {
                         if (menuClient2.equals("1")) {
                             System.out.println("\nВы выбрали:");
                             calc.calculator(saladName[0], saladPrice[0]);
-                            calc.nameDishMenuClient.add(saladName[0]);
-                            calc.priceDishMenuClient.add(saladPrice[0]);
+                            nameDishMenuClient.add(saladName[0]);
+                            priceDishMenuClient.add(saladPrice[0]);
+                            System.out.println(nameDishMenuClient);
+                            System.out.println(priceDishMenuClient);
                             break;
                         } else if (menuClient2.equals("2")) {
                             System.out.println("\nВы выбрали:");
                             calc.calculator(saladName[1], saladPrice[1]);
-                            calc.nameDishMenuClient.add(saladName[1]);
-                            calc.priceDishMenuClient.add(saladPrice[1]);
+                            nameDishMenuClient.add(saladName[1]);
+                            priceDishMenuClient.add(saladPrice[1]);
                             break;
                         } else if (menuClient2.equals("3")) {
                             System.out.println("\nВы выбрали:");
                             calc.calculator(saladName[2], saladPrice[2]);
-                            calc.nameDishMenuClient.add(saladName[2]);
-                            calc.priceDishMenuClient.add(saladPrice[2]);
+                            nameDishMenuClient.add(saladName[2]);
+                            priceDishMenuClient.add(saladPrice[2]);
                             break;
                         } else if (menuClient2.equals("0")) {
                             break;
@@ -83,14 +91,14 @@ public class Menu {
                         if (menuClient2.equals("1")) {
                             System.out.println("\nВы выбрали:");
                             calc.calculator(oneDishesName[0], oneDishesPrice[0]);
-                            calc.nameDishMenuClient.add(oneDishesName[0]);
-                            calc.priceDishMenuClient.add(oneDishesPrice[0]);
+                            nameDishMenuClient.add(oneDishesName[0]);
+                            priceDishMenuClient.add(oneDishesPrice[0]);
                             break;
                         } else if (menuClient2.equals("2")) {
                             System.out.println("\nВы выбрали:");
                             calc.calculator(oneDishesName[1], oneDishesPrice[1]);
-                            calc.nameDishMenuClient.add(oneDishesName[1]);
-                            calc.priceDishMenuClient.add(oneDishesPrice[1]);
+                            nameDishMenuClient.add(oneDishesName[1]);
+                            priceDishMenuClient.add(oneDishesPrice[1]);
                             break;
                         } else if (menuClient2.equals("0")) {
                             break;
@@ -114,20 +122,20 @@ public class Menu {
                         if (menuClient2.equals("1")) {
                             System.out.println("\nВы выбрали:");
                             calc.calculator(hotDishesName[0], hotDishesPrice[0]);
-                            calc.nameDishMenuClient.add(hotDishesName[0]);
-                            calc.priceDishMenuClient.add(hotDishesPrice[0]);
+                            nameDishMenuClient.add(hotDishesName[0]);
+                            priceDishMenuClient.add(hotDishesPrice[0]);
                             break;
                         } else if (menuClient2.equals("2")) {
                             System.out.println("\nВы выбрали:");
                             calc.calculator(hotDishesName[1], hotDishesPrice[1]);
-                            calc.nameDishMenuClient.add(hotDishesName[1]);
-                            calc.priceDishMenuClient.add(hotDishesPrice[1]);
+                            nameDishMenuClient.add(hotDishesName[1]);
+                            priceDishMenuClient.add(hotDishesPrice[1]);
                             break;
                         } else if (menuClient2.equals("3")) {
                             System.out.println("\nВы выбрали:");
                             calc.calculator(hotDishesName[2], hotDishesPrice[2]);
-                            calc.nameDishMenuClient.add(hotDishesName[2]);
-                            calc.priceDishMenuClient.add(hotDishesPrice[2]);
+                            nameDishMenuClient.add(hotDishesName[2]);
+                            priceDishMenuClient.add(hotDishesPrice[2]);
                             break;
                         } else if (menuClient2.equals("0")) {
                             break;
@@ -151,20 +159,20 @@ public class Menu {
                         if (menuClient2.equals("1")) {
                             System.out.println("\nВы выбрали:");
                             calc.calculator(dessertName[0], dessertPrice[0]);
-                            calc.nameDishMenuClient.add(dessertName[0]);
-                            calc.priceDishMenuClient.add(dessertPrice[0]);
+                            nameDishMenuClient.add(dessertName[0]);
+                            priceDishMenuClient.add(dessertPrice[0]);
                             break;
                         } else if (menuClient2.equals("2")) {
                             System.out.println("\nВы выбрали:");
                             calc.calculator(dessertName[1], dessertPrice[1]);
-                            calc.nameDishMenuClient.add(dessertName[1]);
-                            calc.priceDishMenuClient.add(dessertPrice[1]);
+                            nameDishMenuClient.add(dessertName[1]);
+                            priceDishMenuClient.add(dessertPrice[1]);
                             break;
                         } else if (menuClient2.equals("3")) {
                             System.out.println("\nВы выбрали:");
                             calc.calculator(dessertName[2], dessertPrice[2]);
-                            calc.nameDishMenuClient.add(dessertName[2]);
-                            calc.priceDishMenuClient.add(dessertPrice[2]);
+                            nameDishMenuClient.add(dessertName[2]);
+                            priceDishMenuClient.add(dessertPrice[2]);
                             break;
                         } else if (menuClient2.equals("0")) {
                             break;
@@ -175,52 +183,39 @@ public class Menu {
                     break;
                 }
                 case "0": {
-                    calc.basket();
+                    basket();
 
                     return;
                 }
                 case "Завершить": {
-                    System.out.println("У нас в меню представлено 2 вида десерта, какой вы хотели бы заказать");
-
-                    for (int i = 0; i < dessertName.length; i++) {
-                        System.out.printf("%s. %s = %s р.%n", (i + 1), dessertName[i], dessertPrice[i]);
-                    }
-                    System.out.println("0. Назад");
-
-                    while (true) {
-                        menuClient2 = Main.scanner.next();
-
-                        if (menuClient2.equals("1")) {
-                            System.out.println("\nВы выбрали:");
-                            calc.calculator(dessertName[0], dessertPrice[0]);
-                            calc.nameDishMenuClient.add(dessertName[0]);
-                            calc.priceDishMenuClient.add(dessertPrice[0]);
-                            break;
-                        } else if (menuClient2.equals("2")) {
-                            System.out.println("\nВы выбрали:");
-                            calc.calculator(dessertName[1], dessertPrice[1]);
-                            calc.nameDishMenuClient.add(dessertName[1]);
-                            calc.priceDishMenuClient.add(dessertPrice[1]);
-                            break;
-                        } else if (menuClient2.equals("3")) {
-                            System.out.println("\nВы выбрали:");
-                            calc.calculator(dessertName[2], dessertPrice[2]);
-                            calc.nameDishMenuClient.add(dessertName[2]);
-                            calc.priceDishMenuClient.add(dessertPrice[2]);
-                            break;
-                        } else if (menuClient2.equals("0")) {
-                            break;
-                        } else {
-                            System.out.println("Вы что-то не так вводите, попробуйте еще раз");
-                        }
-                    }
-                    break;
+                   break;
                 }
                 default:
                     System.out.println("Еще раз");
             }
         }
 
+    }
+
+    public void basket() {
+        System.out.println("\nВаш список заказанных блюд:");
+
+        for (int i = 0; i < priceDishMenuClient.size(); i++) {
+            System.out.printf("%s. %s = %s\n", i + 1, nameDishMenuClient.get(i), priceDishMenuClient.get(i));
+        }
+        System.out.printf("\nОбщей суммой = %s", sumPriceMenu());
+        System.out.printf("ss %s",maxQuantity);
+//        System.out.printf("\nДля %s человек с каждого по %.2f %s", readLine.quantityPeople,
+//                "ДОДЕЛЫВАЮ" );
+    }
+
+    public double sumPriceMenu() {
+        double sum = 0;
+
+        for (int i = 0; i <= priceDishMenuClient.size() - 1; i++) {
+            sum += priceDishMenuClient.get(i);
+        }
+        return sum;
     }
 }
 
