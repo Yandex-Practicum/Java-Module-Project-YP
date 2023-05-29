@@ -8,8 +8,10 @@ public class Main {
 //        String name = scanner.next();
 //        System.out.println("Привет " + name);
         System.out.println("Сколько будет человек?");
+        int sizePeople;
+
         while (true) {
-            int sizePeople = scanner.nextInt();
+            sizePeople = scanner.nextInt();
 
             if (sizePeople == 1) {
                 System.out.println("Хорошо");
