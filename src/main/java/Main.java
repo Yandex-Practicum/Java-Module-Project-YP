@@ -1,32 +1,24 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
+        ReadLine myReadline = new ReadLine();
+        Menu clientMenu = new Menu();
+
         System.out.println("Добро пожальвать в ресторан \"Sabor De La Vida\"");
         System.out.println("Как вас зовут?");
-//        String name = scanner.next();
+//        String nameClient = scanner.next();
 //        System.out.println("Привет " + name);
-        System.out.println("Сколько будет человек?");
-        int sizePeople;
+        System.out.println("Сколько человек вас будет?");
 
-        while (true) {
-            sizePeople = scanner.nextInt();
+        boolean sizePeople;
+        int quantityPeople;
 
-            if (sizePeople == 1) {
-                System.out.println("Хорошо");
-                break;
-            }
-            else if (sizePeople > 1) {
-                System.out.println("Будет создан счет для " + sizePeople + " человек");
-                break;
-            } else {
-                System.out.println("Вы ввели не корректные данные, попробуйте еще раз\nСколько будет человек?");
-            }
-        }
-
-        Menu clientMenu = new Menu();
+        myReadline.twoLine();
         clientMenu.menuClient();
-
     }
 }
+

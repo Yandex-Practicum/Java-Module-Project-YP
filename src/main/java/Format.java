@@ -1,6 +1,29 @@
+import java.util.ArrayList;
+
 public class Format {
-    public static void main(String[] args) {
-        int [] s = {1,2,2,3,21,11,2};
-        System.out.println(s.length);
+    ReadLine sizePeople = new ReadLine();
+    Calculator calculator = new Calculator();
+    public void endingPeople() {
+        for (int i = 0; i == sizePeople.quantityPeople; i++){
+            if (i >= 2 && i <= 4) {
+                System.out.println("человека");
+            } else {
+                System.out.println("человек");
+            }
+        }
+    }
+
+
+    public double sumPriceMenu() {
+        return calculator.sumPriceMenu() / sizePeople.quantityPeople;
+    }
+
+
+
+    public void endingMoney() {
+
+        for (int i = 0; i == 2; i++) {
+
+        }
     }
 }
