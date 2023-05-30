@@ -209,6 +209,7 @@ public class Menu {
                     return;
                 }
                 case "Завершить": {
+                    basket();
                     break;
                 }
                 default:
