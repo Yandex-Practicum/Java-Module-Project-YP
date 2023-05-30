@@ -6,7 +6,7 @@ public class Menu {
     String menuClient2;
     SumPriceMenu sSum = new SumPriceMenu();
     ReadLine readLine = new ReadLine();
-    int maxQuantity = readLine.quantityPeople;
+
 
     Calculator calc = new Calculator();
 
@@ -34,7 +34,7 @@ public class Menu {
 
         while (true) {
             System.out.println("Что вы будете заказывать?");
-            System.out.println("1. Салат\n2. Первые блюда\n3. Горячие блюда\n4. Десерт\n0. Завершить");
+            System.out.println("1. Салат\n2. Первые блюда\n3. Горячие блюда\n4. Десерт\n5. Свой вариант\n0. Завершить");
             String menuClient = Main.scanner.next();
 
             switch (menuClient) {
@@ -54,8 +54,6 @@ public class Menu {
                             calc.calculator(saladName[0], saladPrice[0]);
                             nameDishMenuClient.add(saladName[0]);
                             priceDishMenuClient.add(saladPrice[0]);
-                            System.out.println(nameDishMenuClient);
-                            System.out.println(priceDishMenuClient);
                             break;
                         } else if (menuClient2.equals("2")) {
                             System.out.println("\nВы выбрали:");
@@ -182,13 +180,36 @@ public class Menu {
                     }
                     break;
                 }
+                case "5": {
+                    while (true) {
+                        System.out.println("Введите название товара");
+                        String myOption = Main.scanner.next();
+                        nameDishMenuClient.add(myOption);
+                        Double myNewScan = null;
+
+                        do {
+                            System.out.println("Введите цену товара больше 0");
+                            try {
+                                myNewScan = Main.scanner.nextDouble();
+                            } catch (Exception e) {
+                                System.out.println("Введите корректные данные");
+                                Main.scanner.next();
+                            }
+                        } while (myNewScan == null || myNewScan < 0);
+
+                        System.out.println("\nВы выбрали:");
+                        calc.calculator(myOption, myNewScan);
+                        priceDishMenuClient.add(myNewScan);
+                        break;
+                    }
+                    break;
+                }
                 case "0": {
                     basket();
-
                     return;
                 }
                 case "Завершить": {
-                   break;
+                    break;
                 }
                 default:
                     System.out.println("Еще раз");
@@ -197,16 +218,35 @@ public class Menu {
 
     }
 
+    public int quantityPeople;
+
     public void basket() {
         System.out.println("\nВаш список заказанных блюд:");
+        double sumOnePeople = sumPriceMenu() / quantityPeople;
 
         for (int i = 0; i < priceDishMenuClient.size(); i++) {
             System.out.printf("%s. %s = %s\n", i + 1, nameDishMenuClient.get(i), priceDishMenuClient.get(i));
         }
         System.out.printf("\nОбщей суммой = %s", sumPriceMenu());
-        System.out.printf("ss %s",maxQuantity);
-//        System.out.printf("\nДля %s человек с каждого по %.2f %s", readLine.quantityPeople,
-//                "ДОДЕЛЫВАЮ" );
+        System.out.printf("\nДля %s посетителей. Сумма на каждого = %.2f %s.", quantityPeople,
+                sumOnePeople, "ру" + rub());
+    }
+
+
+    String rub() {
+        int sumOnePeople = (int) sumPriceMenu() / quantityPeople;
+
+        while (true) {
+            int edge = sumOnePeople % 10;
+            if (edge == 1) {
+                return "бль";
+            } else if (edge > 1 && edge < 5) {
+                return "бля";
+            } else {
+                return "блей";
+            }
+
+        }
     }
 
     public double sumPriceMenu() {
@@ -216,6 +256,25 @@ public class Menu {
             sum += priceDishMenuClient.get(i);
         }
         return sum;
+    }
+
+    public void oneLine() {
+        while (!Main.scanner.hasNextInt()) {
+            System.out.println("Введиде корректное число");
+            Main.scanner.next();
+        }
+        quantityPeople = Main.scanner.nextInt();
+        twoLine();
+    }
+
+    public void twoLine() {
+        if (quantityPeople > 1) {
+            System.out.println("Количество посетителей = " + quantityPeople + "\n");
+            return;
+        } else {
+            System.out.println("Введите количество посетителей больше 1");
+            oneLine();
+        }
     }
 }
 
