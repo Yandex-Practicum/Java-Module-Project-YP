@@ -1,27 +1,19 @@
 import java.util.Scanner; // импорт сканера
-public class Main {
+
+
+
+public class Main extends programActions {
 
     public static void main(String[] args)
     {
        boolean exitProgramm = false;
        Scanner scanner = new Scanner(System.in);
-       System.out.println("Введите количество человек");
-
+       System.out.print("Введите количество человек: ");
        int peopleQuantity = scanner.nextInt();
 
-       while (exitProgramm == false) {
+       addDish(); //Добавляем блюда из сечта
+       showDishes(); // выводим список блюд из счета
 
-        // System.out.println("Введите название блюда или слово Выход для выхода");
-        //String dishName = scanner.nextLine();
-          System.out.println("Введите цену блюда или 0 для выхода");
-          double dishPrice = scanner.nextDouble();
-           //System.out.println(dishName);
-          if (dishPrice == 0)
-          {
-             // System.out.println(dishName);
-              exitProgramm = true;
-          }
-        }
        System.out.println("Жрали " + peopleQuantity + ", а платите Вы" );
 
     }
