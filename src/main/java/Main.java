@@ -1,8 +1,3 @@
-/*------------------------Пишем консольное приложение №1--------------------------*/
-//Никитин Евгений
-//Яндекс практикум
-/*--------------------------------------------------------------------------------*/
-
 import java.util.Scanner;
 
 public class Main {
@@ -22,10 +17,13 @@ public class Main {
         float delSum= (clc.sum/human);
         int sumWithoutReal =  (int)delSum;
         String formatTmp;
-        if (sumWithoutReal==1) {
+        if (sumWithoutReal%100>10&&sumWithoutReal%100<20){
+             formatTmp = "Каждый должен заплатить %.2f рублей";
+        }
+        else if (sumWithoutReal%10==1) {
              formatTmp = "Каждый должен заплатить %.2f рубль";
         }
-        else if (sumWithoutReal>1&&sumWithoutReal<5) {
+        else if (sumWithoutReal%10>1&&sumWithoutReal%10<5) {
              formatTmp = "Каждый должен заплатить %.2f рубля";
         }
         else {

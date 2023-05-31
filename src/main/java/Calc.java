@@ -13,11 +13,11 @@ public class Calc {
     }
     void askAboutThings(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Хочешь добавить товар?");
+        System.out.println("Хочешь добавить товар? Нажмите завершить, чтобы выйти");
         String continueAdd = scanner.next();
         while (!continueAdd.equalsIgnoreCase("завершить")){
             calcSum();
-            System.out.println("Хочешь добавить ещё товаров?");
+            System.out.println("Хочешь добавить ещё товаров? Нажмите завершить, чтобы выйти");
             continueAdd = scanner.next();
         }
     }
