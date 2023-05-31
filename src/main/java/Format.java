@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class Format {
-    ReadLine sizePeople = new ReadLine();
     Calculator calculator = new Calculator();
 
     Menu menu = new Menu();

@@ -4,9 +4,6 @@ public class Menu {
     ArrayList<String> nameDishMenuClient = new ArrayList<>();
     ArrayList<Double> priceDishMenuClient = new ArrayList<>();
     String menuClient2;
-    SumPriceMenu sSum = new SumPriceMenu();
-    ReadLine readLine = new ReadLine();
-
 
     Calculator calc = new Calculator();
 
