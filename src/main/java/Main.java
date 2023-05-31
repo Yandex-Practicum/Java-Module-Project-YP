@@ -11,7 +11,7 @@ public class Main extends programActions {
        System.out.print("Введите количество человек: ");
        int peopleQuantity = scanner.nextInt();
 
-       addDish(); //Добавляем блюда из сечта
+       addDish(); //Добавляем блюда из счета
        showDishes(); // выводим список блюд из счета
 
        System.out.println("Жрали " + peopleQuantity + ", а платите Вы" );
