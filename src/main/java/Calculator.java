@@ -28,48 +28,41 @@ public class Calculator {
         }
         return totalPersons;
     }
-    void MyException(String s){
-        String keyWord = "завершить";
-        if(s.equalsIgnoreCase(keyWord)){
-            throw new NullPointerException("попробуй еще раз")
-        }
-
-
-    }
-
 
     public static Double stuffCost() {
 
 
 
         double totalCOst = 0;
-
+        String keyWord = "завершить";
         Scanner scanner = new Scanner(System.in);
 
 
 
         while (true) {
 
-            System.out.println("Введите стоимость товара");
             System.out.println("Введите название товара");
+            System.out.println("Введите стоимость товара");
             Stuff stuff = new Stuff();
-            if (stuff.name.equalsIgnoreCase(keyWord)) {
-                break;
-            } else {
+            ArrayList<String> allNames = new ArrayList<>();
 
-                stuff.price = scanner.nextDouble();
-                totalCOst += stuff.price;
-                stuff.name = scanner.nextLine();
-                ArrayList<String> allNames = new ArrayList<>();
-                allNames.add(stuff.name);
-                System.out.println("Добавлено успешно");
-                System.out.println("Что нибудь еще?");
+            while (true) {
                 if (stuff.name.equalsIgnoreCase(keyWord)) {
+                    System.out.println("Ну ладно");
+                    return 0.0;
+                }else if(stuff.name.matches("[-+]?\\d+")){
+                    System.out.println("Попробуй еще раз");
                     break;
                 }
+                allNames.add(stuff.name);
+                totalCOst += stuff.priceStuf();
+                System.out.println("Добавлено успешно");
+                System.out.println("Что нибудь еще?");
+                break;
 
             }
+            //return totalCOst;
         }
-        return totalCOst;
+
     }
 }
