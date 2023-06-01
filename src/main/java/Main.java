@@ -31,12 +31,6 @@ public class Main extends programActions {
               normalInput = true;
           }
        }
-      //  System.out.println("Введите количество позиций в счете: ");
-       // int positionsQuantity = scanner.nextInt(); // Берем количество позиций в счете и умножаем на пять, для ситуаций с дублированием
-        addDish(); //Добавляем блюда из счета и их цену в массив
-       //showDishes(); // выводим список блюд из счета
-
-       System.out.println("Жрали " + peopleQuantity + ", а платите Вы" );
-
-    }
+       addDish(peopleQuantity);
+     }
 }

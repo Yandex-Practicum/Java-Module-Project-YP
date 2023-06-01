@@ -1,47 +1,56 @@
 import java.util.Scanner; // импорт сканера
 
-public class programActions
-{
-    public class Biil {
+public class programActions {
 
-        String dishName;
-        double dishPrice;
+    public static void addDish(int peoples) {
 
-    }
-    public static void addDish()
-    {
+        class Bill {
+            String dishName;
+            double dishPrice;
+        }
+
 
         boolean stopInput = false;
-        Scanner scanNames = new Scanner(System.in);
-        Scanner scanPrices = new Scanner(System.in);
-        String[] dishNames = new String[100];
-        Double[] dishPrice = new Double[100];
-        //int i = 0;
-        for (int i = 0; i < dishNames.length; i++)
+        Scanner scanner = new Scanner(System.in);
+        Scanner scanner1 = new Scanner(System.in);
+        Bill currentBill = new Bill();
+        currentBill.dishName = "";
+        currentBill.dishPrice = 0;
+        String currentName = "";
 
-         {
-            System.out.println("Введите название блюда или слово Завершить для выхода: ");
-            dishNames[i] = scanNames.nextLine();
-            System.out.println(dishNames[i]);
+        while (stopInput == false) {
+            System.out.println("Если есть желание ввести еще одну позицию счета - вводите, если хотите закончить - введите слово \"Завершить\" для выхода: ");
+            currentName = scanner.nextLine();
 
-            System.out.println("Введите цену блюда: ");
-            dishPrice[i] = scanPrices.nextDouble();
-            System.out.println(dishPrice[i]);
-
-          if (dishNames[i].equals("Завершить"))
-            {
+            if (currentName.equals("Завершить")) {
+                stopInput = true;
+                currentBill.dishName += currentName + "\n";
                 break;
-            }
+            } else {
+                currentBill.dishName += currentName + "\n";
+                System.out.println("Введите стоимость блюда: ");
+                currentBill.dishPrice += scanner1.nextDouble();
+             }
         }
-        scanNames.close();
-        scanPrices.close();
-        System.out.println("OK");
+        showBill(currentBill.dishName, currentBill.dishPrice, peoples);
     }
 
-    public static void showDishes()
+
+    public static void showBill(String s, double sum, int quantity) {
+
+      Scanner scanner = new Scanner(s);
+      String billPosition = scanner.nextLine();
+      System.out.println("\n \n \nПРИГОВОР \n");
+      while(billPosition.equals("Завершить") == false)
     {
-        System.out.println("showDishes Работает");
+        System.out.println(billPosition);
+        billPosition = scanner.nextLine();
+
     }
+    System.out.println("Счет итого: " + sum);
+    System.out.println("На каждого участника: " + sum / quantity);
+}
+
 
 
 
