@@ -2,31 +2,39 @@ import java.util.Scanner; // импорт сканера
 
 public class programActions
 {
+    public class Biil {
+
+        String dishName;
+        double dishPrice;
+
+    }
     public static void addDish()
     {
-        //System.out.println("addDish Работает");
+
         boolean stopInput = false;
-        Scanner scanString = new Scanner(System.in);
-        String[] dishNames = new String[];
-        int i = 0;
-        //for (int i=0; i < dishNames.length-1; i++)
-        while (stopInput == false)
-        {
-            System.out.println("Введите название блюда или слово Завершить для выхода");
-            dishNames[i] = scanString.nextLine();
+        Scanner scanNames = new Scanner(System.in);
+        Scanner scanPrices = new Scanner(System.in);
+        String[] dishNames = new String[100];
+        Double[] dishPrice = new Double[100];
+        //int i = 0;
+        for (int i = 0; i < dishNames.length; i++)
+
+         {
+            System.out.println("Введите название блюда или слово Завершить для выхода: ");
+            dishNames[i] = scanNames.nextLine();
             System.out.println(dishNames[i]);
 
-            if (dishNames[i].equals("Завершить"))
+            System.out.println("Введите цену блюда: ");
+            dishPrice[i] = scanPrices.nextDouble();
+            System.out.println(dishPrice[i]);
+
+          if (dishNames[i].equals("Завершить"))
             {
-                stopInput = true;
                 break;
             }
-
-            i++;
-            /*System.out.println("Введите цену блюда");
-            double dishPrice = scanner.nextDouble(); */
-
         }
+        scanNames.close();
+        scanPrices.close();
         System.out.println("OK");
     }
 
