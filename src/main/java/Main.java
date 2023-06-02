@@ -3,11 +3,11 @@ import java.util.Scanner; //ипортируем сканер
 public class Main {
     public static void main(String[] args) {
 
-        Scanner guest = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         while (true){
             System.out.println("На какое количество человек делим счет?");
-            int x = guest.nextInt();
+            int x = scanner.nextInt();
             if (x > 1){
                 System.out.println("Вы ввели правильно, делим счет на " + x);
                 break;

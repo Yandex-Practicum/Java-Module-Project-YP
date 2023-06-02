@@ -1,7 +1,12 @@
-import java.util.Scanner; //ипортируем сканер
-
 public class Products{
-    public static void products(String[] args){
+    String nameProducts;
+    double priceProducts;
+
+    Products(String nameProducts, double priceProducts) {
+        this.nameProducts = nameProducts;
+        this.priceProducts = priceProducts;
+    }
+    void products(String[] args){
 
     }
 }
