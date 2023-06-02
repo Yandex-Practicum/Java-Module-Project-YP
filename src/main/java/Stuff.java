@@ -1,47 +1,68 @@
-import java.util.InputMismatchException;
-import java.util.MissingFormatArgumentException;
+
 import java.util.Scanner;
 
 
 public class Stuff {
 
 
-    Scanner scanner = new Scanner(System.in);
-
-
-    public static String name(){
+    public static String name() {
         Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine();
-        return name;
+        return scanner.nextLine();
     }
 
 
-
-
-    public static double priceStuf(String name){
+    public static double priceStuf(String name) {
         Scanner scanner = new Scanner(System.in);
         String keyWOrd1 = "завершить";
-        Double price = null;
+        double price = 0;
 
 
         if (name.equalsIgnoreCase(keyWOrd1)) {
+
             return 0;
         } else {
-            while(!scanner.hasNextDouble()){
+
+
+            while (!scanner.hasNextDouble()) {
                 System.out.println("Допустимы только цифры, попробуйте еще раз");
                 scanner.next();
             }
-            price = scanner.nextDouble();
 
-            System.out.println("Добавлено успешно");
-            System.out.println("Что нибудь еще?");
+
+            while (scanner.hasNextDouble()) {
+                price = scanner.nextDouble();
+                if (price < 0) {
+                    System.out.println("Допустимы только положительные значения, попробуйте еще раз");
+                }else {
+                    System.out.println("Добавлено успешно");
+                    System.out.println("Что нибудь еще?");
+                    return price;
+                }
             }
 
-
-
+        }
         return price;
 
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
