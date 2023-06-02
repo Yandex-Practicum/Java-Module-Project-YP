@@ -17,13 +17,14 @@ public class Main {
                 System.out.println("Это не корректное значение.");
             }
         }
+        var cal = new Calculate(guests);
         while(true) {
             System.out.println("Какой у вас товар?");
             nameProducts = scanner.nextLine();
             System.out.println("Напишите стоимость продукта: ");
             priceProducts = scanner.nextDouble();
-            var p = new Products(nameProducts, priceProducts);
-            System.out.println("Ваш товар: " + nameProducts + " ,его цена: " + priceProducts);
+            var prod = new Products(nameProducts, priceProducts);
+
             break;
         }
     }
