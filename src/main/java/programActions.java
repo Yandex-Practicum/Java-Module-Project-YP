@@ -1,6 +1,39 @@
 import java.util.Scanner; // импорт сканера
 
-public class programActions {
+public class programActions extends helpLibrary{
+
+    public static void peopleQuantity()
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите количество человек: ");
+        int peopleQuant = scanner.nextInt();
+        boolean normalInput = false;
+        while (normalInput == false)
+        {
+            if (peopleQuant < 1)
+            {
+                System.out.println("Протри глаза, пьянь! Людей не может быть меньше одного!");
+                System.out.println("Введите количество человек: ");
+                peopleQuant = scanner.nextInt();
+            }
+            else if (peopleQuant == 1)
+            {
+                System.out.println("А что тут считать? Один ел и пил?! Сам и плати!");
+                System.out.println("Введите количество человек: ");
+                peopleQuant = scanner.nextInt();
+
+            }
+            else
+            {
+                normalInput = true;
+            }
+        }
+        addDish(peopleQuant);
+    }
+
+
+
+
 
     public static void addDish(int peoples) {
 
