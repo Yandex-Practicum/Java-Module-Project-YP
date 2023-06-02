@@ -1,9 +1,7 @@
 import  java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        Calculator.calculator();
-
-
-        Calculator.stuffCost();
+        int persons = Calculator.calculator();
+        Calculator.stuffCost(persons);
     }
 }

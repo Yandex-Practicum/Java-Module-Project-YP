@@ -1,10 +1,9 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import  java.util.Scanner;
 
 
 public class Calculator {
-
-
 
 
     public static int calculator() {
@@ -17,11 +16,11 @@ public class Calculator {
             if (persons == 1) {
                 System.out.println("Ничего считать не буду");
 
-                continue;
+
             } else if (persons < 1) {
                 System.out.println("Некорректное значение, пробуй еще");
-                continue;
-            } else if (persons > 1) {
+
+            } else {
                 totalPersons += persons;
                 break;
             }
@@ -29,40 +28,46 @@ public class Calculator {
         return totalPersons;
     }
 
-    public static Double stuffCost() {
-
+    public static Double stuffCost(int persons){
 
 
         double totalCOst = 0;
         String keyWord = "завершить";
         Scanner scanner = new Scanner(System.in);
-
-
+        ArrayList<String> allNames = new ArrayList<>();
+        double price = 0;
+        boolean flag = false;
 
         while (true) {
 
             System.out.println("Введите название товара");
+            String name = Stuff.name();
+            allNames.add(name);
             System.out.println("Введите стоимость товара");
-            Stuff stuff = new Stuff();
-            ArrayList<String> allNames = new ArrayList<>();
-
-            while (true) {
-                if (stuff.name.equalsIgnoreCase(keyWord)) {
+            price = Stuff.priceStuf(name);
+            if (name.equalsIgnoreCase(keyWord)) {
                     System.out.println("Ну ладно");
+                    System.out.println("Добавленные товары: ");
+                    for (int i = 0; i < allNames.size() - 1; i++) {
+                        System.out.println(allNames.get(i));
+                    }
+
                     return 0.0;
-                }else if(stuff.name.matches("[-+]?\\d+")){
+                } else if (name.matches("[-+]?\\d+")) {
                     System.out.println("Попробуй еще раз");
                     break;
                 }
-                allNames.add(stuff.name);
-                totalCOst += stuff.priceStuf();
-                System.out.println("Добавлено успешно");
-                System.out.println("Что нибудь еще?");
-                break;
+
+                totalCOst += price;
+
 
             }
-            //return totalCOst;
+        return totalCOst / persons;
+
+
+
+
         }
 
     }
-}
+
