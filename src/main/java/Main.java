@@ -6,7 +6,7 @@ public class Main {
         calculateIt();
     }
     public static void calculateIt (){
-        int human=-1;
+        int human=0;
         while(human<=1){
             human=checkPeople ();
         }
@@ -42,9 +42,8 @@ public class Main {
             }
             else{
                 userInput = scanner.nextInt();
-                if(userInput==1||userInput<1){
+                if(userInput<=1){
                     System.out.println("Число людей должно быть больше одного");
-                    continue;
                 }
                 else{
                     break;

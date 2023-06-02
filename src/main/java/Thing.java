@@ -15,9 +15,8 @@ public class Thing {
             }
             else{
                 price = scanner.nextFloat();
-                if(price<0){
+                if(price<=0){
                     System.out.println("Введите корректную стоимость товара в формате\"рубли,копейки\"");
-                    continue;
                 }
                 else{
                     break;
