@@ -1,5 +1,5 @@
 public class Declensions{
-    public static String declensions(double rub){
+    public String declensions(double rub){
         if (rub % 100 >= 11){
             return "ей";
         } else if (rub % 10 == 1) {

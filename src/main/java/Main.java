@@ -23,7 +23,7 @@ public class Main {
             System.out.println("Какой товар выбрали?");
             nameProducts = scanner.nextLine();
             System.out.println("Напишити его стоимость");
-            double priceProducts = scanner.nextInt();
+            double priceProducts  = scanner.nextInt();
             System.out.println("Товар добавлен!");
             System.out.println("Закажете еще?");
 
@@ -34,7 +34,7 @@ public class Main {
             var prod = new Products(nameProducts, priceProducts);
             sum.add(prod);
             System.out.println(sum.catalog);
-            System.out.println(getResult);
+            System.out.println(sum.getResult());
         }
     }
 }

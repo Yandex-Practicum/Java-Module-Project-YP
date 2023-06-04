@@ -1,13 +1,14 @@
 public class Calculate {
     int sumPrice;
     String catalog = "";
+    int guests;
 
     public Calculate(int guests){
         this.guests = guests;
 
     }
-    public void add(Product prod) {
-        sumPrice += prod.priceProducts;
+    public void add(Products prod) {
+        sumPrice += prod.priceProducts ;
 
         catalog += prod.nameProducts + "\n";
     }
