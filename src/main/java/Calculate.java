@@ -1,23 +1,19 @@
-import java.util.Scanner;
 public class Calculate {
-    private final int sumGuests;
-    private double totalPrice;
-    public String list = "";
+    int sumPrice;
+    String catalog = "";
 
-    public Calculate(int sumGuests) {
-
-        this.sumGuests = sumGuests;
+    public Calculate(int guests){
+        this.guests = guests;
 
     }
+    public void add(Product prod) {
+        sumPrice += prod.priceProducts;
 
-    public void add(Products p) {
-        totalPrice += p.priceProducts;
-
-        list += p.nameProducts + "\n";
+        catalog += prod.nameProducts + "\n";
     }
 
     public String getResult() {
-        var part = totalPrice / sumGuests;
+        var part = sumPrice / guests;
         var r = String.format("%.2f", part);
         var rub = Math.floor(part);
         var suffix = declensions(rub);

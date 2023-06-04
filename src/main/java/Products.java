@@ -1,6 +1,4 @@
-import java.util.Scanner;
 public class Products {
-    Scanner scanner = new Scanner(System.in);
     public final String nameProducts;
     public final double priceProducts;
 
