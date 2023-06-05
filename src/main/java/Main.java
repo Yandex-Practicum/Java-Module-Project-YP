@@ -1,10 +1,8 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
-        int guests = 0;
-
+        int guests;
         while (true){
             System.out.println("На какое количество человек делим счет?");
             guests = scanner.nextInt();
@@ -17,25 +15,23 @@ public class Main {
                 System.out.println("Это не корректное значение.");
             }
         }
-        var sum = new Calculate(guests);
-        while (true){
+        var proc = new Calculate(guests);
+        while (true) {
             String nameProducts;
-            System.out.println("Какой товар выбрали?");
+            System.out.println("Какой у вас товар?");
             nameProducts = scanner.nextLine();
-            System.out.println("Напишити его стоимость");
-            double priceProducts  = scanner.nextInt();
-            System.out.println("Товар добавлен!");
-            System.out.println("Закажете еще?");
-
-            String user = scanner.nextLine();
-            if (user.equalsIgnoreCase("завершить")){
+            System.out.println("Напишите стоимость продукта: ");
+            double priceProducts = scanner.nextDouble();
+            var prod = new Products(nameProducts, priceProducts);
+            proc.list(prod);
+            System.out.println("Товар успешно добавлен!\nМожет еще по одной;)");
+            var input = scanner.nextLine();
+            if (input.equalsIgnoreCase("завершить")) {
                 break;
             }
-            var prod = new Products(nameProducts, priceProducts);
-            sum.add(prod);
-            System.out.println(sum.catalog);
-            System.out.println(sum.getResult());
         }
+        System.out.println("Добавленные товары: ");
+        System.out.println(proc.catalogProducts);
+        System.out.println(proc.result());
     }
 }
-
