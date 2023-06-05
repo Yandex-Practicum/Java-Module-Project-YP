@@ -7,7 +7,8 @@ public class programActions extends helpLibrary
 
 {
 
-    public static int peopleQuantity()
+    public static int peopleQuantity() /* Ввод количества человек, на которое делится счет с проверками корректности ввода
+    Метод возвращает колиечество человек, на которых делится счет */
     {
 
         int peopleQuant = checkIntInput("Введите количество человек, на которых надо поделить счет: ");
@@ -30,7 +31,9 @@ public class programActions extends helpLibrary
         return peopleQuant;
     }
 
-    public static Bill addDish() {
+    public static Bill addDish() /* Метод обеспечивает ввод позиций счета, состоящих из названия блюда и его цены, с проверкой корректности ввода.
+     Завершение ввода осуществляется при вводе пользователем слова "Завершить" в любом регистре любой из букв слова */
+    {
 
         Scanner scanner = new Scanner(System.in);
         Bill currentBill = new Bill();
@@ -41,11 +44,20 @@ public class programActions extends helpLibrary
         currentName = scanner.nextLine();
         do {
               double currentPrice = checkDoubleInput("Введите стоимость блюда: ");
+              if (currentPrice < 0) /* Проверка на цену меньше нуля. Возможен вариант с меньше или равно, но нулевые позиции в ресторанах иногда встречаются,
+               например - какие-то комплименты от заведения */
+              {
+                  System.out.println("Стоимость позиции меньше нуля, думаете ресторан собирается Вам доплатить?");
+              }
+             else
+            {
               currentBill.dishPrice += currentPrice;
               currentBill.dishName += currentName + " - " + String.format("%.2f", currentPrice) + " " + roublesEnd(currentPrice) + "\n";
               System.out.println("Вы ввели товар "+ currentName + " стоиомстью " + String.format("%.2f", currentPrice) + " " + roublesEnd(currentPrice) + "\n");
               System.out.println("Если есть желание ввести еще одну позицию счета - вводите, если хотите закончить - введите слово \"Завершить\" для выхода: ");
               currentName = scanner.nextLine();
+            }
+
             }
             while (checkEndInput(currentName, "завершить") == false);
         currentBill.dishName += "завершить" + "\n";
@@ -54,7 +66,9 @@ public class programActions extends helpLibrary
      }
 
 
-    public static void showBill(Bill currentBill, int quantity) {
+    public static void showBill(Bill currentBill, int quantity) /* Метод выводит счет по пощзициям с ценами, общую суммму,
+     и сумму, которую должен заплатить каждый участник застолья */
+    {
 
         Scanner scanner = new Scanner(currentBill.dishName);
         String billPosition = scanner.nextLine();

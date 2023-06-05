@@ -3,6 +3,7 @@ import java.util.Scanner; // импорт сканера
 public class helpLibrary {
 
     public static String roublesEnd(double amountSum)
+    /* Метод возвращает слово "рубль" с правильным окончанием, в зависимости от полседней цифры суммы  */
     {
         String roublesStr = Double.toString(amountSum);
          int indexDot = roublesStr.indexOf(".");
@@ -24,7 +25,8 @@ public class helpLibrary {
         } else {
             roublesStr = roublesStr.substring(1, 2);
             roubles = Integer.parseInt(roublesStr);
-            switch (roubles) {
+            switch (roubles) // Понимаю, что можно было сделать с if, но так, на мой взгляд, проще и нагляднее
+            {
                 case 0:
                     outRoubles += "блей";
                     break;
@@ -62,7 +64,9 @@ public class helpLibrary {
         }
     }
 
-    public static boolean checkEndInput(String userInput, String sample) {
+    public static boolean checkEndInput(String userInput, String sample)
+    // Метод сверяет ввод пользователя (в любом регистре) с эталннной стррокой, если ввод совпадает с эталоном, выдается true, если нет - false
+    {
         String result = userInput.toLowerCase();
         if (result.equals(sample)) {
             return true;
@@ -73,9 +77,13 @@ public class helpLibrary {
 
     }
 
-    public static int checkIntInput(String stringOut) {
+    public static int checkIntInput(String stringOut)
+   /* Метод проверяет корректность ввода целого числа. В качестве араметра передается строка, которая выводится в качестве приглашения для ввода */
+    {
         Scanner scanner = new Scanner(System.in);
         System.out.println(stringOut);
+
+
         while (!scanner.hasNextInt())
         {
            System.out.println("Неправильный формат ввода, попробуйте еще раз ");
@@ -86,7 +94,9 @@ public class helpLibrary {
         return result;
     }
 
-    public static double checkDoubleInput(String stringOut) {
+    public static double checkDoubleInput(String stringOut)
+    /* Метод проверяет корректность ввода числа Double. В качестве араметра передается строка, которая выводится в качестве приглашения для ввода */
+    {
         Scanner scanner = new Scanner(System.in);
         System.out.print(stringOut);
         while (!scanner.hasNextDouble()) {
