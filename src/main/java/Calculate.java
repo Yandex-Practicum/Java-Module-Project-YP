@@ -1,19 +1,19 @@
 public class Calculate{
-    int guests;
+    int allGuests;
     double finalPrice;
-    String catalogProducts;
+    String catalogProducts = "";
 
     public Calculate(int guests) {
-        this.guests = guests;
+        allGuests = guests;
     }
 
-    public void list(Products prod) {
-        finalPrice += prod.priceProducts;
-        catalogProducts += prod.nameProducts;
+    public void list(Products addProducts) {
+        finalPrice += addProducts.priceProducts;
+        catalogProducts += addProducts.nameProducts + "\n";
     }
 
     public String result() {
-        var division = finalPrice / guests;
+        var division = finalPrice / allGuests;
         var ru = String.format("%.2f", division);
         var rub = Math.floor(division);
         var ending = Ending.getEnding(rub);

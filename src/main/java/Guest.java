@@ -2,7 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Guest {
-    public static void guest(){
+    public static void getGuestInfo(){
         Scanner scanner = new Scanner(System.in);
         int guests = 0;
         while (true) {
@@ -21,37 +21,39 @@ public class Guest {
             } else {
                 System.out.println("Это не корректное значение.");
             }
-            System.out.println("Давайте попробуем снова: ");
+            System.out.println("Давайте попробуем снова.");
         }
-        var cal = new Calculate(guests);
+        var counting = new Calculate(guests);
         while (true) {
             String nameProducts;
             System.out.println("Что вы выбрали?");
             nameProducts = scanner.nextLine();
             System.out.println("Сколько это стоит?");
             double priceProducts = inputPrice(scanner);
-            var prod = new Products(nameProducts, priceProducts);
-            cal.list(prod);
+            var addProducts = new Products(nameProducts, priceProducts);
+            counting.list(addProducts);
             System.out.println("Список товара обновлен!\nДля продолжение введите ДА, для подсчета итога введите ЗАВЕРШИТЬ");
-            var input = scanner.nextLine();
-            if (input.equalsIgnoreCase("завершить")) {
+            var inputUser = scanner.nextLine();
+            if (inputUser.equalsIgnoreCase("завершить")) {
                 break;
+            } if (inputUser.equalsIgnoreCase("да")) {
+                System.out.println("Отлично! Продолжаем выбор товаров");
             }
         }
-        System.out.println("Ваши товары");
-        System.out.println(cal.catalogProducts);
-        System.out.println("Их стоимость");
-        System.out.println(cal.result());
+        System.out.println("Ваши товары:");
+        System.out.println(counting.catalogProducts);
+        System.out.println("Стоимость для каждого гостя:");
+        System.out.println(counting.result());
     }
     private static double inputPrice(Scanner scanner) {
         while (true) {
             try {
-                var ru = scanner.nextDouble();
-                if (ru <= 0) {
+                var rub = scanner.nextDouble();
+                if (rub <= 0) {
                     System.out.println("Ошибка, неверное значение!");
                     continue;
                 }
-                return ru;
+                return rub;
             } catch (InputMismatchException ext) {
                 System.out.println("Ошибка, неверное значение!");
             } finally {
