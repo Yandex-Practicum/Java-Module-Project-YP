@@ -1,6 +1,13 @@
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        People.people();
+        Calculator.calculator();
+        Output.output();
     }
 }
+
+
+
+
+
