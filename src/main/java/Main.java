@@ -2,12 +2,7 @@
 public class Main {
     public static void main(String[] args) {
         People.people();
-        Calculator.calculator();
+        Calculator.calculatePrice();
         Output.output();
     }
 }
-
-
-
-
-

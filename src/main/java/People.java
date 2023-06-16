@@ -1,17 +1,27 @@
 import java.util.Scanner;
 
 public class People {
+    public static int people;
 
-public static int people;
     public static void people() {
-
-        Scanner scanner = new Scanner(System.in);
         System.out.println(" На скольких человек необходимо разделить счёт ? ");
-        people = scanner.nextInt();
-
+        Scanner scanner = new Scanner(System.in);
+        boolean character = false;
+        while (!character) {
+            if (scanner.hasNextInt()) {
+                people = scanner.nextInt();
+                character = true;
+            } else {
+                System.out.println(" Ошибка, введён текст\n Введите числовое значение");
+                scanner.next();
+            }
+        }
         while (people <= 1) {
             System.out.println(" Некорректное значение, введите число больше 1. ");
-            people = scanner.nextInt();
+            scanner.nextInt();
         }
     }
 }
+
+
+
