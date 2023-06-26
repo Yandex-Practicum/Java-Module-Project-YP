@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Formatter {
     final private static String[] strRub = {
             " рубль",

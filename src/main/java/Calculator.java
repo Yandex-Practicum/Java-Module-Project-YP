@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Calculator {
     final private int numbPeople;
     Scanner scanner = new Scanner(System.in);
-    private ArrayList<Product> arrProducts = new ArrayList<Product>();
+    final private ArrayList<Product> arrProducts = new ArrayList<>();
 
     Calculator(int numbPeople) {
         this.numbPeople = numbPeople;
@@ -26,20 +26,23 @@ public class Calculator {
     }
 
     private void finalCount() {
-        double sum = 0, res = 0;
-        String resStr = "Добавленные товары: \n";
+        double sum = 0, res;
+        //String resStr = "Добавленные товары: \n";
+
+        StringBuilder resStrB = new StringBuilder("Добавленные товары: \n");
 
         for (Product product : arrProducts) {
-            resStr += product.getProductName()
-                    + ": "
-                    + product.getProductPrice()
-                    + Formatter.getEndWord(product.getProductPrice())
-                    + "\n";
+            resStrB.append( product.getProductName()
+                    .concat(": ")
+                    .concat(
+                            String.format("%.2f", product.getProductPrice()))
+                    .concat(Formatter.getEndWord(product.getProductPrice()))
+                    .concat(",\n"));
             sum += product.getProductPrice();
 
         }
 
-        System.out.println(resStr);
+        System.out.println(resStrB.substring(0, resStrB.length() - 2) + ".");
         res = sum / numbPeople;
         System.out.println("--------");
        System.out.println(
@@ -50,7 +53,7 @@ public class Calculator {
 
     private boolean isFinish() {
         String tmpStr = scanner.nextLine().trim();
-        return  "завершить".equalsIgnoreCase(tmpStr) ? true : false;
+        return  "завершить".equalsIgnoreCase(tmpStr);
 
     }
 

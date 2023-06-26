@@ -1,14 +1,11 @@
-import android.text.util.Rfc822Token;
 
-import java.text.Format;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
         System.out.println("\t\tКАЛЬКУЛЯТОР СЧЁТА\n");
-        Calculator calculator = new Calculator(getSumPeople());
-
+        new Calculator(getSumPeople());
 
         System.exit(0);
     }
@@ -23,7 +20,7 @@ public class Main {
         while (true) {
             strIn = scanner.nextLine();
 
-            if (strIn.matches("^[0-9]{1,}$")) {
+            if (strIn.matches("^[0-9]+$")) {
                 numb = Integer.parseInt(strIn.trim());
                     if (numb <= 1)
                         System.out.println(numb + " - некорректное значение. Введите количество человек:");
