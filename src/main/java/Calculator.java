@@ -27,7 +27,6 @@ public class Calculator {
 
     private void finalCount() {
         double sum = 0, res;
-        //String resStr = "Добавленные товары: \n";
 
         StringBuilder resStrB = new StringBuilder("Добавленные товары: \n");
 
