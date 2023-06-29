@@ -13,11 +13,17 @@ public class Tovar {
 
     public static void inputCost() {
         System.out.println("Введите стоимость товара ");
-        if (sc.hasNextDouble()) {
+        do {
+            while (!sc.hasNextDouble()) {
+                System.out.println("Это не стоимость!");
+                sc.next();
+            }
             bufCost = sc.nextDouble();
-        } else {
-            System.out.println("Это не число");
+            if(bufCost<0) {
+                System.out.println("Не может быть отрицательная стоимость!");
+                }
+            } while(bufCost<0);
         }
     }
-}
+
 
