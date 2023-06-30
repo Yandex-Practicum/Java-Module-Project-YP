@@ -15,14 +15,15 @@ public class Tovar {
         System.out.println("Введите стоимость товара ");
         do {
             while (!sc.hasNextDouble()) {
-                System.out.println("Это не стоимость!");
+                System.out.println("Неправильно!Введите стоимость цифрами, а копейки через запятую!");
                 sc.next();
             }
             bufCost = sc.nextDouble();
-            if(bufCost<0) {
-                System.out.println("Не может быть отрицательная стоимость!");
+            if(bufCost<=0) {
+                System.out.println("Стоимость не может быть отрицательная стоимость или равняться 0!");
+                System.out.println("Повторите ввод стоимости!");
                 }
-            } while(bufCost<0);
+            } while(bufCost<=0);
         }
     }
 
