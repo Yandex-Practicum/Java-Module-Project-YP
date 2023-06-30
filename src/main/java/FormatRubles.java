@@ -1,10 +1,6 @@
 public class FormatRubles {
-    String Rubles (float sum) {
+    String Rubles(float sum) {
         int sum1 = (int) Math.floor(sum);
-
-        String rub1 = "рубль";
-        String rub2 = "рубля";
-        String rub3 = "рублей";
 
         if (sum1 > 100)
             sum1 %= 100;
@@ -14,13 +10,13 @@ public class FormatRubles {
 
         switch (sum1) {
             case 1:
-                return rub1;
+                return "рубль";
             case 2:
             case 3:
             case 4:
-                return rub2;
+                return "рубля";
             default:
-                return rub3;
+                return "рублей";
         }
     }
 }

@@ -3,8 +3,7 @@ import java.util.Scanner;
 public class Product {
     Scanner sc = new Scanner(System.in);
     String insertName(){
-        String nameOfProduct = sc.next();
-        return nameOfProduct;
+        return sc.next();
     }
 
     float insertPrice() {
@@ -12,7 +11,11 @@ public class Product {
 
             try {
                 float priceOfProduct = sc.nextFloat();
-                if (!(priceOfProduct < 0)) {
+                if (!(priceOfProduct <= 0)) {
+                    return priceOfProduct;
+                }
+                if (priceOfProduct == 0) {
+                    System.out.println("Ваш товар бесплатный, пожалуй, мы не будем его добавлять в конечный список :с");
                     return priceOfProduct;
                 }
                 System.out.println("Вы ввели отрицательную цену, попробуйте еще раз:");
