@@ -6,7 +6,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
         System.out.println("Введите число гостей (от 2 человек):");
-
         int guests = 0;
         try {
             guests = myObj.nextInt();
@@ -15,24 +14,19 @@ public class Main {
             System.out.println("Некорректное число гостей");
             return;
         }
-
         if (guests <= 1) {
             System.out.println("Некорректное число гостей");
             return;
         }
-
         System.out.println("Введенное количество гостей: " + guests);
-        double totalGoods = 0;
-        List<Item> items = new ArrayList<>();
 
+        List<Item> items = new ArrayList<>();
         while (true) {
             System.out.println("Введите название товара:");
             String itemName = myObj.nextLine();
-
             if (itemName.equalsIgnoreCase("завершить")) {
                 break;
             }
-
             System.out.println("Введите стоимость товара:");
             double itemPrice = 0;
             try {
@@ -41,15 +35,12 @@ public class Main {
                 System.out.println("Неверная цена товара");
                 return;
             }
-
             if (itemPrice <= 0) {
                 System.out.println("Неверная цена товара");
                 return;
             }
-
             Item item = new Item(itemName, itemPrice);
             items.add(item);
-            totalGoods += itemPrice;
             System.out.println("Добавлен товар: " + itemName + ", Цена: " + itemPrice);
             System.out.println("Хотите ли добавить еще товар? (Введите 'Завершить', чтобы закончить)");
         }
@@ -59,7 +50,7 @@ public class Main {
             System.out.println(item.getName() + ", Цена: " + item.getPrice());
         }
 
-        double result = totalGoods / guests;
+        double result = calculateTotalGoods(items) / guests;
         System.out.printf("Сумма на человека: %.2f %s", result, rubleEnding(result));
     }
 
@@ -72,6 +63,14 @@ public class Main {
         } else {
             return "рублей";
         }
+    }
+
+    public static double calculateTotalGoods(List<Item> items) {
+        double totalGoods = 0;
+        for (Item item : items) {
+            totalGoods += item.getPrice();
+        }
+        return totalGoods;
     }
 }
 
