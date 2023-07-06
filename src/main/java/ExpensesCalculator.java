@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class ExpensesCalculator {
-    public static void calculate (Scanner scanner, String listOfExpenses, int numberOfGuests) {
+    public static void calculate (Scanner scanner, int numberOfGuests) {
+        String listOfExpenses = "";
         float totalExpenses = 0.0f;
         while (true) {
             System.out.println("Введите название товара (для завершения введите 'Завершить'):");
@@ -18,36 +19,25 @@ public class ExpensesCalculator {
                 price = scanner.nextFloat();
             }
 
+            String formattedPrice = "";
+            int priceInt = (int) price;
             if (price > 0) {
-                listOfExpenses += thing;
-                listOfExpenses += " ";
-                String formattedPrice;
-                if (price == 1) {
-                    formattedPrice = String.format("%.2f рубль", price);
-                } else if (price >= 2 && price <= 4) {
-                    formattedPrice = String.format("%.2f рубля", price);
-                } else {
-                    formattedPrice = String.format("%.2f рублей", price);
-                }
-                listOfExpenses += formattedPrice;
-                listOfExpenses += "\n";
+                formattedPrice = String.format("%.2f %s", price, (priceInt % 10 == 1 && priceInt % 100 != 11) ? "рубль" :
+                        (priceInt % 10 >= 2 && priceInt % 10 <= 4 && (priceInt % 100 < 10 || priceInt % 100 >= 20)) ? "рубля" : "рублей");
+                listOfExpenses += thing + " " + formattedPrice + "\n";
                 totalExpenses += price;
-                System.out.println("Вы купили " + thing + " за " + formattedPrice);
+                System.out.printf("Вы купили %s за %s%n", thing, formattedPrice);
             } else {
-                System.out.println("Неправильная цена!Попробуйте ещё раз.");
-                scanner.next();
+                System.out.println("Неправильная цена! Пожалуйста, повторите ввод.");
+                continue;
             }
             System.out.printf("Список расходов:%n%s", listOfExpenses);
-            String formattedTotal;
             float perGuest = totalExpenses / numberOfGuests;
-            if (perGuest == 1) {
-                formattedTotal = String.format("%.2f рубль", perGuest);
-            } else if (perGuest >= 2 && perGuest <= 4) {
-                formattedTotal = String.format("%.2f рубля", perGuest);
-            } else {
-                formattedTotal = String.format("%.2f рублей", perGuest);
-            }
-            System.out.printf("Итого расходов на одного гостя: %s%n", formattedTotal);
+            String formattedTotal = String.format("Итого расходов на одного гостя: %.2f %s%n", perGuest,
+                    (totalExpenses == 1) ? "рубль" :
+                            ((totalExpenses >= 2 && totalExpenses <= 4) || (totalExpenses >= 22 && totalExpenses <= 24) || (totalExpenses >= 32 && totalExpenses <= 34) || (totalExpenses >= 42 && totalExpenses <= 44) || (totalExpenses >= 52 && totalExpenses <= 54) || (totalExpenses >= 62 && totalExpenses <= 64) || (totalExpenses >= 72 && totalExpenses <= 74) || (totalExpenses >= 82 && totalExpenses <= 84) || (totalExpenses >= 92 && totalExpenses <= 94)) ? "рубля" :
+                                    "рублей");
+            System.out.println(formattedTotal);
         }
     }
 }
