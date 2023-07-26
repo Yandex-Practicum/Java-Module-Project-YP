@@ -3,7 +3,6 @@ import exceptions.PersonsAboveZeroException;
 import exceptions.PersonsOnlyException;
 import exceptions.PersonsZeroException;
 import models.Good;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import utils.Consts;
@@ -26,10 +25,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class PersonstTest {
-    @BeforeEach
-    public void initEnvironment() {
-
-    }
     @ParameterizedTest
     @ValueSource(ints = { 0 })
     @DisplayName("Проверка ввода О человек")
@@ -64,8 +59,8 @@ public class PersonstTest {
         var mockCommunicator = mock(Communicator.class);
         var calculator = Calculator.createInstance(3, mockCommunicator);
 
-        when(mockCommunicator.readString(Consts.ENTER_GOODNAME_PROMT)).thenReturn(goods.get(count.get()).getName());
-        when(mockCommunicator.readDouble(Consts.ENTER_PRICE_PROMT)).thenReturn(goods.get(count.get()).getPrice());
+        when(mockCommunicator.readString(Consts.ENTER_GOODNAME_PROMT)).thenAnswer(n -> goods.get(count.get()).getName());
+        when(mockCommunicator.readDouble(Consts.ENTER_PRICE_PROMT)).thenAnswer(n -> goods.get(count.get()).getPrice());
 
         when(mockCommunicator.readBoolean(eq(Consts.FINAL_PROMT), any()))
                 .thenAnswer(invocationOnMock -> {
@@ -81,10 +76,10 @@ public class PersonstTest {
 
     static Stream<Arguments> provideArguments() {
         var goods = List.of(
-                new Good("Твар 1", 10.45f),
-                new Good("Твар 2", 1),
-                new Good("Твар 3", 11.31),
-                new Good("Твар 4", 4.15f));
+                new Good("Товар 1", 10.45f),
+                new Good("Товар 2", 1),
+                new Good("Товар 3", 11.31),
+                new Good("Товар 4", 4.15f));
 
         return Stream.of(Arguments.of(goods));
     }

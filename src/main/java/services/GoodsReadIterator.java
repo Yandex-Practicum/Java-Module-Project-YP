@@ -5,6 +5,7 @@ import exceptions.PriceInputException;
 import models.Good;
 import utils.Consts;
 
+import java.util.InputMismatchException;
 import java.util.Iterator;
 
 public class GoodsReadIterator implements Iterator<Good> {
@@ -20,11 +21,19 @@ public class GoodsReadIterator implements Iterator<Good> {
         var goodName = communicator.readString(Consts.ENTER_GOODNAME_PROMT);
         double price = -1.0;
         while((price <= 0) && priceInputCount < Consts.MAX_RETRY_PROMTS) {
-            price = communicator.readDouble(Consts.ENTER_PRICE_PROMT);
-            priceInputCount ++;
-        }
-        if(priceInputCount == Consts.MAX_RETRY_PROMTS) {
-            return null;
+            try {
+                price = communicator.readDouble(Consts.ENTER_PRICE_PROMT);
+                priceInputCount ++;
+                if(price < 0){
+                    throw new InputMismatchException(Consts.LOWPRICE_MESSAGE);
+                }
+            } catch (InputMismatchException e) {
+                communicator.showNotification(
+                        String.format(Consts.RED + "Ошибка ввода: %s. Повторите ввод" + Consts.RESET, e.getMessage()));
+            }
+            if(priceInputCount == Consts.MAX_RETRY_PROMTS) {
+                throw new PriceInputException();
+            }
         }
         return new Good(goodName, price);
     }

@@ -12,9 +12,11 @@ public class Calculator {
     private final Communicator communicator;
     private final GoodsReadIterator iterator;
     private final ArrayList<Good> goods;
-    private Calculator(Communicator communicator){
+    private final int personsQuantity;
+    private Calculator(Communicator communicator, int quantity){
         this.communicator = communicator;
         this.iterator = new GoodsReadIterator(this.communicator);
+        this.personsQuantity = quantity;
         goods = new ArrayList<>();
     }
 
@@ -26,7 +28,7 @@ public class Calculator {
         } else if (quantity < 0) {
             throw new PersonsAboveZeroException(Consts.LOWPERSONS_MESSAGE);
         }
-        return new Calculator(communicator);
+        return new Calculator(communicator, quantity);
     }
 
     public void readGoods() {
@@ -50,5 +52,8 @@ public class Calculator {
         for(var good: getGoods()) {
             communicator.showNotification(good.toString());
         }
+        var sharedPrice = totalPrice() / personsQuantity;
+        communicator.showNotification(String.format("Общий счет %.2f", totalPrice()));
+        communicator.showNotification(String.format("На каждого из %d человек по %.2f", personsQuantity, sharedPrice));
     }
 }
