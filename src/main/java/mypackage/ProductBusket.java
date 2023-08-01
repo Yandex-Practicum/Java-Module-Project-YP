@@ -1,5 +1,6 @@
 package mypackage;
-import mypackage.Product;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,8 @@ public class ProductBusket {
         this.finalPrice = 0;
         this.productList = new ArrayList<>();
     }
-    public void addToBusket(Product productExample){
+
+    public void addToBusket(Product productExample) {
         productList.add(productExample);
         finalPrice = finalPrice + productExample.price;
 
@@ -23,7 +25,7 @@ public class ProductBusket {
         String message = "Добавленные товары: ";
         System.out.println(message);
         for (Product element : this.productList) {
-           element.displayInfo();
+            element.displayInfo();
 
         }
     }
