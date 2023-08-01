@@ -36,7 +36,7 @@ public class Main {
             try {
                 System.out.println("Введите количество гостей.");
                 numberOfGuests = scanner.nextInt();
-                if (numberOfGuests < 1)
+                if (numberOfGuests <= 1)
                     System.out.println("Ошибка. Введите корректное количество гостей заново.");
                 else
                     break;
@@ -49,38 +49,51 @@ public class Main {
 
          ProductBusket myBusket = new ProductBusket();
 
-         while (true) {
 
-                 System.out.println("Введите название блюда.");
-                 String prodName = scanner.next();
-                 if (prodName.equalsIgnoreCase("Завершить"))
-                 {
-                     break;
-                 }
-                 if (prodName.matches("[а-яА-Я]+")) {
-                     while(true) {
-                         try {
-                             System.out.println("Введите стоимость блюда в формате рубли.копейки.");
-                             Double prodPrice = scanner.nextDouble();
-                             Product a = new Product(prodName, prodPrice);
-                             myBusket.addToBusket(a);
+            while (true) {
+                String prodName = "";
+                if (myBusket.productList.size() == 0){
+
+                    System.out.println("Введите название блюда");
+                     prodName = scanner.next();
+                }
+                else {
+                    System.out.println("Введите название блюда, если хотите добавить товар или 'завершить', если товаров больше нет.");
+
+                     prodName = scanner.next();
+                    if (prodName.equalsIgnoreCase("Завершить")) {
+                        break;
+                    }
+                }
+
+//                System.out.println("Введите название блюда.");
+//                String prodName = scanner.next();
+//                if (prodName.equalsIgnoreCase("Завершить")) {
+//                    break;
+//                }
+                if (prodName.matches("[а-яА-Я]+")) {
+                    while (true) {
+                        try {
+                            System.out.println("Введите стоимость блюда в формате рубли.копейки.");
+                            Double prodPrice = scanner.nextDouble();
+                            Product a = new Product(prodName, prodPrice);
+                            myBusket.addToBusket(a);
+                            System.out.println("Блюдо успешно добавлено в корзину!");
+
+                            break;
 
 
+                        } catch (Exception e) {
+                            String WrongName = scanner.next();
+                            System.out.println("Ошибка. Неверно введена стоимость блюда. Введите снова!");
+                            continue;
+                        }
+                    }
+                } else {
+                    System.out.println("Неккоректно введено название блюда введите снова.");
+                }
+            }
 
-                             break;
-
-
-                         } catch (Exception e) {
-                             String WrongName = scanner.next();
-                             System.out.println("Ошибка. Неверно введена стоимость блюда. Введите снова!");
-                             continue;
-                         }
-                     }
-                 }
-                  else {
-                     System.out.println("Неккоректно введено название блюда введите снова.");
-                  }
-             }
         myBusket.displayProducts();
         double result = ProductBusket.finalPrice / numberOfGuests;
         double finalResult = Math.round(result * 100.0) / 100.0;
