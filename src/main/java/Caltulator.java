@@ -13,12 +13,24 @@ public class Caltulator {
             dish.nameOfDish = in.nextLine();
             namesDishes = namesDishes + dish.nameOfDish + "\n";
             System.out.println("Введите цену блюда");
-            while (!in.hasNextFloat()) {
-                System.out.println("Ошибочка!");
-                System.out.println("Введите повторно");
-                in.next();
+            while (true) {
+                while (!in.hasNextFloat()) {
+                    System.out.println("Ошибочка!");
+                    System.out.println("Введите повторно");
+                    in.next();
+                }
+                dish.priceOfDish = in.nextFloat();
+                if (dish.priceOfDish > 0) break;
+                else {
+                    System.out.println("Введено некорректное значение! Попробуйте снова!");
+                    while (!in.hasNextFloat()) {
+                        System.out.println("Ошибочка!");
+                        System.out.println("Введите повторно");
+                        in.next();
+                    }
+                }
             }
-            dish.priceOfDish = in.nextFloat();
+
             sumOfDishes = sumOfDishes + dish.priceOfDish;
             System.out.println("Блюдо успешно добавлено!\nВвести новое блюдо?");
             needToContinue = in.nextLine();
@@ -27,8 +39,7 @@ public class Caltulator {
             if (needToContinue.equalsIgnoreCase("завершить")) break;
         }
         System.out.println("Добавленные товары: \n" + namesDishes);
-        Formatter format = new Formatter();
-        String formatRubles = format.toFormat(sumOfDishes/countOfPersons);
+        String formatRubles = Formatter.toFormat(sumOfDishes/countOfPersons);
         System.out.println("Каждый должен заплатить: " + String.format("%.2f", sumOfDishes/countOfPersons) +  formatRubles);
 
     }
