@@ -1,11 +1,14 @@
 public class Calcula {
     public String doubleToRuble (double price_){ // именует рубли
         String str;
-        double d=Math.floor(price_);
-        if (d==11 || d==12|| d==13|| d==14) {
+        double intOfPrice=Math.floor(price_);
+        if (intOfPrice>100){// для аналитики "надцать"
+            intOfPrice=intOfPrice%100;
+        }
+        if (intOfPrice==11 || intOfPrice==12|| intOfPrice==13|| intOfPrice==14) {
             return  "рублей";
         }
-        switch ((int)d %10) {
+        switch ((int)intOfPrice %10) {// для аналитики последней цифры
             case 1:
                 str = "рубль";
                 break;
