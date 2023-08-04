@@ -11,7 +11,7 @@ public class Dialog {
         int partnersCount;
         partnersCount=this.getInt();
         if (partnersCount<=1){
-            System.out.println("Хмм... Делить можно когда участников больше одного.");
+            System.out.println("Хмм... Делить принято когда участников больше одного.");
             partnersCount=this.getInt();
         }
         System.out.println(partnersCount + " - Прекрасное число!");
@@ -45,7 +45,7 @@ public class Dialog {
     private double getPrice(){
         Scanner scan=new Scanner(System.in);
         double dPrice;
-        System.out.println("Пожалуйста, введите цену");
+        System.out.println("Пожалуйста, введите цену (например: \"12.05\".)");
         if (scan.hasNextDouble()) {
             dPrice = scan.nextDouble();
             if (dPrice < 0) {
@@ -62,12 +62,14 @@ public class Dialog {
     void showList(ArrayList <Goods> lnkBill){
         double total=0;
         Calcula calc=new Calcula();
-        System.out.println("Всего " + lnkBill.size()+" ед.:");
+        System.out.println("Всего " + lnkBill.size()+" "+calc.intToGoodies(lnkBill.size())+".");
+        System.out.println("___");//Для графического отделения
         for (int i=0;i<lnkBill.size();i++){
             System.out.print(lnkBill.get(i).name+": ");
             System.out.println(lnkBill.get(i).price);
             total+= lnkBill.get(i).price;
         }
+        System.out.println("___");//Для графического отделения
         System.out.format("На общую сумму %.2f "+ calc.doubleToRuble(total)+".\n",total);
     }
     void showHowMuchToPay(int partnersCount_, ArrayList <Goods> lnkBill) {
@@ -78,5 +80,6 @@ public class Dialog {
         }
         total=total/partnersCount_;
         System.out.format("К оплате по %.2f "+ calc.doubleToRuble(total)+" с каждого.\n",total);
+        System.out.println("---------------");//Для визуального подкрепления
     }
 }
