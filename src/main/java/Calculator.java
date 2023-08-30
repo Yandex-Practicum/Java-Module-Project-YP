@@ -46,6 +46,7 @@ public class Calculator {
                 money = sumProduct / people;
             }
         }
+        scanner.close();
         Formatter form = new Formatter();
         System.out.println(listProduct);
         System.out.println(String.format("С каждого человека по %s", form.format(money)));
