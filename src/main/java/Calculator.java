@@ -13,7 +13,7 @@ public class Calculator {
         while (true) {
             Product product = null;
             System.out.println("Что бы добавить товар напишите название товара.\nЕсли вы хотите завершить добавление товаров, напишите (Завершить).");
-            String nameProduct = scanner.next();
+            String nameProduct = scanner.nextLine();
             if (nameProduct.equalsIgnoreCase("Завершить")) {
                 if (sumProduct == 0) {
                     System.out.println("Вы не добавили товары.");
@@ -44,7 +44,7 @@ public class Calculator {
                 sumProduct = sumProduct + product.moneyProduct;
                 listProduct = listProduct + "\n" + product.nameProduct;
                 money = sumProduct / people;
-            }
+            }scanner.nextLine();
         }
         scanner.close();
         Formatter form = new Formatter();
