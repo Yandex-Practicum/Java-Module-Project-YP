@@ -40,12 +40,10 @@ public class Main {
             }
             numberOfPeople = scanner.nextInt();
 
-            if (numberOfPeople == 1) {
-                System.out.println("Ошибка: Нет смысла разделять счет для одного человека.");
-            } else if (numberOfPeople < 1) {
-                System.out.println("Ошибка: Некорректное значение. Введите число больше 1.");
+            if (numberOfPeople <= 0) {
+                System.out.println("Ошибка: Некорректное значение. Введите число больше 0.");
             }
-        } while (numberOfPeople <= 1);
+        } while (numberOfPeople <= 0);
         return numberOfPeople;
     }
 
@@ -107,13 +105,16 @@ class BillCalculator {
     private String formatPrice(double price) {
         int rubles = (int) price;
         int kopecks = (int) ((price - rubles) * 100);
+        int rublesLastDigit = rubles % 10;
 
-        if (rubles == 1) {
-            return rubles + " рубль " + kopecks + " копеек";
-        } else if (rubles > 1 && rubles < 5) {
-            return rubles + " рубля " + kopecks + " копеек";
-        } else {
+        if (rubles >= 11 && rubles <= 19) {
             return rubles + " рублей " + kopecks + " копеек";
+        } else {
+            return switch (rublesLastDigit) {
+                case 1 -> rubles + " рубль " + kopecks + " копеек";
+                case 2, 3, 4 -> rubles + " рубля " + kopecks + " копеек";
+                default -> rubles + " рублей " + kopecks + " копеек";
+            };
         }
     }
     public static void main(String[] args) {
