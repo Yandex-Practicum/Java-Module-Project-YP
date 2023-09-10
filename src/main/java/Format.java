@@ -5,15 +5,15 @@ import java.util.Locale;
 public class Format {
     String formatCurrency(double amount) {
         String currency = "";
-        int n = (int) floor(amount);
-        if (n == 1) {
-            n = 1;
-        } else if (1 < n & n < 4) {
-            n = 2;
-        } else if ((5 < n & n < 9) | (10 < n & n < 20)) {
-            n = 3;
+        int num = (int) floor(amount);
+        if (num == 1) {
+            num = 1;
+        } else if (1 < num & num < 4) {
+            num = 2;
+        } else if ((5 < num & num < 9) | (10 < num & num < 20)) {
+            num = 3;
         }
-        switch (n) {
+        switch (num) {
             case 1:
                 currency = "рубль";
                 break;
