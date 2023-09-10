@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
 public class People {
-    int addPeople() {
+    int addNumberOfPeople() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Сколько человек желает разделить счёт?");
         int people = 0;
         while (people <= 1) {
-            while(!scanner.hasNextInt()) {
+            while (!scanner.hasNextInt()) {
                 System.out.println("Некорректный ввод. Ожидается целое число");
                 scanner.next();
             }

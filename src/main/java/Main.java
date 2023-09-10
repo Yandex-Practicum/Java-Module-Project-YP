@@ -4,9 +4,9 @@ public class Main {
         Сalculator сalculator = new Сalculator();
         People people = new People();
         Format format = new Format();
-        int humans = people.addPeople();
+        int humans = people.addNumberOfPeople();
         double totalAmount = сalculator.addProducts();
         double personalAmount = totalAmount / humans;
-        format.getResult(totalAmount, personalAmount);
+        format.printResult(totalAmount, personalAmount);
     }
 }
