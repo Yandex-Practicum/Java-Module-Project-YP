@@ -10,10 +10,6 @@ public class Сalculator {
         while (true) {
             Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
             System.out.println("Введите название товара");
-            while (!scanner.hasNext("[a-zA-Zа-яА-Я]+")) {
-                System.out.println("Некорректный ввод. Введите название товара");
-                scanner.next();
-            }
             String productName = scanner.nextLine();
             System.out.println("Введите стоимость товара в формате рубли.копейки");
             while (!scanner.hasNextDouble()) {
