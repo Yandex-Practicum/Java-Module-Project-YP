@@ -4,27 +4,20 @@ import java.util.Locale;
 
 public class Format {
     String formatCurrency(double amount) {
-        String currency = "";
         int num = (int) floor(amount);
-        if (num == 1) {
-            num = 1;
-        } else if (1 < num & num < 4) {
-            num = 2;
-        } else if ((5 < num & num < 9) | (10 < num & num < 20)) {
-            num = 3;
-        }
+        if (num > 100)
+            num %= 100;
+        if (num > 20)
+            num %= 10;
+
         switch (num) {
             case 1:
-                currency = "рубль";
-                break;
-            case 2:
-                currency = "рубля";
-                break;
+                return "рубль";
+            case 2, 3, 4:
+                return "рубля";
             default:
-                currency = "рублей";
-                break;
+                return "рублей";
         }
-        return currency;
     }
 
     void printResult(double totalAmount, double personalAmount) {
