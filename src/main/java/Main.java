@@ -4,10 +4,13 @@ public class Main {
 
         Input input = new Input();
         Check check = new Check();
-        float sum = 0;
+        Format format = new Format();
+
         int people = input.getIntInput("На сколько человек нужно разделить счет?");
-        sum = check.getItem("Пожалуйста введите название товара и его стоимость:");
-        System.out.println(sum);
+        float sum = check.getItem();
+        float resultPrice = format.money(people, sum);
+        String resultLine = format.endString(resultPrice);
+        System.out.println(resultLine);
     }
 
 }

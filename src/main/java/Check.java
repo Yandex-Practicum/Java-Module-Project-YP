@@ -5,9 +5,9 @@ public class Check {
     Input input = new Input();
     StringBuilder check = new StringBuilder();
     Scanner scanner = new Scanner(System.in);
+    Format format = new Format();
 
-    public float getItem(String message) {
-        System.out.println(message);
+    public float getItem() {
         boolean point = true;
         float sum = 0.00f;
         String item;
@@ -20,10 +20,10 @@ public class Check {
             if (getPrice(item)== 0.00f)//проверка на правильность ввода цены
                 break;
             sum += getPrice(item);//сумма чека
-            check.append("\n" + item);
+            check.append("\n" + item + format.ruble(getPrice(item)));
             }
 
-        System.out.println("Добавленные товары:\n" + check);
+        System.out.println("Добавленные товары:" + check);
         return sum;
     }
     public float getPrice(String item) {
