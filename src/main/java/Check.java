@@ -1,0 +1,39 @@
+import static java.lang.Float.parseFloat;
+
+import java.util.Scanner;
+public class Check {
+    Input input = new Input();
+    StringBuilder check = new StringBuilder();
+    Scanner scanner = new Scanner(System.in);
+
+    public float getItem(String message) {
+        System.out.println(message);
+        boolean point = true;
+        float sum = 0.00f;
+        String item;
+
+        while (point) {// Цикл на ввод товара и подсчет суммы чека
+            System.out.println("Введите товар\n Если хотите завершить, веведите 'Завершить'.");
+            item = scanner.nextLine();
+            if (input.StopOrNot(item))//проверка на завершение ввода
+                break;
+            if (getPrice(item)== 0.00f)//проверка на правильность ввода цены
+                break;
+            sum += getPrice(item);//сумма чека
+            check.append("\n" + item);
+            }
+
+        System.out.println("Добавленные товары:\n" + check);
+        return sum;
+    }
+    public float getPrice(String item) {
+        String strPrice;
+        strPrice = item.replace(",",".");//Замена ',' на '.'
+        strPrice = item.replaceAll("[^0-9?!\\.]","");//Выбор только стоимость
+        float price = parseFloat(strPrice);//перевод строки в число
+        if (price >0.00f)
+            return price;
+        else return 0.00f;
+    }
+
+}
