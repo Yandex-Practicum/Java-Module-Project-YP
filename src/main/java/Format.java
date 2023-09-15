@@ -2,7 +2,7 @@ import static java.lang.Math.floor;
 
 public class Format {
     public float money(int people, float sum){
-        float result = sum /people;
+        float result = sum / Float.parseFloat(String.valueOf(people));
         return result;
     }
     public String ruble(float price){

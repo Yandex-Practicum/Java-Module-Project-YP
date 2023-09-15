@@ -20,7 +20,7 @@ public class Check {
             if (getPrice(item)== 0.00f)//проверка на правильность ввода цены
                 break;
             sum += getPrice(item);//сумма чека
-            check.append("\n" + item + format.ruble(getPrice(item)));
+            check.append("\n" + item + " " +format.ruble(getPrice(item)));
             }
 
         System.out.println("Добавленные товары:" + check);
