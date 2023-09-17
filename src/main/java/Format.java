@@ -10,7 +10,7 @@ public class Format {
         price = price /100 % 100;
         if (price > 20)
             price %= 10;
-        else if (price < 5) return "рублей";
+        else if (price > 5) return "рублей";
         else price %= 10;
 
         if (price == 1)return "рубль";

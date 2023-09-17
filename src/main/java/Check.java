@@ -15,7 +15,7 @@ public class Check {
             System.out.println("Введите товар\n Если хотите завершить, веведите 'Завершить'.");
             item = scanner.nextLine();
             if (input.StopOrNot(item))//проверка на завершение ввода
-                point = false;
+                break;
             if (getPrice(item)== 0.00f)//проверка на правильность ввода цены
                 System.out.println("Введите товар, стоимость которого больше нуля");
             else {
@@ -23,9 +23,6 @@ public class Check {
                 check.append("\n" + item + " " +format.ruble(getPrice(item)));
             }
         }
-
-
-
         System.out.println("Добавленные товары:" + check);
         return sum;
     }
