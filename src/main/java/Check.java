@@ -11,16 +11,22 @@ public class Check {
         boolean point = true;
         float sum = 0.00f;
         String item;
+        String price;
+        System.out.println("Если хотите завершить, веведите 'Завершить'.");
         while (point){// Цикл на ввод товара и подсчет суммы чека
-            System.out.println("Введите товар\n Если хотите завершить, веведите 'Завершить'.");
+            System.out.println("Введите наименование товара");
             item = scanner.nextLine();
             if (input.StopOrNot(item))//проверка на завершение ввода
                 break;
-            if (getPrice(item)== 0.00f)//проверка на правильность ввода цены
+            System.out.println("Введите цену товара");
+            price = scanner.nextLine();
+
+            if (getPrice(price) == 0.0f)//проверка на правильность ввода цены
                 System.out.println("Введите товар, стоимость которого больше нуля");
             else {
-                sum += getPrice(item);//сумма чека
-                check.append("\n" + item + " " +format.ruble(getPrice(item)));
+                sum += getPrice(price);//сумма чека
+
+                check.append("\n" + item + " " + getPrice(price) + format.ruble(getPrice(price)));
             }
         }
         System.out.println("Добавленные товары:" + check);
@@ -28,12 +34,26 @@ public class Check {
     }
     public float getPrice(String item) {
         String strPrice;
-        strPrice = item.replace(",",".");//Замена ',' на '.'
-        strPrice = item.replaceAll("[^0-9?!\\.]","");//Выбор только стоимость
-        float price = parseFloat(strPrice);//перевод строки в число
-        if (price >0.00f)
-            return price;
-        else return 0.00f;
+
+        if (item.replaceAll("[^-]","").equals("-")) {
+            return 0.0f;//отрицательная стоимость
+        }
+
+        if (!(item.replaceAll("[^a-zA-Zа-яА-Я]", "").equals(""))) {
+            return 0.0f; //текст в цене
+        }
+
+        strPrice = item.replaceAll(",",".");//Замена ',' на '.';
+
+        strPrice = strPrice.replaceAll("[^0-9?!\\.]","");//Выбор только стоимость
+
+        if (strPrice.equals("")) return 0.0f;// нет цены
+        else{
+            float price = parseFloat(strPrice);//перевод строки в число
+            if (price > 0.009f)
+                return price;
+            else return 0.0f;
+        }
     }
 
 }

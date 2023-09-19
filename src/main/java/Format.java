@@ -6,15 +6,17 @@ public class Format {
         return result;
     }
     public String ruble(float floatPrice){
+
         int price = (int) (floatPrice * 100);
         price = price /100 % 100;
+        System.out.println("ruble" + price );
         if (price > 20)
             price %= 10;
         else if (price > 5) return "рублей";
         else price %= 10;
 
         if (price == 1)return "рубль";
-        else if (price < 5)  return "рубля";
+        else if (price < 5 && price > 0)  return "рубля";
         else return "рублей";
     }
     public String endString(float cash) {
