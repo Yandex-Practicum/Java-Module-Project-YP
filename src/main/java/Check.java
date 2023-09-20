@@ -26,7 +26,7 @@ public class Check {
             else {
                 sum += getPrice(price);//сумма чека
 
-                check.append("\n" + item + " " + getPrice(price) + format.ruble(getPrice(price)));
+                check.append("\n" + item + " " + getPrice(price) +" "+ format.ruble(getPrice(price)));
             }
         }
         System.out.println("Добавленные товары:" + check);

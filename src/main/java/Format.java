@@ -9,7 +9,6 @@ public class Format {
 
         int price = (int) (floatPrice * 100);
         price = price /100 % 100;
-        System.out.println("ruble" + price );
         if (price > 20)
             price %= 10;
         else if (price > 5) return "рублей";
