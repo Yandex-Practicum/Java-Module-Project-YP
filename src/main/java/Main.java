@@ -17,8 +17,8 @@ public class Main {
                     System.out.println("Ошибка! Вы ввели некорректное количество гостей! Пожалуйста, повторите попытку.");
                 }
             } else {
-                System.out.println("Ошибка! Вы не ввели число! Перезапустите программу и попробуйте снова.");
-                return;
+                System.out.println("Ошибка! Вы не ввели число! Пожалуйста, повторите попытку.");
+                scanner.next();
             }
         }
         Calculator calculator = new Calculator();

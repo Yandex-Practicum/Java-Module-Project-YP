@@ -9,26 +9,31 @@ public class Calculator {
         while (true) {
             System.out.println("Введите название товара: ");
             String addProduct = scanner.next();
-            goods = goods + "\n" + addProduct;
+            goods = goods + addProduct + "\n" ;
+            getPrice();
+            System.out.println("Хотите добавить еще один товар? Если нет, введите \"Завершить\"");
+            String answer = scanner.next();
+            if (answer.equalsIgnoreCase("Завершить")) {
+                break;
+            }
+        }
+    }
 
+    void getPrice() {
+        while (true) {
             System.out.println("Введите цену товара:");
             if (scanner.hasNextDouble()) {
                 double productPrice = scanner.nextDouble();
                 if (productPrice > 0) {
                     sum += productPrice;
                     System.out.println("Товар успешно добавлен!");
-                    System.out.println("Хотите добавить еще один товар? Если нет, введите \"Завершить\"");
-                    String answer = scanner.next();
-                    if (answer.equalsIgnoreCase("Завершить")) {
-                        break;
-                    }
+                    break;
                 } else {
-                    System.out.println("Ошибка! Цена товара может быть только положительной! Попробуйте снова.");
-                    goods = goods.replace("\n" + addProduct,"");
+                    System.out.println("Ошибка! Цена товара может быть только положительной!");
                 }
             } else {
-                System.out.println("Ошибка! Вы ввели некорректную цену товара! Попробуйте снова");
-                goods = goods.replace("\n" + addProduct,"");
+                System.out.println("Ошибка! Введите корректную цену товара!");
+                scanner.next();
             }
         }
     }
