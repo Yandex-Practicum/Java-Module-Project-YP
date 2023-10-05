@@ -1,21 +1,28 @@
 public class Calculation {
     public static String everyPeoplePrice(double price ) {
 
-        String readysum;
+        String readySum = "";
 
-        double price2 = Math.floor(price);
-        int priceName = (int) (price2 % 10);
+        double priceNoDouble = Math.floor(price);
+        int priceName = (int) (priceNoDouble % 10);
+        int priceNameUnusial = (int) (priceNoDouble % 100);
 
         if (priceName == 1) {
-            readysum = "рубль.";
-        } else if (priceName>=2 && priceName<=4) {
-            readysum = "рубля.";
-        } else {readysum = "рублей.";
+            readySum = "рубль.";
         }
-        if(price2>=10 && price2<=20) {
-            readysum = "рублей.";
+        if (priceName>=2 && priceName<=4) {
+            readySum = "рубля.";
         }
-        return readysum;
+        if (priceName>=5 && priceName<=9) {
+            readySum = "рублей.";
+        }
+        if(priceName>=10 && priceName<=20) {
+            readySum = "рублей.";
+        }
+        if(priceNameUnusial>=10 && priceNameUnusial<=20)  {
+            readySum = "рублей.";
+        }
+        return readySum;
 
     }
 }

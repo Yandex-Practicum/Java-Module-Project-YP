@@ -1,22 +1,28 @@
 import java.util.Scanner;
 
 public class PeopleNumber {
-    static int people = 0;
+    static int people;
     public static int count() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Введите число гостей:");
-        if(scan.hasNextInt()) {
-            people = scan.nextInt();
-            while (people <= 1) {
-                System.out.println("Некорректное количество гостей. Введите число еще раз:");
-                people = scan.nextInt();
-            }
-        } else {
-            System.out.println("Вы ввели не число");
-            count();
-        }
+        int qwest;
+        while (true) {
+            System.out.println("Введите число гостей:");
+            if (scan.hasNextInt()) {
+                qwest = Integer.parseInt(scan.nextLine());
+                if(qwest>1) {
+                    break;
+                } else {
+                    System.out.println("Вы ввели некорректное число");
 
-        return people;
+                }
+
+            } else {
+                System.out.println("Вы ввели не число");
+                scan.nextLine();
+            }
+        }
+        return qwest;
+
 
     }
 }

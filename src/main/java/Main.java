@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         int person;
         String menu = "";
@@ -11,27 +11,36 @@ public class Main {
         double price;
         String position;
 
+
         person = PeopleNumber.count();
 
         while (true) {
             System.out.println("Введите название блюда или напишите \"завершить\" для дальнейшего подсчета:");
-            position = sc.next();
+            position = scanner.next();
 
-            if(position.equalsIgnoreCase("Завершить")) {
+            if (position.equalsIgnoreCase("Завершить")) {
                 break;
             }
-            menu = menu + "\n" +position;
 
-            System.out.println("Введите цену блюда:");
-            if(sc.hasNextDouble()){
-                prisePosition = sc.nextDouble();
-                if(prisePosition>0) {
-                    sum = sum + prisePosition;
+            menu = menu + "\n" + position;
+
+
+            while (true) {
+                System.out.println("Введите цену блюда:");
+                if (scanner.hasNextInt()) {
+                    prisePosition = Integer.parseInt(scanner.nextLine());
+                    if(prisePosition>0) {
+                        sum = sum + prisePosition;
+                        break;
+                    } else {
+                        System.out.println("Вы ввели некорректную цену");
+
+                    }
+
                 } else {
-                    System.out.println("Введенное число меньше нуля");
+                    System.out.println("Вы ввели не число");
+                    return;
                 }
-            } else {
-                System.out.println("Введенные данные не являются числом");
             }
 
         }
@@ -43,7 +52,7 @@ public class Main {
         String rub = Calculation.everyPeoplePrice(price);
         String numberRub = String.format("%.2f", price);
         System.out.println("Цена для каждого гостя: " + numberRub + " " + rub);
-        sc.close();
+        scanner.close();
 
     }
 }
