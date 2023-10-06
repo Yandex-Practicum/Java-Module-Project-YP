@@ -11,14 +11,13 @@ public class Main {
         double price;
         String position;
 
-
         person = PeopleNumber.count();
 
         while (true) {
             System.out.println("Введите название блюда или напишите \"завершить\" для дальнейшего подсчета:");
             position = scanner.next();
 
-            if (position.equalsIgnoreCase("Завершить")) {
+            if (position.equalsIgnoreCase("завершить")) {
                 break;
             }
 
