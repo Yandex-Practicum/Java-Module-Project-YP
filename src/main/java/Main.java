@@ -26,20 +26,19 @@ public class Main {
 
             while (true) {
                 System.out.println("Введите цену блюда:");
-                if (scanner.hasNextInt()) {
-                    prisePosition = Integer.parseInt(scanner.nextLine());
+                scanner.nextLine();
+                if (scanner.hasNextDouble()) {
+                    prisePosition = scanner.nextDouble();
                     if(prisePosition>0) {
                         sum = sum + prisePosition;
                         break;
                     } else {
                         System.out.println("Вы ввели некорректную цену");
-
                     }
-
                 } else {
                     System.out.println("Вы ввели не число");
-                    return;
                 }
+
             }
 
         }
