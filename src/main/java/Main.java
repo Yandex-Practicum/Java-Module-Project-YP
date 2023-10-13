@@ -1,6 +1,9 @@
+import application.InvoiceCalculator;
+import application.InvoiceCalculatorImpl;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        InvoiceCalculator invoiceCalculator = new InvoiceCalculatorImpl();
+        invoiceCalculator.start();
     }
 }
