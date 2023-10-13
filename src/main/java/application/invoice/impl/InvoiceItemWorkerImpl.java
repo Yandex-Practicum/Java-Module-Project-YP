@@ -24,9 +24,9 @@ public class InvoiceItemWorkerImpl implements InvoiceItemWorker {
         do {
             cost = inputProductCost(scanner);
         } while (!(cost > 0));
-
-        System.out.println(ADD_PRODUCT_SUCCESS);
-        return new InvoiceItem(productName, cost);
+        InvoiceItem item = new InvoiceItem(productName, cost);
+        System.out.println(ADD_PRODUCT_SUCCESS+ item);
+        return item;
     }
 
     private String inputProductName(Scanner scanner){

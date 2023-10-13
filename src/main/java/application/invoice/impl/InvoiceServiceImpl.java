@@ -22,12 +22,12 @@ public class InvoiceServiceImpl implements Service {
         while (true) {
             repository.addItemToInvoice(worker.createInvoiceItem(scanner));
             System.out.println(ADD_PRODUCT);
-            scanner.next();
+
                 String response = scanner.nextLine();
                 if (response.equalsIgnoreCase(EXIT_COMMAND)) {
                     break;
                 }
-
+            scanner.next();
         }
     }
 }

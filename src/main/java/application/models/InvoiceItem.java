@@ -16,4 +16,10 @@ public class InvoiceItem {
     public double getCost() {
         return cost;
     }
+
+    @Override
+    public String toString() {
+        return " Продукт: '" + productName + '\'' +
+                ", стоимость: " + cost ;
+    }
 }
