@@ -1,9 +1,9 @@
-package application.visitors.impl;
+package alexey.gritsenko.application.visitors.impl;
 
 
-import application.Service;
-import application.repository.InvoiceRepository;
-import application.visitors.CountVisitorValidator;
+import alexey.gritsenko.application.Service;
+import alexey.gritsenko.application.repository.InvoiceRepository;
+import alexey.gritsenko.application.visitors.CountVisitorValidator;
 
 import java.util.Scanner;
 

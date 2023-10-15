@@ -1,6 +1,6 @@
-package application.invoice;
+package alexey.gritsenko.application.invoice;
 
-import application.models.InvoiceItem;
+import alexey.gritsenko.application.models.InvoiceItem;
 
 import java.util.Scanner;
 

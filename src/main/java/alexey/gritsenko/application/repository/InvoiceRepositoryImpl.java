@@ -1,6 +1,6 @@
-package application.repository;
+package alexey.gritsenko.application.repository;
 
-import application.models.InvoiceItem;
+import alexey.gritsenko.application.models.InvoiceItem;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class InvoiceRepositoryImpl implements InvoiceRepository{
 
     @Override
     public void addItemToInvoice(InvoiceItem item){
-        this.invoiceCost= this.invoiceCost+item.getCost();
+        this.invoiceCost= this.invoiceCost+item.cost();
         this.invoiceItems.add(item);
     }
 

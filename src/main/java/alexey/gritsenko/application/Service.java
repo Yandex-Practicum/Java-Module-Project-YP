@@ -1,4 +1,4 @@
-package application;
+package alexey.gritsenko.application;
 
 import java.util.Scanner;
 

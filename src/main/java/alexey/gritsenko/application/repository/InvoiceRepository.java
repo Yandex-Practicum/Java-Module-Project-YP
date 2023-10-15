@@ -1,6 +1,6 @@
-package application.repository;
+package alexey.gritsenko.application.repository;
 
-import application.models.InvoiceItem;
+import alexey.gritsenko.application.models.InvoiceItem;
 
 public interface InvoiceRepository {
     void saveCountVisitors(int visitors);

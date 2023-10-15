@@ -1,7 +1,7 @@
-package application.report;
+package alexey.gritsenko.application.report.impl;
 
-import application.Service;
-import application.repository.InvoiceRepository;
+import alexey.gritsenko.application.Service;
+import alexey.gritsenko.application.repository.InvoiceRepository;
 
 import java.util.Scanner;
 

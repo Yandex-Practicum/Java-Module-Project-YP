@@ -1,6 +1,6 @@
-package application.visitors.impl;
+package alexey.gritsenko.application.visitors.impl;
 
-import application.visitors.CountVisitorValidator;
+import alexey.gritsenko.application.visitors.CountVisitorValidator;
 
 public class CountVisitorValidatorImpl implements CountVisitorValidator {
     @Override
