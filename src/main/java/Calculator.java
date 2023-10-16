@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Calculator {
     private final int countOfPeople;
@@ -38,7 +39,7 @@ public class Calculator {
         String strTemplate = "Сумма на одного человека: %.2f %s.";
 
         printAllAddedProducts();
-        System.out.format(strTemplate, sumPerPerson, getCorrectWordEnd((int)sumPerPerson % 10));
+        System.out.format(Locale.US ,strTemplate, sumPerPerson, getCorrectWordEnd((int)sumPerPerson % 10));
     }
 
     private String getCorrectWordEnd(int currentValueOfSum) {

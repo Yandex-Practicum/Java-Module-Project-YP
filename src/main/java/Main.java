@@ -5,6 +5,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int countOfGuests;
 
+        /*Change the scanner locale for inputting floating point numbers with a dot delimiter
+        instead of a comma delimiter. */
+        scanner.useLocale(Locale.US);
+
         //(Part 1) Endless loop to check the correctness of the entered count of guests
         while(true) {
             System.out.println("На сколько человек необходимо разделить счет?");
@@ -37,7 +41,7 @@ public class Main {
                 calc.addTitleOfProduct(scanner.nextLine());
                 titleIsAlreadyEntered = true;
             }
-            System.out.print("Введите стоимость товара в формате \"рубли,копейки\": ");
+            System.out.print("Введите стоимость товара в формате \"рубли.копейки\": ");
             if (scanner.hasNextDouble()) {
                 double priceOfProduct = scanner.nextDouble();
                 if (priceOfProduct < 0) {
@@ -55,6 +59,7 @@ public class Main {
 
             scanner.nextLine();
             titleIsAlreadyEntered = false;
+            System.out.println("Товар был успешно добавлен в калькулятор!");
             System.out.println("Хотите ли добавить еще один товар?\n(Введите 'Завершить', чтобы завершить добавление товаров)");
             String usersAnswer = scanner.nextLine();
 
