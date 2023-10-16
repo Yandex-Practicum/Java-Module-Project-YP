@@ -5,7 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int countOfGuests;
 
-        //(Part 1) Endless loop to check the correctness of the entered number of guests
+        //(Part 1) Endless loop to check the correctness of the entered count of guests
         while(true) {
             System.out.println("На сколько человек необходимо разделить счет?");
 
@@ -26,12 +26,22 @@ public class Main {
         /*(Part 2) The part with creating a new instance of the "Calculator" class
          and inputting the product name and price from the user */
         Calculator calc = new Calculator(countOfGuests);
+        boolean titleIsAlreadyEntered = false;
 
         while(true) {
-            System.out.print("Введите название товара: ");
-            calc.addTitleOfProduct(scanner.next());
+            if (!titleIsAlreadyEntered) {
+                System.out.print("Введите название товара: ");
+                calc.addTitleOfProduct(scanner.next());
+                titleIsAlreadyEntered = true;
+            }
             System.out.print("Введите стоимость товара в формате \"рубли.копейки\": ");
-            calc.addToTotalPrice(scanner.nextDouble());
+            if (scanner.hasNextDouble()) {calc.addToTotalPrice(scanner.nextDouble());}
+            else {
+                System.out.println("Ошибка! Вы ввели не дробное число. Пожалуйста, попробуйте снова.");
+                continue;
+            }
+
+            titleIsAlreadyEntered = false;
             System.out.println("Хотите ли добавить еще один товар?\n(Введите 'Завершить', чтобы завершить добавление товаров)");
             String usersAnswer = scanner.next();
 
