@@ -12,6 +12,7 @@ public class Main {
             if (scanner.hasNextInt()) { countOfGuests = scanner.nextInt(); }
             else {
                 System.out.println("Ошибка! Вы ввели не целое число. Пожалуйста, попробуйте снова.\n");
+                scanner.nextLine();
                 continue;
             }
 
@@ -28,22 +29,26 @@ public class Main {
         Calculator calc = new Calculator(countOfGuests);
         boolean titleIsAlreadyEntered = false;
 
+        scanner.nextLine();
+
         while(true) {
             if (!titleIsAlreadyEntered) {
                 System.out.print("Введите название товара: ");
-                calc.addTitleOfProduct(scanner.next());
+                calc.addTitleOfProduct(scanner.nextLine());
                 titleIsAlreadyEntered = true;
             }
-            System.out.print("Введите стоимость товара в формате \"рубли.копейки\": ");
+            System.out.print("Введите стоимость товара в формате \"рубли,копейки\": ");
             if (scanner.hasNextDouble()) {calc.addToTotalPrice(scanner.nextDouble());}
             else {
                 System.out.println("Ошибка! Вы ввели не дробное число. Пожалуйста, попробуйте снова.");
+                scanner.nextLine();
                 continue;
             }
 
+            scanner.nextLine();
             titleIsAlreadyEntered = false;
             System.out.println("Хотите ли добавить еще один товар?\n(Введите 'Завершить', чтобы завершить добавление товаров)");
-            String usersAnswer = scanner.next();
+            String usersAnswer = scanner.nextLine();
 
             if (usersAnswer.equalsIgnoreCase("завершить")) {break;}
         }
