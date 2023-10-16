@@ -7,9 +7,4 @@ public record InvoiceItem(String productName, double cost) {
         return " Продукт: '" + productName + '\'' +
                 ", стоимость: " + cost;
     }
-
-    public String toStringForTable(){
-        return "|" + productName + "  |" +
-                " " + cost+"  |";
-    }
 }

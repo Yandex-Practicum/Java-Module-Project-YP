@@ -2,5 +2,8 @@ package alexey.gritsenko.application.report;
 
 public interface TableStringUtils {
     //если длина одного из значений
-    String[] createTableString(String productName,String productCost);
+    String[] createTableString(String productNameValue,
+                               int productNameColumnLength,
+                               String productCostValue,
+                               int productCostColumnLength);
 }

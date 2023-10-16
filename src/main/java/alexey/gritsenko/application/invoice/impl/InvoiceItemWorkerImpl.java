@@ -2,8 +2,7 @@ package alexey.gritsenko.application.invoice.impl;
 
 import alexey.gritsenko.application.invoice.InvoiceItemWorker;
 import alexey.gritsenko.application.models.InvoiceItem;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -11,8 +10,8 @@ import java.util.regex.Pattern;
 public class InvoiceItemWorkerImpl implements InvoiceItemWorker {
     private static final String INPUT_PRODUCT_NAME = "Введите наименование товара";
     private static final String INPUT_PRODUCT_COST = "Введите стоимость товара";
-    private static final String INPUT_COST_ERROR = "Введена некорректная стоимость";
-    private static final String INPUT_PRODUCT_ERROR = "Введена некорректное наименование товара";
+    private static final String INPUT_COST_ERROR = "Введена некорректная стоимость. Введите в формате рубли.копейки (2 знака после точки)";
+    private static final String INPUT_PRODUCT_ERROR = "Введена некорректное наименование товара. Допускаются только буквы русского или латинского алфавита";
     private static final String ADD_PRODUCT_SUCCESS = "Продукт успешно добавлен";
     //Строка должна соответствовать формату рубли.копейки
     private static final String CHECK_PRODUCT_COST_REGEXP = "^\\d+\\.\\d{2}+$";
@@ -32,16 +31,16 @@ public class InvoiceItemWorkerImpl implements InvoiceItemWorker {
         return item;
     }
 
-    private String inputProductName(@NotNull Scanner scanner){
+    private String inputProductName(Scanner scanner){
         System.out.println(INPUT_PRODUCT_NAME);
         String productName;
         do{
             productName=scanner.nextLine();
         }while (!validateProductName(productName));
-        return productName;
+        return productName.strip();
     }
 
-    private double inputProductCost(@NotNull Scanner scanner){
+    private double inputProductCost(Scanner scanner){
         System.out.println(INPUT_PRODUCT_COST);
         String cost;
         do{
@@ -50,7 +49,7 @@ public class InvoiceItemWorkerImpl implements InvoiceItemWorker {
         return Double.parseDouble(cost);
     }
 
-    private boolean validateProductName(@Nullable String productName){
+    private boolean validateProductName(String productName){
         if(productName==null||productName.isBlank()){
             return false;
         }
