@@ -1,12 +1,13 @@
-package alexey.gritsenko.application.repository;
+package alexey.gritsenko.application.repository.impl;
 
 import alexey.gritsenko.application.models.InvoiceItem;
+import alexey.gritsenko.application.repository.InvoiceRepository;
+import alexey.gritsenko.application.repository.RepositoryEngine;
 
-import java.util.LinkedList;
-import java.util.List;
 
-public class InvoiceRepositoryImpl implements InvoiceRepository{
-    private final List<InvoiceItem> invoiceItems =new LinkedList<>();
+
+public class InvoiceRepositoryImpl implements InvoiceRepository {
+    private final RepositoryEngine invoiceItems = new RepositoryEngineImpl();
     private double invoiceCost;
     private int countVisitors;
 
@@ -22,11 +23,19 @@ public class InvoiceRepositoryImpl implements InvoiceRepository{
     }
 
     @Override
+    public InvoiceItem[] getArrayItems() {
+        return this.invoiceItems.getArray();
+    }
+
+    @Override
     public double getInvoiceCost(){
         return this.invoiceCost;
     }
 
+    @Override
     public int getCountVisitors() {
         return countVisitors;
     }
+
+
 }

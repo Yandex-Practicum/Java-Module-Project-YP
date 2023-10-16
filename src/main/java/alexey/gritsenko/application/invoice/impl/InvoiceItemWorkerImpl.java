@@ -12,7 +12,7 @@ public class InvoiceItemWorkerImpl implements InvoiceItemWorker {
     private static final String INPUT_PRODUCT_COST = "Введите стоимость товара";
     private static final String INPUT_COST_ERROR = "Введена некорректная стоимость. Введите в формате рубли.копейки (2 знака после точки)";
     private static final String INPUT_PRODUCT_ERROR = "Введена некорректное наименование товара. Допускаются только буквы русского или латинского алфавита";
-    private static final String ADD_PRODUCT_SUCCESS = "Продукт успешно добавлен";
+    private static final String ADD_PRODUCT_SUCCESS = "Успешно добавлен";
     //Строка должна соответствовать формату рубли.копейки
     private static final String CHECK_PRODUCT_COST_REGEXP = "^\\d+\\.\\d{2}+$";
 

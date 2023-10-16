@@ -1,9 +1,9 @@
 package alexey.gritsenko.application.report.impl;
 
-import alexey.gritsenko.application.report.InvoiceHeader;
+import alexey.gritsenko.application.report.InvoiceFormGenerator;
 import alexey.gritsenko.application.report.TableStringUtils;
 
-public class InvoiceHeaderImpl implements InvoiceHeader {
+public class InvoiceHeaderFormGenerator implements InvoiceFormGenerator {
     private final int productNameColumnLength;
     private final int productCostColumnLength;
     private final TableStringUtils tableStringUtils;
@@ -12,7 +12,7 @@ public class InvoiceHeaderImpl implements InvoiceHeader {
 
     private static final String INVOICE_TITLE = "Счет";
 
-    public InvoiceHeaderImpl(int productNameColumnLength, int productCostColumnLength, TableStringUtils tableStringUtils) {
+    public InvoiceHeaderFormGenerator(int productNameColumnLength, int productCostColumnLength, TableStringUtils tableStringUtils) {
         this.productNameColumnLength = productNameColumnLength;
         this.productCostColumnLength = productCostColumnLength;
         this.tableStringUtils = tableStringUtils;
@@ -20,7 +20,7 @@ public class InvoiceHeaderImpl implements InvoiceHeader {
 
 
     @Override
-    public String[] getHeader() {
+    public String[] getPartForm() {
         String firstHeaderLine ="*".repeat(1+this.productNameColumnLength+1+this.productCostColumnLength+1);
         int tableWidth = firstHeaderLine.length();
         //пытаемся разместить посередине

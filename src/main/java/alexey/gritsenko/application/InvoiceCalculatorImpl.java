@@ -4,7 +4,7 @@ package alexey.gritsenko.application;
 import alexey.gritsenko.application.invoice.impl.InvoiceServiceImpl;
 import alexey.gritsenko.application.report.impl.ReportServiceImpl;
 import alexey.gritsenko.application.repository.InvoiceRepository;
-import alexey.gritsenko.application.repository.InvoiceRepositoryImpl;
+import alexey.gritsenko.application.repository.impl.InvoiceRepositoryImpl;
 import alexey.gritsenko.application.visitors.impl.VisitorCountServiceImpl;
 
 import java.util.Scanner;

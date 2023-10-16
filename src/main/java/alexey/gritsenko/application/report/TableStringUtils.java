@@ -3,7 +3,9 @@ package alexey.gritsenko.application.report;
 public interface TableStringUtils {
     //если длина одного из значений
     String[] createTableString(String productNameValue,
-                               int productNameColumnLength,
+                               int productNameColumnWidth,
                                String productCostValue,
-                               int productCostColumnLength);
+                               int productCostColumnWidth);
+    String[] concatenate(String[] a, String[] b);
+    String costToString(String cost);
 }

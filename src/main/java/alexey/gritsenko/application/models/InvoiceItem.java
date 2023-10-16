@@ -4,7 +4,7 @@ public record InvoiceItem(String productName, double cost) {
 
     @Override
     public String toString() {
-        return " Продукт: '" + productName + '\'' +
-                ", стоимость: " + cost;
+        return " продукт: '" + productName + '\'' +
+                ", стоимостью: " + cost;
     }
 }
