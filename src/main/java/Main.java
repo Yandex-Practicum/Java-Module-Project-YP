@@ -38,7 +38,15 @@ public class Main {
                 titleIsAlreadyEntered = true;
             }
             System.out.print("Введите стоимость товара в формате \"рубли,копейки\": ");
-            if (scanner.hasNextDouble()) {calc.addToTotalPrice(scanner.nextDouble());}
+            if (scanner.hasNextDouble()) {
+                double priceOfProduct = scanner.nextDouble();
+                if (priceOfProduct < 0) {
+                    System.out.println("Ошибка! Стоимость добавляемого товара не может быть отрицательной.\n" +
+                            "Пожалуйста, попробуйте ввести стоимость снова.");
+                    continue;
+                }
+                calc.addToTotalPrice(priceOfProduct);
+            }
             else {
                 System.out.println("Ошибка! Вы ввели не дробное число. Пожалуйста, попробуйте снова.");
                 scanner.nextLine();
