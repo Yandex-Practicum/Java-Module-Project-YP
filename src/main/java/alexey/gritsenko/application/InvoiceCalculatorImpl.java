@@ -7,6 +7,7 @@ import alexey.gritsenko.application.repository.InvoiceRepository;
 import alexey.gritsenko.application.repository.impl.InvoiceRepositoryImpl;
 import alexey.gritsenko.application.visitors.impl.VisitorCountServiceImpl;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class InvoiceCalculatorImpl implements InvoiceCalculator {
@@ -25,6 +26,7 @@ public class InvoiceCalculatorImpl implements InvoiceCalculator {
     @Override
     public void start() {
         Scanner scanner =new Scanner(System.in);
+        scanner.useLocale(Locale.US);
         for(int i=0; i<COUNT_SERVICE; i++){
             context[i].doWork(scanner);
         }
