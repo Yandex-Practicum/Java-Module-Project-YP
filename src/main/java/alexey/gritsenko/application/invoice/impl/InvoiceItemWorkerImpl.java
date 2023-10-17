@@ -41,11 +41,19 @@ public class InvoiceItemWorkerImpl implements InvoiceItemWorker {
     }
 
     private double inputProductCost(Scanner scanner){
-        System.out.println(INPUT_PRODUCT_COST);
         String cost;
-        do{
-            cost=scanner.nextLine();
-        }while (!validateProductCost(cost));
+        System.out.println(INPUT_PRODUCT_COST);
+        while (true){
+            if(scanner.hasNextDouble()){
+                //к строке потому что если второй знак после запятой 0 он обрезается и не проходит по формату ввода
+                cost = scanner.nextLine();
+                if (this.validateProductCost(cost)){
+                    break;
+                }
+            }else {
+                scanner.next();
+            }
+        }
         return Double.parseDouble(cost);
     }
 
@@ -63,11 +71,17 @@ public class InvoiceItemWorkerImpl implements InvoiceItemWorker {
     }
 
     private boolean validateProductCost(String cost){
+        boolean result = true;
+        if(Double.parseDouble(cost)<=0){
+            result = false;
+        }
         if(!Pattern.matches(CHECK_PRODUCT_COST_REGEXP, cost)){
+            result = false;
+        }
+        if(!result){
             System.out.println(INPUT_COST_ERROR);
             System.out.println(INPUT_PRODUCT_COST);
-            return false;
         }
-        return true;
+        return result;
     }
 }
