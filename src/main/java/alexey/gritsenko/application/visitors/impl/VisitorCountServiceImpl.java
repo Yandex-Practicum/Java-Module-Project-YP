@@ -22,18 +22,19 @@ public class VisitorCountServiceImpl implements Service {
 
     @Override
     public void doWork(Scanner scanner) {
-        int count_visitors;
+        int countVisitors;
         while (true) {
             System.out.println(COUNT_VISITOR_QUESTION);
             if(scanner.hasNextInt()){
-                count_visitors = scanner.nextInt();
-                if (this.countVisitorValidator.isValid(count_visitors)) {
+                countVisitors = scanner.nextInt();
+                if (this.countVisitorValidator.isValid(countVisitors)) {
                     break;
                 }
+            }else {
+                scanner.next();
             }
-            scanner.next();
             System.out.println(NOT_VALID_INPUT_COUNT_VISITORS);
         }
-        this.repository.saveCountVisitors(count_visitors);
+        this.repository.saveCountVisitors(countVisitors);
     }
 }
