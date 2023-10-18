@@ -10,11 +10,12 @@ public class Main {
         scanner.useLocale(Locale.US);
 
         //(Part 1) Endless loop to check the correctness of the entered count of guests
-        while(true) {
+        while (true) {
             System.out.println("На сколько человек необходимо разделить счет?");
 
-            if (scanner.hasNextInt()) { countOfGuests = scanner.nextInt(); }
-            else {
+            if (scanner.hasNextInt()) {
+                countOfGuests = scanner.nextInt();
+            } else {
                 System.out.println("Ошибка! Вы ввели не целое число. Пожалуйста, попробуйте снова.\n");
                 scanner.nextLine();
                 continue;
@@ -22,12 +23,10 @@ public class Main {
 
             if (countOfGuests > 1) {
                 break;
-            }
-            else if (countOfGuests == 1) {
+            } else if (countOfGuests == 1) {
                 System.out.println("Ошибка! Для одного человека нет смысла ничего считать.\n" +
                         "Пожалуйста, попробуйте ввести другое значение.");
-            }
-            else {
+            } else {
                 System.out.println("Ошибка! Было введено некорректное кол-во гостей.\n" +
                         "Пожалуйта, попробуйте ввести другое значение.\n");
             }
@@ -40,7 +39,7 @@ public class Main {
 
         scanner.nextLine();
 
-        while(true) {
+        while (true) {
             if (!titleIsAlreadyEntered) {
                 System.out.print("Введите название товара: ");
                 calc.addTitleOfProduct(scanner.nextLine());
@@ -55,8 +54,7 @@ public class Main {
                     continue;
                 }
                 calc.addToTotalPrice(priceOfProduct);
-            }
-            else {
+            } else {
                 System.out.println("Ошибка! Вы ввели не дробное число. Пожалуйста, попробуйте снова.");
                 scanner.nextLine();
                 continue;
@@ -68,7 +66,9 @@ public class Main {
             System.out.println("Хотите ли добавить еще один товар?\n(Введите 'Завершить', чтобы завершить добавление товаров)");
             String usersAnswer = scanner.nextLine();
 
-            if (usersAnswer.equalsIgnoreCase("завершить")) {break;}
+            if (usersAnswer.equalsIgnoreCase("завершить")) {
+                break;
+            }
         }
 
         scanner.close();

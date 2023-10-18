@@ -39,15 +39,14 @@ public class Calculator {
         String strTemplate = "Сумма на одного человека: %.2f %s.";
 
         printAllAddedProducts();
-        System.out.format(Locale.US ,strTemplate, sumPerPerson, getCorrectWordEnd((int)sumPerPerson % 10));
+        System.out.format(Locale.US, strTemplate, sumPerPerson, getCorrectWordEnd((int) sumPerPerson % 100));
     }
 
     private String getCorrectWordEnd(int currentValueOfSum) {
-        if (currentValueOfSum == 1) return "рубль";
-        else if (currentValueOfSum > 1 && currentValueOfSum < 5) return "рубля";
-        else if (currentValueOfSum == 0 || currentValueOfSum > 4 && currentValueOfSum <= 9) {
+        if (currentValueOfSum % 10 == 0 || currentValueOfSum % 10 > 4 || currentValueOfSum >= 11 && currentValueOfSum <= 19) {
             return "рублей";
-        }
+        } else if (currentValueOfSum % 10 == 1) return "рубль";
+        else if (currentValueOfSum % 10 > 1 && currentValueOfSum % 10 < 5) return "рубля";
 
         return "error";
     }
