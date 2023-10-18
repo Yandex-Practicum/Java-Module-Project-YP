@@ -26,7 +26,7 @@ public class InvoiceCalculatorImpl implements InvoiceCalculator {
     @Override
     public void start() {
         Scanner scanner =new Scanner(System.in);
-        scanner.useLocale(Locale.US);
+        scanner.useLocale(Locale.US);//что бы разделитель дробной части была точка, а не запятая
         for(int i=0; i<COUNT_SERVICE; i++){
             context[i].doWork(scanner);
         }

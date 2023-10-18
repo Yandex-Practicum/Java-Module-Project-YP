@@ -5,7 +5,6 @@ import alexey.gritsenko.application.models.InvoiceItem;
 
 
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class InvoiceItemWorkerImpl implements InvoiceItemWorker {
     private static final String INPUT_PRODUCT_NAME = "Введите наименование товара";
@@ -13,13 +12,15 @@ public class InvoiceItemWorkerImpl implements InvoiceItemWorker {
     private static final String INPUT_COST_ERROR = "Введена некорректная стоимость. Введите в формате рубли.копейки (2 знака после точки)";
     private static final String INPUT_PRODUCT_ERROR = "Введена некорректное наименование товара. Допускаются только буквы русского или латинского алфавита";
     private static final String ADD_PRODUCT_SUCCESS = "Успешно добавлен";
-    //Строка должна соответствовать формату рубли.копейки
-    private static final String CHECK_PRODUCT_COST_REGEXP = "^\\d+\\.\\d{2}+$";
 
-    //Строка должна содержать только буквы русского или латинского алфавита
-    private static final String CHECK_PRODUCT_NAME_REGEXP = "[A-Za-z\\u0401\\u0451\\u0410-\\u044f]+";
+    private final ProductNameValidator productNameValidator;
+    private final ProductCostValidator productCostValidator;
 
-
+    public InvoiceItemWorkerImpl(ProductNameValidator productNameValidator,
+                                 ProductCostValidator productCostValidator) {
+        this.productNameValidator = productNameValidator;
+        this.productCostValidator = productCostValidator;
+    }
 
     @Override
     public InvoiceItem createInvoiceItem(Scanner scanner) {
@@ -34,9 +35,16 @@ public class InvoiceItemWorkerImpl implements InvoiceItemWorker {
     private String inputProductName(Scanner scanner){
         System.out.println(INPUT_PRODUCT_NAME);
         String productName;
-        do{
-            productName=scanner.nextLine();
-        }while (!validateProductName(productName));
+        while (true){
+                productName=scanner.next();
+                if(this.productNameValidator.isValid(productName)){
+                    break;
+                }
+                System.out.println(INPUT_PRODUCT_ERROR);
+                System.out.println(INPUT_PRODUCT_NAME);
+
+
+        }
         return productName.strip();
     }
 
@@ -45,10 +53,15 @@ public class InvoiceItemWorkerImpl implements InvoiceItemWorker {
         System.out.println(INPUT_PRODUCT_COST);
         while (true){
             if(scanner.hasNextDouble()){
-                //к строке потому что если второй знак после запятой 0 он обрезается и не проходит по формату ввода
-                cost = scanner.nextLine();
-                if (this.validateProductCost(cost)){
+                //к строке потому что если второй знак после запятой 0 он обрезается
+                // и не проходит валидацию по формату ввода
+                //например 523.30 nextDouble() выдаст в лучшем случае 523.3 без 0
+                cost = scanner.next();
+                if (this.productCostValidator.isValid(cost)){
                     break;
+                }else {
+                    System.out.println(INPUT_COST_ERROR);
+                    System.out.println(INPUT_PRODUCT_COST);
                 }
             }else {
                 scanner.next();
@@ -57,31 +70,4 @@ public class InvoiceItemWorkerImpl implements InvoiceItemWorker {
         return Double.parseDouble(cost);
     }
 
-    private boolean validateProductName(String productName){
-        if(productName==null||productName.isBlank()){
-            return false;
-        }
-
-        if(!Pattern.matches(CHECK_PRODUCT_NAME_REGEXP,productName)){
-            System.out.println(INPUT_PRODUCT_ERROR);
-            System.out.println(INPUT_PRODUCT_NAME);
-            return false;
-        }
-        return true;
-    }
-
-    private boolean validateProductCost(String cost){
-        boolean result = true;
-        if(Double.parseDouble(cost)<=0){
-            result = false;
-        }
-        if(!Pattern.matches(CHECK_PRODUCT_COST_REGEXP, cost)){
-            result = false;
-        }
-        if(!result){
-            System.out.println(INPUT_COST_ERROR);
-            System.out.println(INPUT_PRODUCT_COST);
-        }
-        return result;
-    }
 }
