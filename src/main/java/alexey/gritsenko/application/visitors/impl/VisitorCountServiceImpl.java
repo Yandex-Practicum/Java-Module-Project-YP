@@ -3,13 +3,13 @@ package alexey.gritsenko.application.visitors.impl;
 
 import alexey.gritsenko.application.Service;
 import alexey.gritsenko.application.repository.InvoiceRepository;
-import alexey.gritsenko.application.visitors.CountVisitorValidator;
+import alexey.gritsenko.application.IntegerValueValidator;
 
 import java.util.Scanner;
 
 
 public class VisitorCountServiceImpl implements Service {
-    private final CountVisitorValidator countVisitorValidator;
+    private final IntegerValueValidator countVisitorValidator;
     private final InvoiceRepository repository;
     private static final String COUNT_VISITOR_QUESTION = "Введите на скольких человек необходимо разделить счёт?";
     private static final String NOT_VALID_INPUT_COUNT_VISITORS = "Введено не корректное число посетителей";
@@ -17,7 +17,7 @@ public class VisitorCountServiceImpl implements Service {
 
     public VisitorCountServiceImpl(InvoiceRepository repository) {
         this.repository = repository;
-        this.countVisitorValidator = new CountVisitorValidatorImpl();
+        this.countVisitorValidator = new CountVisitorsValidatorImpl();
     }
 
     @Override

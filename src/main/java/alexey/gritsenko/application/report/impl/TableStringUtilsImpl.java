@@ -53,19 +53,23 @@ public class TableStringUtilsImpl implements TableStringUtils {
     @Override
     public String costToString(String cost) {
        String[] digits = cost.split(",");
-       char digit1 = digits[0].charAt(digits[0].length()-1);//выбираем первую цифру в целой части числа которая имеет значение
-       char digit2 = digits[1].charAt(digits[1].length()-1);//то же самое для копеек
-        String rub = switch (digit1) {
-            case '1' -> "рубль";
-            case '2', '3', '4' -> "рубля";
-            default -> "рублей";
-        };
-        String cents = switch (digit2){
-            case '1' -> "копейка";
-            case '2', '3', '4' -> "копейки";
-            default -> "копеек";
-        };
+       String rub = wordEnding(digits[0],"рубль","рубля","рублей");
+       String cents = wordEnding(digits[1],"копейка","копейки","копеек");
         return digits[0]+" "+rub+" "+digits[1]+" "+cents;
+    }
+
+    private String wordEnding(String word, String var1, String var2, String var3){
+        if(word.length()>=2){
+            if(word.charAt(word.length()-2)=='1'){
+                return var3;
+            }
+        }
+        char digit = word.charAt(word.length()-1);
+        return switch (digit) {
+            case '1' -> var1;
+            case '2', '3', '4' -> var2;
+            default -> var3;
+        };
     }
 
     private String[] splitString(String value, int width) {
