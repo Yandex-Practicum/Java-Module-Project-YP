@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class DataOutput {
     // Вывод итогов
-    public void outputOfResults (int numberOfPersons, ArrayList<LineOfBill> listOfProducts) {
+    public void outputOfResults (int numberOfPersons, ArrayList<Product> listOfProducts) {
         float sumBill = 0;
         System.out.println("Добавленные товары:\n");    // Заголовок
         for (LineOfBill item : listOfProducts) {
@@ -11,9 +11,9 @@ public class DataOutput {
             sumBill = sumBill + prise;
             System.out.println(String.format("%s ..... %.2f", item.getName(), prise));
         }
-        System.out.println(String.format("---------------------" + "Итого по счету:   %.2f\n", sumBill));         // Подчеркивание и вывод итоговой суммы по счету
+        System.out.printf("---------------------" + "Итого по счету:   %.2f\n%n", sumBill);           // Подчеркивание и вывод итоговой суммы по счету
         double fromEveryPerson = sumBill / numberOfPersons;
-        System.out.println(String.format("\nГоспода, с Вас по:   %.2f " + rubles(fromEveryPerson) + "%n", fromEveryPerson));    // Вывод доли счета
+        System.out.printf("\nГоспода, с Вас по:   %.2f %s%n", fromEveryPerson, rubles(fromEveryPerson));            // Вывод доли счета
     }
 
     // Правильное окончание слова "рубль"
