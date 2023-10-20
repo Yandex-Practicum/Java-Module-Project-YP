@@ -6,10 +6,10 @@ public class DataOutput {
     public void outputOfResults (int numberOfPersons, ArrayList<Product> listOfProducts) {
         float sumBill = 0;
         System.out.println("Добавленные товары:\n");    // Заголовок
-        for (LineOfBill item : listOfProducts) {
+        for (Product item : listOfProducts) {
             float prise = item.getPrise();
             sumBill = sumBill + prise;
-            System.out.println(String.format("%s ..... %.2f", item.getName(), prise));
+            System.out.printf("%s ..... %.2f%n", item.getName(), prise);
         }
         System.out.printf("---------------------" + "Итого по счету:   %.2f\n%n", sumBill);           // Подчеркивание и вывод итоговой суммы по счету
         double fromEveryPerson = sumBill / numberOfPersons;
