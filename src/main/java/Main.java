@@ -9,7 +9,7 @@ public class Main {
         // Запрос кол-ва участников
         int numberOfPersons = dataInput.numberOfPeople(scanner);
         // Ввод товара
-        ArrayList<LineOfBill> listOfProducts = dataInput.productEntry(scanner);
+        ArrayList<Product> listOfProducts = dataInput.productEntry(scanner);
         scanner.close();        // Закрыть сканер
         // Вывод счета, итога и причетающейся каждому суммы
         new DataOutput().outputOfResults(numberOfPersons, listOfProducts);
