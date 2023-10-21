@@ -7,7 +7,6 @@ class Product {
 
         String nameProduct ;
         String answer;
-        String end;
         double priceProduct;
 
         do {
@@ -22,30 +21,20 @@ class Product {
             sc.nextLine();
 
             do {
-                System.out.println("Хотите ли вы добавить еще один товар? (Да/Нет)");
+                System.out.println("Введите -продолжить- для добавление нового товара или -завершить- для завершения программы");
                 answer = sc.nextLine();
 
-                switch (answer) {
-                    case "Да","да", "дА", "ДА" :
-                        break;
-                    case "Нет", "НЕТ", "нЕт", "неТ", "НЕт", "нЕТ", "НеТ", "нет" :
+                switch (answer.toLowerCase()) {
+                    case "продолжить", "завершить":
                         break;
                     default:
                         System.out.println("Введите корректный ответ");
                 }
-            } while (!answer.equalsIgnoreCase("да") && !answer.equalsIgnoreCase("нет"));
+            } while (!answer.equalsIgnoreCase("продолжить") && !answer.equalsIgnoreCase("завершить"));
 
-        } while (answer.equalsIgnoreCase("да"));
+        } while (answer.equalsIgnoreCase("продолжить"));
 
-        System.out.println("Введите -Завершить-, для итогового подсчета стоимости товаров: ");
-        end = sc.nextLine();
-            if (!end.equalsIgnoreCase("Завершить")) {
-                do {
-                    System.out.println("Введите корректное значение: ");
-                    end = sc.nextLine();
-                } while (!end.equalsIgnoreCase("Завершить"));
-            }
-            return countProduct;
+        return countProduct;
     }
     public String getAllProducts() {
         return allProducts;
