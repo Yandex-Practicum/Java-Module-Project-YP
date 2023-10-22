@@ -6,7 +6,6 @@
 import java.util.ArrayList;
 
 public class Basket {
-   // String product = null;
     double sum = 0.00;
     ArrayList<String> list = new ArrayList<String>();
 
