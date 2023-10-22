@@ -1,4 +1,4 @@
-import  java.util.Scanner;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,31 +7,32 @@ public class Main {
 
         //Получение входных данных о людях
         Scanner scanner = new Scanner(System.in);
-        int quantityOfPersons = 0 ;
+        int quantityOfPersons = 0;
         String nameOfProduct;
         double priceOfProduct;
 
 
         System.out.print("Введите колличество человек: ");
 
-              while (true) {
-                  if (scanner.hasNextInt()) {
-                      quantityOfPersons = scanner.nextInt();
-                      if (quantityOfPersons > 1) {
-                         break;
-                      } else {
-                          System.out.print("Ошибка,дальнейший расчет не имеет смысла.\nПовторите попытку ввода: ");
-                      }
-                  }else {
-                      System.out.print("Недопустимый символ, введите число: ");
-                  }scanner.nextLine();
-              }
+        while (true) {
+            if (scanner.hasNextInt()) {
+                quantityOfPersons = scanner.nextInt();
+                if (quantityOfPersons > 1) {
+                    break;
+                } else {
+                    System.out.print("Ошибка,дальнейший расчет не имеет смысла.\nПовторите попытку ввода: ");
+                }
+            } else {
+                System.out.print("Недопустимый символ, введите число: ");
+            }
+            scanner.nextLine();
+        }
         // Создаем корзину калькуляции покупок
         boolean flag = true;
         Basket basketCalc = new Basket();
         System.out.println("Ваша корзина готова к заполнению.");
 
-        while(flag) {
+        while (flag) {
 
             System.out.print("Введите наименование товара: ");
             nameOfProduct = scanner.next();
@@ -42,10 +43,10 @@ public class Main {
                     priceOfProduct = scanner.nextDouble();
                     if (priceOfProduct > 0) {
                         break;
-                    }else{
+                    } else {
                         System.out.print("Цена не может быть отрицательной. Попробуйте еще раз: ");
                     }
-                }else {
+                } else {
                     System.out.print("Ошибка, введите число: ");
                 }
                 scanner.nextLine();
@@ -68,14 +69,14 @@ public class Main {
         }
 
         //вывод результата
-        
+
         System.out.println("Добавленные товары: ");
-        for (String el:basketCalc.list) {
+        for (String el : basketCalc.list) {
             System.out.println(el);
         }
         float lastSum = (float) basketCalc.sum / quantityOfPersons;
         String rub = basketCalc.convertRub(lastSum);
 
-        System.out.printf("К оплате %.2f %s за человека.",lastSum, rub);
+        System.out.printf("К оплате %.2f %s за человека.", lastSum, rub);
     }
 }
