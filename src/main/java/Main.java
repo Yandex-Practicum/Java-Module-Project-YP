@@ -7,18 +7,25 @@ public class Main {
 
         //Получение входных данных о людях
         Scanner scanner = new Scanner(System.in);
-        int quantityOfPersons;
+        int quantityOfPersons = 0 ;
         String nameOfProduct;
         double priceOfProduct;
-        while (true) {
-            System.out.print("Введите колличество человек: ");
-            quantityOfPersons = scanner.nextInt();
-             if (quantityOfPersons > 1) {
-                break;
-            } else {
-                System.out.println("Ошибка,дальнейший расчет не имеет смысла.\n Повторите попытку ввода.");
-            }
-        }
+
+
+        System.out.print("Введите колличество человек: ");
+
+              while (true) {
+                  if (scanner.hasNextInt()) {
+                      quantityOfPersons = scanner.nextInt();
+                      if (quantityOfPersons > 1) {
+                         break;
+                      } else {
+                          System.out.print("Ошибка,дальнейший расчет не имеет смысла.\nПовторите попытку ввода: ");
+                      }
+                  }else {
+                      System.out.print("Недопустимый символ, введите число: ");
+                  }scanner.nextLine();
+              }
         // Создаем корзину калькуляции покупок
         boolean flag = true;
         Basket basketCalc = new Basket();
@@ -29,12 +36,19 @@ public class Main {
             System.out.print("Введите наименование товара: ");
             nameOfProduct = scanner.next();
 
-            System.out.println();
+            System.out.print("Введите цену товара (рубли, копейки): ");
             while (true) {
-                System.out.print("Введите цену товара (рубли, копейки): ");
-                priceOfProduct = scanner.nextDouble();
-                if (priceOfProduct > 0)
-                    break;
+                if (scanner.hasNextDouble()) {
+                    priceOfProduct = scanner.nextDouble();
+                    if (priceOfProduct > 0) {
+                        break;
+                    }else{
+                        System.out.print("Цена не может быть отрицательной. Попробуйте еще раз: ");
+                    }
+                }else {
+                    System.out.print("Ошибка, введите число: ");
+                }
+                scanner.nextLine();
             }
             //вызов метода добавления товара
             basketCalc.addProduct(nameOfProduct, priceOfProduct);
