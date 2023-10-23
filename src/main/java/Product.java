@@ -14,9 +14,19 @@ class Product {
             nameProduct = sc.nextLine();
             allProducts += "\n" + "-" + nameProduct;
 
-            System.out.print("Введите стоимость товара: ");
-            priceProduct = sc.nextDouble();
+            do {
+                System.out.print("Введите стоимость товара: ");
+                while (!sc.hasNextDouble()) {
+                    sc.next();
+                    System.out.print("Введено некорректное значение, укажите числовое значение: ");
+                }
+                priceProduct = sc.nextDouble();
+                if (priceProduct <= 0) {
+                    System.out.println("Значение должно быть больше нуля.");
+                }
+            } while (priceProduct <= 0);
             countProduct += priceProduct;
+
             System.out.println("Товар успешно добавлен!");
             sc.nextLine();
 
