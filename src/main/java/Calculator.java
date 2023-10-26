@@ -26,18 +26,25 @@ public class Calculator {
                     System.out.println("введите стоимость в формате *рубли.копейки*");
                     try {
                         float cena = scanner.nextFloat();
-                            itogo = itogo + cena;
-                            tovar = (nazvanieTovara + (" ") + cena);
-                            spisok = (spisok + tovar + "\n");
-                            System.out.println("итого: \n" + spisok);
-                            break;
+                        if (cena>0) {
+                                itogo = itogo + cena;
+                                tovar = (nazvanieTovara + (" ") + cena);
+                                spisok = (spisok + tovar + "\n");
+                                System.out.println("итого: \n" + spisok);
+                                break;
+                            }
+                            else
+                            {
+                                System.out.println("Введено некорректное значение");
+                                break;
+                            }
+                        }
 
-                    } catch (Exception e) {
-                        System.out.println("Введено некорректное значение");
-                        break;
+                    catch (Exception e) {
+                    System.out.println("Введено некорректное значение");
+                    break;
                                            }
                 }
-
             }
         }
     }
