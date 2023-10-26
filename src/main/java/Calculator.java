@@ -26,7 +26,7 @@ public class Calculator {
                     System.out.println("введите стоимость в формате *рубли.копейки*");
                     try {
                         float cena = scanner.nextFloat();
-                        if (cena>0) {
+                        if (cena>=0) {
                                 itogo = itogo + cena;
                                 tovar = (nazvanieTovara + (" ") + cena);
                                 spisok = (spisok + tovar + "\n");
