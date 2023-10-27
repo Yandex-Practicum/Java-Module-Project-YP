@@ -20,7 +20,6 @@ public class Main {
             }
         }
 
-
         // Создание калькулятора
         double price = 0.0;
         String name = "";
@@ -28,7 +27,7 @@ public class Main {
         while (true) {
             System.out.println("Введите название товара (или 'Завершить' для выхода): ");
             String names = scanner.next();
-            if (names.equalsIgnoreCase("Завершить")) {
+            if (names.equalsIgnoreCase("Завершить")) { // выход из бесконечного цикла при вводе команда "Заверщить"
                 break;
             }
             System.out.println("Введите цену товара: ");
@@ -49,7 +48,6 @@ public class Main {
         } else {
             System.out.printf("Каждый человек должен заплатить: %.2f рубля\n", pricePerPerson);
         }
-
 
         scanner.close();
     }
