@@ -19,13 +19,16 @@ public class Calculator {
                         totalPrice = totalPrice + productPrice;
                         totalPriceOkr = String.format("%.2f", totalPrice);
                         return productPrice;
+
                     }
                 }
 
-            } else if (!scanPrice.hasNextDouble()) {
+            } else {
+                scanPrice.hasNextDouble();
                 System.out.println("Введено некорректное число, повторите ввод");
                 scanPrice.next();
             }
+
         }
     }
     public static String listOfProduct() {
