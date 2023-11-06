@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public void main(String[] args) {
 
        System.out.println("На сколько человек необходимо разделить счёт?");
 
@@ -86,4 +86,5 @@ class Calculation {
 
         return String.format("%.2f", result) + ending;
     }
-}
+
+}}
