@@ -10,11 +10,15 @@ public class Main {
         int numberPersons;
 
         while (true) {
-            numberPersons = scanner.nextInt();
-            if (numberPersons > 1) {
-                break;
+            if (scanner.hasNextInt()) {
+                numberPersons = scanner.nextInt();
+                if (numberPersons > 1) {
+                    break;
+                } else {
+                    System.out.println("Ошибка! Введено меньше 2. Введите корректное количество гостей");
+                }
             } else {
-                System.out.println("Ошибка! Введено меньше 2. Введите корректное количество гостей");
+                    System.out.println("Ошибка! Введено не число. Введите корректное количество гостей");
             }
         }
 
@@ -28,14 +32,18 @@ public class Main {
                 break;
             } else {
                 while (true) {
-                    double amount = scanner.nextDouble();
-                    if (amount > 1) {
-                        calculation.addProduct(product, amount);
-                        break;
+                    if (scanner.hasNextDouble()) {
+                        double amount = scanner.nextDouble();
+                        if (amount > 1) {
+                            calculation.addProduct(product, amount);
+                            break;
+                        } else {
+                            System.out.println("Ошибка! Введено отрицательное значение! Введите корректную цену");
+                        }
                     } else {
-                        System.out.println("Ошибка! Введено отрицательное значение! Введите корректную цену");
+                        System.out.println("Ошибка! Введено не число");
                     }
-
+                }
             }
         }
 
@@ -68,9 +76,19 @@ class Calculation {
 
         double result = totalAmount / numberPersons;
 
+        int lastNumber = (int)Math.floor(result);
+
+        if (lastNumber > 100) {
+            lastNumber = lastNumber % 100;
+        }
+
+        if (lastNumber > 20) {
+            lastNumber = lastNumber % 10;
+        }
+
         String ending;
 
-        switch ((int)Math.floor(result)){
+        switch (lastNumber){
             case 1:
                 ending = " рубль";
                 break;
@@ -87,4 +105,4 @@ class Calculation {
         return String.format("%.2f", result) + ending;
     }
 
-}}
+}
