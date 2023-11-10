@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class Main {
-    public void main(String[] args) {
+    public static void main(String[] args) {
 
-       System.out.println("На сколько человек необходимо разделить счёт?");
+        System.out.println("На сколько человек необходимо разделить счёт?");
 
         Scanner scanner = new Scanner(System.in);
 
@@ -15,33 +15,41 @@ public class Main {
                 if (numberPersons > 1) {
                     break;
                 } else {
-                    System.out.println("Ошибка! Введено меньше 2. Введите корректное количество гостей");
+                    System.out.println("Ошибка! Введено меньше 2. Введите корректное количество гостей. Для закрытия программы напишите \"выход\"");
                 }
             } else {
-                    System.out.println("Ошибка! Введено не число. Введите корректное количество гостей");
+                String exit = scanner.next();
+                if (exit.equalsIgnoreCase("выход")) {
+                    System.out.println("Завершена работы программы!");
+                    return;
+                } else {
+                    System.out.println("Ошибка! Введено не число. Введите корректное количество гостей. Для закрытия программы напишите \"выход\"");
+                    scanner.nextLine();
+                }
             }
         }
 
         Calculation calculation = new Calculation(numberPersons);
 
-        System.out.println("Введите название товара и его стоимость");
-
         while (true) {
+            System.out.println("Введите название товара. Для закрытия программы напишите \"завершить\""); // можно сделать через useDelimeter(). думаю пока как обработать несколько пробелов
             String product = scanner.next();
-            if (product.equalsIgnoreCase("завершить")){
+            if (product.equalsIgnoreCase("завершить")) {
                 break;
             } else {
                 while (true) {
-                    if (scanner.hasNextDouble()) {
-                        double amount = scanner.nextDouble();
-                        if (amount > 1) {
-                            calculation.addProduct(product, amount);
+                    System.out.println("Введите стоимость товара (руб,коп).");
+                    try {
+                        double price = scanner.nextDouble();
+                        if (price > 1) {
+                            calculation.addProduct(product, price);
                             break;
                         } else {
-                            System.out.println("Ошибка! Введено отрицательное значение! Введите корректную цену");
+                            System.out.println("Ошибка! Введено отрицательное значение!");
                         }
-                    } else {
+                    } catch (Exception err){
                         System.out.println("Ошибка! Введено не число");
+                        scanner.nextLine();
                     }
                 }
             }
@@ -49,60 +57,6 @@ public class Main {
 
         System.out.println(calculation.productList);
         System.out.println(calculation.divideCheck());
-
     }
 }
 
-class Calculation {
-
-    String productList = "Добавленные товары:";
-    int numberPersons;
-    double totalAmount;
-
-    Calculation(int numberPersons){
-        this.numberPersons = numberPersons;
-    }
-
-    public void addProduct(String product, double amount){
-        productList = productList + "\n" + product;
-        totalAmount = totalAmount + amount;
-    }
-
-    public String divideCheck(){
-
-        if (numberPersons == 0) {
-            return "Ошибка: нет персон";
-        }
-
-        double result = totalAmount / numberPersons;
-
-        int lastNumber = (int)Math.floor(result);
-
-        if (lastNumber > 100) {
-            lastNumber = lastNumber % 100;
-        }
-
-        if (lastNumber > 20) {
-            lastNumber = lastNumber % 10;
-        }
-
-        String ending;
-
-        switch (lastNumber){
-            case 1:
-                ending = " рубль";
-                break;
-            case 2:
-            case 3:
-            case 4:
-                ending = " рубля";
-                break;
-            default:
-                ending = " рублей";
-                break;
-        }
-
-        return String.format("%.2f", result) + ending;
-    }
-
-}
