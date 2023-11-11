@@ -41,7 +41,7 @@ public class Main {
                     System.out.println("Введите стоимость товара (руб,коп).");
                     try {
                         double price = scanner.nextDouble();
-                        if (price > 1) {
+                        if (price > 0) {
                             calculation.addProduct(product, price);
                             break;
                         } else {

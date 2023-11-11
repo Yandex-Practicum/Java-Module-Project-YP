@@ -9,7 +9,7 @@ public class Calculation {
     }
 
     public void addProduct(String product, double price) {
-        productList = productList + "\n" + String.format("%s стоимость: %.2f %s", product, price, getEnding(price));
+        productList = String.format("%s\n%s стоимость: %.2f %s", productList, product, price, getEnding(price));
         totalPrice = totalPrice + price;
     }
 
