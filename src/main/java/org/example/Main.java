@@ -1,13 +1,25 @@
 package org.example;
 
-import java.util.Scanner;
+        import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-
         Scanner scanner = new Scanner(System.in);
 
+        int persons = getNumberOfPersons(scanner);
+
+        ItemManager itemManager = new ItemManager();
+
+        itemManager.takeUserInput(scanner);
+
+        System.out.println("Добавленные товары:\n" + itemManager.getItemsList());
+        System.out.printf("Общая стоимость для %d человек: %.2f руб%s\n", persons,
+                itemManager.calculateTotalCost(persons), itemManager.getRussianEnding(persons));
+
+        scanner.close();
+    }
+
+    private static int getNumberOfPersons(Scanner scanner) {
         int persons = 0;
 
         while (persons <= 1) {
@@ -23,10 +35,20 @@ public class Main {
                 scanner.next();
             }
         }
+        return persons;
+    }
+}
 
-        double totalCost = 0;
-        StringBuilder itemsList = new StringBuilder();
+class ItemManager {
+    private double totalCost;
+    private StringBuilder itemsList;
 
+    public ItemManager() {
+        totalCost = 0;
+        itemsList = new StringBuilder();
+    }
+
+    public void takeUserInput(Scanner scanner) {
         String userInput;
 
         do {
@@ -49,12 +71,17 @@ public class Main {
                 userInput = "";
             }
         } while (!userInput.equals("завершить"));
+    }
 
-        System.out.println("Добавленные товары:\n" + itemsList.toString());
-        System.out.printf("Общая стоимость для %d человек: %.2f рубля\n", persons, totalCost / persons);
-        System.out.printf("Общая стоимость для %d человек: %.2f руб%s\n", persons, totalCost / persons,
-                ((int) (totalCost / persons) == 1 || (int) (totalCost / persons) % 10 == 1 && (int) (totalCost / persons) % 100 != 11) ? "ль" : "ля");
+    public String getItemsList() {
+        return itemsList.toString();
+    }
 
-        scanner.close();
+    public double calculateTotalCost(int persons) {
+        return totalCost / persons;
+    }
+
+    public String getRussianEnding(int persons) {
+        return ((persons == 1 || persons % 10 == 1 && persons % 100 != 11) ? "ль" : "ля");
     }
 }
