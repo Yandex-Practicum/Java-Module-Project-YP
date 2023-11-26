@@ -2,25 +2,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         int persons = countPersons();
-        calculator();
+        Goods.calculator();
         double part = Goods.sum / persons;
         System.out.println("Добавленные товары:" + Goods.names + "\n");
         System.out.println("Сумма товаров " + String.format("%.2f", Goods.sum) + " " + howToWriteRubles(Goods.sum));
         System.out.println("Каждый должен заплатить " + String.format("%.2f", part) + " " + howToWriteRubles(part));
     }
-    public static class Goods{ // Создаем класс со статическими переменными, хранящие сумму заказа и названия товаров
-        String name;
-        double price;
-        static double sum = 0;
-        static String names="";
 
-        public Goods(String n, double p){
-            price = p;
-            name = n;
-            sum += price;
-            names += "\n" + name;
-        }
-    }
     public static int countPersons() { //метод для подсчета числа посетителей
         Scanner scanner = new Scanner(System.in);
         System.out.println("На сколько человек нужно разделить счет?");
@@ -34,6 +22,44 @@ public class Main {
             }
         }
         return  persons;
+    }
+
+
+    public static String howToWriteRubles(double p){ //метод для определения падежа слова "рубль"
+        int rubles = (int) (p % 10);
+        String write = "";
+        switch (rubles){
+            case 1:
+                write = "рубль";
+                break;
+            case 2:
+            case 3:
+            case 4:
+                write = "рубля";
+                break;
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 0:
+                write = "рублей";
+        }
+        return write;
+    }
+}
+
+class Goods{ // Создаем класс со статическими переменными, хранящие сумму заказа и названия товаров
+    String name;
+    double price;
+    static double sum = 0;
+    static String names="";
+
+    public Goods(String n, double p){
+        price = p;
+        name = n;
+        sum += price;
+        names += "\n" + name;
     }
     public static void calculator(){ // метод для добавления товаров
         Scanner scanner = new Scanner(System.in);
@@ -58,29 +84,6 @@ public class Main {
                 check = scanner.next();
             }
         }
-    }
-
-    public static String howToWriteRubles(double p){ //метод для определения падежа слова "рубль"
-        int rubles = (int) (p % 10);
-        String write = "";
-        switch (rubles){
-            case 1:
-                write = "рубль";
-                break;
-            case 2:
-            case 3:
-            case 4:
-                write = "рубля";
-                break;
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 0:
-                write = "рублей";
-        }
-        return write;
     }
 }
 
