@@ -39,19 +39,30 @@ class Calculator {
         return personCount;
     }
     public static void getProduct() {
-        System.out.println("Введите товар и его цену: ");
+        System.out.println("Введите товар и его цену в формате: товар цена(цена указывается в формате рубли.копейки) ");
         do {
             String line = scanner.nextLine();
             if (line.equalsIgnoreCase("завершить"))
                 break;
             try {
+                    /*
+                    Замечание 1 я исправил. Дал пользователю больше подсказок.
+                    Замечание 2 я исправил. при вводе суммы <= 0 выводится ошибка.
+                    Не совсем понял замечание 3 насчет случая, когда товар может содержать цифру так как сейчас он может содержать числа
+                    и проблем с этим нет потому что товар и сумма разделяются пробелом.
+                    Если наоборот, он не должен содержать чисел, укажите это в комментарии к пр и я исправлю.
+                     */
                 String[] split = line.split(" ");
                 String name = split[0];
                 double price = Double.parseDouble(split[1]);
+                if (price <= 0) {
+                    System.out.println("Цена должна быть больше 0");
+                    throw new Exception();
+                }
                 sum += price;
                 productList.add(new Product(name, price));
                 System.out.println("Товар успешно добавлен.");
-                System.out.println("Хотите добавить еще один товар?");
+                System.out.println("Хотите добавить еще один товар? Для завершения введите команду завершить.");
             } catch (Exception e) {
                 System.out.println("Неверные данные. Введите еще раз: ");
             }
