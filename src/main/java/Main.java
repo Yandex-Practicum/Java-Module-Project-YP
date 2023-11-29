@@ -14,6 +14,10 @@ public class Main {
         System.out.println("На сколько человек нужно разделить счет?");
         int persons = 0;
         while (persons <= 1) {
+            while(!scanner.hasNextInt()){
+                scanner.next();
+                System.out.println("Что-то не так, попробуйте еще раз, но с цифрами!");
+            }
             persons = scanner.nextInt();
             if (persons > 1) {
                 break;
@@ -26,9 +30,14 @@ public class Main {
 
 
     public static String howToWriteRubles(double p){ //метод для определения падежа слова "рубль"
-        int rubles = (int) (p % 10);
+        int rubles = (int) (p % 100);
         String write = "";
-        switch (rubles){
+
+        if (rubles >= 11 && rubles <= 19){
+            write = "рублей";
+        } else {
+            rubles %= 10;
+        switch (rubles) {
             case 1:
                 write = "рубль";
                 break;
@@ -45,45 +54,8 @@ public class Main {
             case 0:
                 write = "рублей";
         }
-        return write;
-    }
-}
-
-class Goods{ // Создаем класс со статическими переменными, хранящие сумму заказа и названия товаров
-    String name;
-    double price;
-    static double sum = 0;
-    static String names="";
-
-    public Goods(String n, double p){
-        price = p;
-        name = n;
-        sum += price;
-        names += "\n" + name;
-    }
-    public static void calculator(){ // метод для добавления товаров
-        Scanner scanner = new Scanner(System.in);
-        String check = "0";
-        while (check.toLowerCase() != "завершить"){
-            if(check.toLowerCase().equals("завершить")) break;
-            else {
-                String name;
-                String price = "-1";
-                while (Double.parseDouble(price) < 0) {
-                    System.out.println("Введите название и цену товара(формат - название рубли.копейки)");
-                    name = scanner.next();
-                    price = scanner.next();
-                    if (Double.parseDouble(price) > 0) {
-                        Goods nnew = new Goods(name, Double.parseDouble(price));
-                        break;
-                    } else {
-                        System.out.println("Неверный ввод! попробуйте еще раз");
-                    }
-                }
-                System.out.println("Желаете продолжить? Для выхода введите 'завершить'");
-                check = scanner.next();
-            }
         }
+        return write;
     }
 }
 
