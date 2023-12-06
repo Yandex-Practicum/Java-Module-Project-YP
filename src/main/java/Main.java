@@ -34,8 +34,10 @@ public class Main {
             }
 
             Product product = new Product();
-            product.name = productName;
-            product.cost = cost;
+            product.setName(productName);
+            //product.name = productName;
+            product.setCost(cost);
+            //product.cost = cost;
 
             products.add(product);
 
@@ -54,12 +56,11 @@ public class Main {
 
         double totalCost = 0.0;
         for (Product product : products) {
-            double cost = product.cost;
-            System.out.println(product.name + " " + String.format("%.2f", cost));
+            double cost = product.getCost();
+            System.out.println(product.getName() + " " + String.format("%.2f", cost));
             totalCost += cost;
 
         }
-
         System.out.println("Итого: " + String.format("%.2f", totalCost));
         String dividedCost = calculator.divideCostByPersons(personCount, totalCost);
         System.out.println("Сумма на " + personCount + " человек: " + dividedCost);

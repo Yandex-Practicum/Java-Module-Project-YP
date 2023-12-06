@@ -16,7 +16,6 @@ public class Calculator {
         } else {
             result = "рублей";
         }
-
         return rubles + " " + result;
     }
 }
