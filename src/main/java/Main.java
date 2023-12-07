@@ -4,61 +4,73 @@ import java.util.ArrayList;
 import java.math.BigDecimal;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<String> itemsList = new ArrayList<>();
-        double allItems = 0;
+    private static Scanner scanner = new Scanner(System.in);
+    private static ArrayList<String> itemsList = new ArrayList<>();
+    private static double allItems = 0;
 
+    public static void main(String[] args) {
         while (true) {
             askWhatToDo();
             String command = scanner.next();
 
             if (command.equalsIgnoreCase("1")) {
-                while (true) {
-                    System.out.println("Введите название товара:");
-                    String itemName = scanner.next();
-                    itemsList.add(itemName);
-
-                    System.out.println("Введите стоимость товара:");
-                    double itemPrice;
-                    while (true) {
-                        while (!scanner.hasNextDouble()) {
-                            System.out.println("Ошибка: введено не число. Попробуйте еще раз:");
-                            scanner.next();
-                        }
-                        itemPrice = scanner.nextDouble();
-                        if (itemPrice <= 0) {
-                            System.out.println("Ошибка: число отрицательное, или ноль. Попробуйте еще раз:");
-                        } else {
-                            break;
-                        }
-                    }
-
-                    allItems += itemPrice;
-                    System.out.println("Товар внесен в список!");
-                    System.out.println("Хотите добавить еще один товар? \n-Да\n-Нет");
-                    String commandAddMoreItem = scanner.next();
-                    if (commandAddMoreItem.equalsIgnoreCase("Да")) {
-                        continue;
-                    } else {
-                        break;
-                    }
-                }
+                enterItems();
             } else if (command.equalsIgnoreCase("2")) {
-                System.out.println("Добавленные товары: ");
-                printItemsList(itemsList);
-                System.out.println("Сумма вашего заказа: " + allItems);
-                System.out.println("Если поделить счёт на всех, то получится: " + formatCurrency(calculate(allItems)));
+                printBill();
             } else if (command.equalsIgnoreCase("3")) {
-                System.out.println("Ваши товары:");
-                printItemsList(itemsList);
-                System.out.println("Сумма вашего заказа: " + allItems);
+                printItems();
             } else if (command.equalsIgnoreCase("Завершить")) {
                 break;
             } else {
                 System.out.println("Извините, такой команды не существует.");
             }
         }
+    }
+
+    private static void enterItems() {
+        while (true) {
+            System.out.println("Введите название товара:");
+            String itemName = scanner.next();
+            itemsList.add(itemName);
+
+            System.out.println("Введите стоимость товара:");
+            double itemPrice = getValidDouble();
+
+            allItems += itemPrice;
+            System.out.println("Товар внесен в список!");
+            System.out.println("Хотите добавить еще один товар? \n-Да\n-Нет");
+            String commandAddMoreItem = scanner.next();
+            if (!commandAddMoreItem.equalsIgnoreCase("Да")) {
+                break;
+            }
+        }
+    }
+
+    private static double getValidDouble() {
+        double value;
+        while (!scanner.hasNextDouble()) {
+            System.out.println("Ошибка: введено не число. Попробуйте еще раз:");
+            scanner.next();
+        }
+        value = scanner.nextDouble();
+        while (value <= 0) {
+            System.out.println("Ошибка: число отрицательное, или ноль. Попробуйте еще раз:");
+            value = scanner.nextDouble();
+        }
+        return value;
+    }
+
+    private static void printBill() {
+        System.out.println("Добавленные товары: ");
+        printItemsList(itemsList);
+        System.out.println("Сумма вашего заказа: " + allItems);
+        System.out.println("Если поделить счёт на всех, то получится: " + formatCurrency(calculate(allItems)));
+    }
+
+    private static void printItems() {
+        System.out.println("Ваши товары:");
+        printItemsList(itemsList);
+        System.out.println("Сумма вашего заказа: " + allItems);
     }
 
     public static void printItemsList(ArrayList<String> itemList) {
