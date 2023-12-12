@@ -1,6 +1,3 @@
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,8 +16,8 @@ public class Restocalculate {
                 break;
             }
 
-            BigDecimal productPrice = promptForPrice(scanner);
-            if (productPrice == null) {
+            double productPrice = promptForPrice(scanner);
+            if (productPrice <= 0.0) {
                 System.out.println("Введите корректную цену.");
                 continue;
             }
@@ -35,14 +32,15 @@ public class Restocalculate {
         }
 
         System.out.println("\nСписок товаров и цен:");
-        products.forEach(System.out::println);
+        products.forEach(product -> System.out.println(product));
 
-        BigDecimal totalCost = products.stream().map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
-        BigDecimal averageCostPerPerson = totalCost.divide(BigDecimal.valueOf(numberOfPeople), 2, RoundingMode.HALF_UP);
+        double totalCost = products.stream().mapToDouble(Product::getPrice).sum();
+        double averageCostPerPerson = totalCost / numberOfPeople;
 
-        System.out.println("\nОбщая сумма цен товаров: " + formatAmount(totalCost));
+        AmountFormatter formatter = new AmountFormatter();
+        System.out.println("\nОбщая сумма цен товаров: " + formatter.format(totalCost));
         if (numberOfPeople > 1) {
-            System.out.println("Каждый человек должен заплатить: " + formatAmount(averageCostPerPerson));
+            System.out.println("Каждый человек должен заплатить: " + formatter.format(averageCostPerPerson));
         } else {
             System.out.println("Счет делить не нужно, так как всего 1 человек.");
         }
@@ -65,77 +63,75 @@ public class Restocalculate {
         return numberOfPeople;
     }
 
-    private static BigDecimal promptForPrice(Scanner scanner) {
-        BigDecimal price = null;
+    private static double promptForPrice(Scanner scanner) {
+        double price = 0.0;
         do {
             System.out.print("Введите цену товара в формате рубли.копейки (должна быть положительной): ");
             try {
-                String priceInput = scanner.nextLine().replaceAll("[^\\d.-]", "");
-                if (priceInput.startsWith("-")) {
-                    System.out.println("Цена должна быть положительной. Пожалуйста, введите корректную цену.");
-                    continue;
-                }
-                price = new BigDecimal(priceInput).setScale(2, RoundingMode.HALF_UP);
-                if (price.compareTo(BigDecimal.ZERO) <= 0) {
+                String priceInput = scanner.nextLine().replaceAll("[^\\d.]", "");
+                price = Double.parseDouble(priceInput);
+                if (price <= 0.0) {
                     System.out.println("Цена должна быть положительной и больше 0. Пожалуйста, введите корректную цену.");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Введите корректную цену.");
             }
-        } while (price == null || price.compareTo(BigDecimal.ZERO) <= 0);
+        } while (price <= 0.0);
         return price;
-    }
-
-    private static String formatAmount(BigDecimal amount) {
-        int lastDigit = amount.intValue() % 10;
-        int lastTwoDigits = amount.intValue() % 100;
-
-        DecimalFormat decimalFormat;
-        if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
-            decimalFormat = new DecimalFormat("#,##0.00 рублей");
-        } else {
-            switch (lastDigit) {
-                case 1 -> decimalFormat = new DecimalFormat("#,##0.00 рубль");
-                case 2, 3, 4 -> decimalFormat = new DecimalFormat("#,##0.00 рубля");
-                default -> decimalFormat = new DecimalFormat("#,##0.00 рублей");
-            }
-        }
-        return decimalFormat.format(amount);
     }
 }
 
 class Product {
     private final String name;
-    private final BigDecimal price;
+    private final double price;
 
-    public Product(String name, BigDecimal price) {
+    public Product(String name, double price) {
         this.name = name;
         this.price = price;
     }
 
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    @Override
     public String toString() {
-        return name + ": " + formatAmount(price);
-    }
-
-    private static String formatAmount(BigDecimal amount) {
-        int lastDigit = amount.intValue() % 10;
-        int lastTwoDigits = amount.intValue() % 100;
-
-        DecimalFormat decimalFormat;
-        if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
-            decimalFormat = new DecimalFormat("#,##0.00 рублей");
-        } else {
-            switch (lastDigit) {
-                case 1 -> decimalFormat = new DecimalFormat("#,##0.00 рубль");
-                case 2, 3, 4 -> decimalFormat = new DecimalFormat("#,##0.00 рубля");
-                default -> decimalFormat = new DecimalFormat("#,##0.00 рублей");
-            }
-        }
-        return decimalFormat.format(amount);
+        return name + ": " + AmountFormatter.format(price);
     }
 }
+
+class AmountFormatter {
+    public static String format(double amount) {
+        int lastDigit = (int) amount % 10;
+        int lastTwoDigits = (int) amount % 100;
+
+        String format = "%.2f рублей";
+
+        if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+            return String.format(format, amount);
+        } else {
+            switch (lastDigit) {
+                case 1:
+                    format = "%.2f рубль";
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    format = "%.2f рубля";
+                    break;
+            }
+            return String.format(format, amount);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
