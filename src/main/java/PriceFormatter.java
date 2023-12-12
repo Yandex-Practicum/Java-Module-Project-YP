@@ -1,4 +1,4 @@
-public class AmountFormatter {
+public class PriceFormatter {
     public static String format(double amount) {
         int lastDigit = (int) amount % 10;
         int lastTwoDigits = (int) amount % 100;

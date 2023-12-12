@@ -12,7 +12,7 @@ public class Product {
     }
 
     public String toString() {
-        return name + ": " + AmountFormatter.format(price);
+        return name + ": " + PriceFormatter.format(price);
     }
 }
 

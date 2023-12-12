@@ -37,7 +37,7 @@ public class Restocalculate {
         double totalCost = products.stream().mapToDouble(Product::getPrice).sum();
         double averageCostPerPerson = totalCost / numberOfPeople;
 
-        AmountFormatter formatter = new AmountFormatter();
+        PriceFormatter formatter = new PriceFormatter();
         System.out.println("\nОбщая сумма цен товаров: " + formatter.format(totalCost));
         if (numberOfPeople > 1) {
             System.out.println("Каждый человек должен заплатить: " + formatter.format(averageCostPerPerson));
