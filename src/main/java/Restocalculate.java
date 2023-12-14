@@ -52,15 +52,19 @@ public class Restocalculate {
     private static int promptForNumberOfPeople(Scanner scanner) {
         int numberOfPeople;
         do {
-            System.out.print("Введите количество человек (больше 1): ");
+            System.out.print("Введите количество человек (больше 0): ");
             while (!scanner.hasNextInt()) {
                 System.out.println("Введите корректное число.");
                 scanner.next();
             }
             numberOfPeople = scanner.nextInt();
             scanner.nextLine();
-        } while (numberOfPeople < 1);
+            if (numberOfPeople <= 0) {
+                System.out.println("Введите положительное число больше 0.");
+            }
+        } while (numberOfPeople <= 0);
         return numberOfPeople;
+
     }
 
     private static double promptForPrice(Scanner scanner) {
@@ -68,7 +72,13 @@ public class Restocalculate {
         do {
             System.out.print("Введите цену товара в формате рубли.копейки (должна быть положительной): ");
             try {
-                String priceInput = scanner.nextLine().replaceAll("[^\\d.]", "");
+                String priceInput = scanner.nextLine().trim(); // Используем trim() для удаления пробелов
+
+                // Дополнительная проверка перед парсингом
+                if (priceInput.startsWith("-") || priceInput.contains("-") || priceInput.equals("") || priceInput.equals(".")) {
+                    System.out.println("Цена должна быть положительной. Пожалуйста, введите корректную цену.");
+                    continue;
+                }
                 price = Double.parseDouble(priceInput);
                 if (price <= 0.0) {
                     System.out.println("Цена должна быть положительной и больше 0. Пожалуйста, введите корректную цену.");
