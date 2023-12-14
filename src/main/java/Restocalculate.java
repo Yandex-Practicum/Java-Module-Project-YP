@@ -72,9 +72,7 @@ public class Restocalculate {
         do {
             System.out.print("Введите цену товара в формате рубли.копейки (должна быть положительной): ");
             try {
-                String priceInput = scanner.nextLine().trim(); // Используем trim() для удаления пробелов
-
-                // Дополнительная проверка перед парсингом
+                String priceInput = scanner.nextLine().trim();
                 if (priceInput.startsWith("-") || priceInput.contains("-") || priceInput.equals("") || priceInput.equals(".")) {
                     System.out.println("Цена должна быть положительной. Пожалуйста, введите корректную цену.");
                     continue;
