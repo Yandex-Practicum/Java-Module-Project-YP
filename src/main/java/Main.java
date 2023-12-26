@@ -1,10 +1,8 @@
 
 import java.util.Scanner;
-//import java.util.Math;
 public class Main
 {
     public static void main(String[] args) {
-        //System.out.println("Hello World");
         RubFormat rF = new RubFormat();
         Scanner scanner = new Scanner(System.in);
         // Ввод количества гостей
@@ -65,41 +63,4 @@ public class Main
 
     }
 
-    /*public static String rubFormat(double rub) {
-        String rubFormat;
-        int rubInt;
-        String rubStr, rubNumber;
-
-        rubInt=(int) rub;
-        int number=rubInt%10;
-
-        if (rubInt%100>=11&&rubInt%100<=14)
-        {
-            //System.out.println(rubInt+ " рублей");
-            rubFormat = "рублей";
-        }
-        else
-        {
-            switch (number)
-            {
-                case 1:
-                    //System.out.println(rubInt+ " рубль");
-                    rubFormat = "рубль";
-                    break;
-                case 2:
-                case 3:
-                case 4:
-                    //System.out.println(rubInt+ "рубля");
-                    rubFormat = "рубля";
-                    break;
-                default:
-                    //System.out.println(rubInt+ "рублей");
-                    rubFormat = "рублей";
-            }
-        }
-
-
-
-        return  rubFormat;
-    }*/
 }
