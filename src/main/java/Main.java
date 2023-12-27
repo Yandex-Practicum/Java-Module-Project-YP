@@ -8,7 +8,6 @@ public class Main
         // Ввод количества гостей
         int guests;
         System.out.println("Введите, пожалуйста, на скольких человек необходимо разделить счёт:");
-        boolean guestsInt;
         do{
             while (!scanner.hasNextInt())
             {
