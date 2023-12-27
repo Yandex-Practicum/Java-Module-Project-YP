@@ -55,5 +55,6 @@ public class Main
         score=score/guests; // расчет среднего значения
         s=rF.rubFormat(score); // Определение правильного окончания в слове "рубль"
         System.out.printf("\nКаждый гость должен заплатить по %.2f %s", score, s);
+        scanner.close();
     }
 }
