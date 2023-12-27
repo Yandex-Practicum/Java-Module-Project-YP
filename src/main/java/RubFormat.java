@@ -1,12 +1,11 @@
 public class RubFormat {
     String rubFormat(double rub) {
+        // Определение правильного окончания в слове "рубль"
         String rubFormat;
         int rubInt;
         String rubStr, rubNumber;
-
         rubInt=(int) rub;
         int number=rubInt%10;
-
         if (rubInt%100>=11&&rubInt%100<=14)
         {
             rubFormat = "рублей";
@@ -29,5 +28,4 @@ public class RubFormat {
         }
         return  rubFormat;
     }
-
 }

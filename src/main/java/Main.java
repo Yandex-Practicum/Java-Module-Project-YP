@@ -22,7 +22,7 @@ public class Main
             }
 
         } while (guests<=1);
-        // Добавление и ввод товаров и цены
+        // Добавление и ввод товаров и цен
         String text = "Добавленные товары:";
         String product, exit, s;
         double price, score=0;
@@ -40,8 +40,7 @@ public class Main
                 price = scanner.nextDouble();
                 if (price<0) {System.out.println("Цена товара не может быть меньше 0. Повторите ввод!"); }
             }while (price<0);
-
-            s=rF.rubFormat(price);
+            s=rF.rubFormat(price); // Определение правильного окончания в слове "рубль"
             text = text + "\n"+product+" "+String.format("%.2f %s", price, s);
             score = score+price;
             System.out.println("Для завершения ввода введите слово  \"Завершить\"");
@@ -50,16 +49,11 @@ public class Main
             { break;
             }
         }
-
-
-        System.out.println(text);
-        s=rF.rubFormat(score);
+        System.out.println(text); // вывод наименований добавленных товаров и их цен
+        s=rF.rubFormat(score); // Определение правильного окончания в слове "рубль"
         System.out.printf("Итого: %.2f %s", score, s);
-
-        score=score/guests;
-        s=rF.rubFormat(score);
+        score=score/guests; // расчет среднего значения
+        s=rF.rubFormat(score); // Определение правильного окончания в слове "рубль"
         System.out.printf("\nКаждый гость должен заплатить по %.2f %s", score, s);
-
     }
-
 }
