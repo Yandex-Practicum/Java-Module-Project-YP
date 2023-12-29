@@ -35,6 +35,8 @@ public class Main
             String ruble2=product.getRuble(doubleValue2);
             String formattedDouble2 = new DecimalFormat("#0.00").format(doubleValue2);
 
+            result = result + doubleValue2;
+
             products = products+prod2+" "+formattedDouble2+" "+ruble2+"\n";
 
 
