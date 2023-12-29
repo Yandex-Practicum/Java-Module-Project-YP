@@ -21,6 +21,10 @@ public class Main
             Product product = new Product();
             System.out.println("Укажите название товара");
             String prod2=product.getProduct();
+            while(prod2.isEmpty()){
+                System.out.println("Строка не должна быть пустой! Укажите товар заново!");
+                prod2=product.getProduct();
+            }
             System.out.println("Укажите стоимость в формате рубли,копейки, например 10,45 или 11,40.");
 
             double doubleValue2 = product.getDoubleInput();
@@ -40,6 +44,10 @@ public class Main
 
                 if(prod.equalsIgnoreCase("завершить")){
                     break;
+                }
+                while(prod.isEmpty()){
+                    System.out.println("Строка не должна быть пустой! Укажите товар заново или напишите \"завершить\" для подсчёта.");
+                    prod=product.getProduct();
                 }
                 System.out.println("Укажите стоимость в формате рубли,копейки, например 10,45 или 11,40.");
 
