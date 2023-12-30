@@ -55,7 +55,7 @@ public class Main
 
                 double doubleValue = product.getDoubleInput();
                 while (doubleValue <= 0) {
-                    System.out.println("Это некорректное значение. Значение должно быть числом больше нуля в формате рубли.копейки, например 10.45 или 11.40.");
+                    System.out.println("Это некорректное значение. Значение должно быть числом больше нуля в формате рубли.копейки, например 10,45 или 11,40.");
                     doubleValue = product.getDoubleInput();
                 }
                 String ruble=product.getRuble(doubleValue);
