@@ -4,32 +4,32 @@ public class Main
 {
         public static void main(String[] args) {
 
-            GetValues values = new GetValues();
+            Product product = new Product();
 
             System.out.println("На скольких человек необходимо разделить счёт?");
-            int people = values.getIntInput();
+              int people = product.getIntInput();
 
             while(people<=1){
                 System.out.println("Это некорректное значение для подсчёта. Значение должно быть числом больше одного.");
-                people = values.getIntInput();
+                people = product.getIntInput();
             }
+
 
             String products = "Добавленные товары:\n";
             double result = 0.0;
 
 
-            Product product = new Product();
             System.out.println("Укажите название товара");
             String prod2=product.getProduct();
-            while(prod2.isEmpty()){
+            while(prod2.trim().isEmpty()){
                 System.out.println("Строка не должна быть пустой! Укажите товар заново!");
                 prod2=product.getProduct();
             }
             System.out.println("Укажите стоимость в формате рубли,копейки, например 10,45 или 11,40.");
 
             double doubleValue2 = product.getDoubleInput();
-            while (doubleValue2 <= 0) {
-                System.out.println("Это некорректное значение. Значение должно быть числом больше нуля в формате рубли.копейки, например 10.45 или 11.40.");
+            while (doubleValue2 <= 0 ) {
+                System.out.println("Это некорректное значение. Значение должно быть числом больше нуля в формате рубли.копейки, например 10,45 или 11,40.");
                 doubleValue2 = product.getDoubleInput();
             }
             String ruble2=product.getRuble(doubleValue2);
@@ -47,7 +47,7 @@ public class Main
                 if(prod.equalsIgnoreCase("завершить")){
                     break;
                 }
-                while(prod.isEmpty()){
+                while(prod.trim().isEmpty()){
                     System.out.println("Строка не должна быть пустой! Укажите товар заново или напишите \"завершить\" для подсчёта.");
                     prod=product.getProduct();
                 }

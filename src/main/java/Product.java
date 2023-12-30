@@ -2,14 +2,18 @@ import java.util.Scanner;
 public class Product {
 
     double getDoubleInput(){
-        Scanner scanner = new Scanner(System.in);
-
-        while(!scanner.hasNextDouble()){
-            System.out.println("Это некорректное значение для подсчёта. Значение должно быть числом в формате рубли.копейки, например 10.45 или 11.40.");
-            scanner.nextLine();
+        String value = getProduct();
+        while(value.trim().isEmpty()){
+            System.out.println("Строка не должна быть пустой! Укажите значение больше нуля в формате рубли.копейки, например 10,45 или 11,40.");
+            value=getProduct();
         }
 
-        return scanner.nextDouble();
+        while(!isNumericDoub(value)){
+            System.out.println("Это некорректное значение для подсчёта. Значение должно быть числом больше нуля в формате рубли.копейки, например 10,45 или 11,40.");
+            value=getProduct();
+        }
+
+        return Double.parseDouble(value);
     }
 
     String getProduct(){
@@ -27,5 +31,39 @@ public class Product {
         }
         return "рублей";
     }
+
+    int getIntInput(){
+        String people = getProduct();
+        while(people.trim().isEmpty()){
+            System.out.println("Строка не должна быть пустой! Значение должно быть числом больше одного.");
+            people=getProduct();
+        }
+
+        while(!isNumeric(people)){
+            System.out.println("Это некорректное значение для подсчёта. Значение должно быть числом больше одного.");
+            people=getProduct();
+        }
+
+        return Integer.parseInt(people);
+    }
+
+    boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
+    }
+
+    boolean isNumericDoub(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
+    }
+
 
 }
