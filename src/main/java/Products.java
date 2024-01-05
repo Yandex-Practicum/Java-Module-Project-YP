@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 public class Products {
-    private ArrayList<String> products;
+    private final ArrayList<String> products;
     private double totalCost;
     public Products() {
         products = new ArrayList<>();
