@@ -1,4 +1,6 @@
+import java.util.Date;
 import java.util.Scanner;
+
 public class Calculator {
 
     public int getTheQuantity() {
@@ -13,7 +15,7 @@ public class Calculator {
                     System.out.println("Недостаточное количество человек для подсчета. Введите число еще раз");
                 } else if (numberOfPeople < 1) {
                     System.out.println("Введите другое число");
-                }else{
+                } else {
                     break;
                 }
             }
@@ -55,19 +57,18 @@ public class Calculator {
                     scanner.next();
                 }
             }
-                list = list + String.format("%s - %.2f\n", productName, productCost);
-                amount = amount + productCost;
+            list = list + String.format("%s - %.2f\n", productName, productCost);
+            amount = amount + productCost;
 
 
-            System.out.println("Товар успешно добавлнен");
-            System.out.println("Хотите добавить еще товар? Введите любой символ. Если нет,то введите Завершить");
+            System.out.println("Товар успешно добавлнен. Хотите добавить еще товар? Введите любой символ. Если нет,то введите Завершить");
 
             response = scanner.next();
 
             if (response.equalsIgnoreCase(an)) {
                 amountOfPeople = amount / ((double) numberOfPeople);
                 String rubleEnd = getRuble(amountOfPeople);
-                list = list + String.format("Каждый должен заплатить %.2f %s\n ", amountOfPeople,rubleEnd);
+                list = list + String.format("Каждый должен заплатить %.2f %s\n ", amountOfPeople, rubleEnd);
                 break;
             }
             scanner.nextLine();
@@ -77,13 +78,14 @@ public class Calculator {
 
     public String getRuble(double amountOfPeople) {
         double resultEnd = (Math.floor(amountOfPeople)) % 100;
+        double r = resultEnd % 10;
         if (resultEnd == 0) {
             return "рублей";
         } else if (resultEnd > 10 && resultEnd < 20) {
             return "рублей";
-        } else if (resultEnd > 1 && resultEnd < 5) {
+        } else if (r > 1 && r < 5) {
             return "рубля";
-        } else if (resultEnd == 1) {
+        } else if (r == 1) {
             return "рубль";
         }
         return "рублей";
