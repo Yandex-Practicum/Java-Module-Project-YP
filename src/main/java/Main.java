@@ -21,7 +21,7 @@ public class Main {
             String itemName = scanner.next();
 
             System.out.println("Введите стоимость товара в формате рубли.копейки:");
-            double itemPrice = readDouble(scanner);
+            double itemPrice = readPrice(scanner);
 
             calculator.addItem(itemName, itemPrice);
             System.out.println("Товар успешно добавлен.");
@@ -63,5 +63,14 @@ public class Main {
             scanner.next();
         }
         return scanner.nextDouble();
+    }
+
+    private static double readPrice(Scanner scanner) {
+        double price = readDouble(scanner);
+        while (price <= 0.0) {
+            System.out.println("Ошибка: введите число в формате рубли.копейки:");
+            price = readDouble(scanner);
+        }
+        return price;
     }
 }
