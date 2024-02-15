@@ -1,6 +1,5 @@
-import static java.lang.Math.floor;
-
 import java.util.ArrayList;
+import static java.lang.Math.floor;
 
 public class Calculator {
     double countCheck; // сумма счета
@@ -23,6 +22,6 @@ public class Calculator {
         for (String name : spisokProdutcs) {
             System.out.println(name);
         }
-        System.out.println(String.format("Сумма для каждого %f.2f %s", floor(countCheck), rubls.Rus(countCheck)));
+        System.out.println(String.format("Сумма для каждого %.2f %s", floor(countCheck), rubls.Rus(countCheck)));
     }
 }
