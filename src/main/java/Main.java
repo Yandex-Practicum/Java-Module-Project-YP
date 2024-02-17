@@ -1,6 +1,47 @@
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("На скольких человек необходимо разделить счёт?");
+
+        int amount = sc.nextInt();
+
+        while (true) {
+            if (amount < 1) {
+                System.out.println("Это некорректное значение для подсчёта.");
+            } else if (amount == 1) {
+                System.out.println("Деление счёта бессмыслено :)");
+            } else {
+                System.out.println("Введите наименование товара и стоимость товара в формате рубли.копейки");
+                String userAnswer = sc.nextLine();
+                String[] productArrayName = userAnswer.split(" ");
+
+                while (userAnswer.equalsIgnoreCase("завершить") != true) {
+                    Product nextProduct = new Product();
+                    Product.addProductArray(userAnswer);
+                    Calculator.setAllProductPrice(Product.getProductPrice(productArrayName));
+                    System.out.println("Товар успешно добавлен в список");
+                    System.out.println("Хотите добавить еще товар или завершить подсчёт? Для окончания подсчета введите 'Завершить'");
+                }
+                break;
+
+
+            }
+        }
+
+        System.out.println("Добавленные товары:");
+        ArrayList <String> newProductList = new ArrayList<>(Product.getProductArray());
+        for (String eachProduct: newProductList) {
+            System.out.println(eachProduct);
+        }
+        Calculator newCalculator = new Calculator();
+        System.out.println("Сумма к оплате каждого гостя: " + Calculator.getGuestBill(amount));
+
+
     }
+
 }
