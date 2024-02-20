@@ -9,7 +9,7 @@ public class Calculator {
 
     public static String getGuestBill(int enterGuestNumber) {
         guestNumber = enterGuestNumber;
-        guestBill = String.format("%.2f", AllProductPrice/guestNumber);;
+        guestBill = String.format("%.2f", AllProductPrice/guestNumber);
         return guestBill;
     }
 
