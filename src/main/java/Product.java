@@ -3,19 +3,18 @@ import static java.lang.Math.floor;
 import java.util.ArrayList;
 
 public class Product {
-    String productName;
-    static double productPrice;
+    double productPrice;
 
-    public static double getProductPrice(String [] stringArray) {
+    public double getProductPrice(String [] stringArray) {
 
-        productPrice = Double.parseDouble(stringArray[1]);
+        productPrice = Double.parseDouble(stringArray[stringArray.length - 1]);
 
         return productPrice;
     }
 
-    static ArrayList <String> productList;
-    static String rublesName;
-    public static void addProductArray(String product) {
+    ArrayList <String> productList = new ArrayList<>();
+    String rublesName;
+    public void addProductArray(String product) {
 
         if (floor(productPrice) > 4 && floor(productPrice) < 21 || ((floor(productPrice)/10)%10) > 4 && ((floor(productPrice)/10)%10) < 10 || ((floor(productPrice)/10)%10) == 0 ) {
             rublesName = "рублей";
@@ -29,10 +28,10 @@ public class Product {
             rublesName = "рубля";
         }
 
-        productList.add(product + rublesName + "\\n");
+        productList.add(product + rublesName);
     }
 
-    public static ArrayList getProductArray() {
+    public ArrayList<String> getProductArray() {
         return productList;
     }
 
