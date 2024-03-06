@@ -9,11 +9,8 @@ public class OrderCalculator {
 
     public void start() {
         System.out.print("Hа скольких человек необходимо разделить счёт: ");
-        int amountOfGuests = scanner.nextInt();
 
-        while (!amountOfGuestsValidation(amountOfGuests)) {
-            amountOfGuests = scanner.nextInt();
-        }
+        int amountOfGuests = amountOfGuestsValidation();
 
         while (true) {
             String productName = nameOfProductValidation();
@@ -36,14 +33,24 @@ public class OrderCalculator {
         }
     }
 
-    private boolean amountOfGuestsValidation(int amountOfGuests) {
-        if (amountOfGuests <= 1) {
-            System.out.println(amountOfGuests + " - некорректное значение для подсчёта");
-            System.out.print("введите количество гостей: ");
-            return false;
-        } else {
-            return true;
+    private int amountOfGuestsValidation() {
+        int amountOfGuests = 0;
+        boolean isRightType = false;
+        while (!isRightType) {
+            try {
+                amountOfGuests = scanner.nextInt();
+                if (amountOfGuests <= 1) {
+                    System.out.println(amountOfGuests + " - некорректное значение для подсчёта");
+                    System.out.print("введите количество гостей: ");
+                } else {
+                    isRightType = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.print("Неверно указано количество гостей, введите количество еще раз: ");
+                scanner.next();
+            }
         }
+        return amountOfGuests;
     }
 
     private String nameOfProductValidation() {
@@ -58,7 +65,6 @@ public class OrderCalculator {
 
         while (!isRightType) {
             try {
-                Scanner scanner = new Scanner(System.in);
                 productCost = scanner.nextDouble();
                 if (productCost > 0) {
                     isRightType = true;
@@ -67,6 +73,7 @@ public class OrderCalculator {
                 }
             } catch (InputMismatchException e) {
                 System.out.print("Неверно указана цена товара, введите цену еще раз: ");
+                scanner.next();
             }
         }
         return productCost;
