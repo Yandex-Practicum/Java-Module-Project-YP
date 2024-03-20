@@ -10,5 +10,4 @@ public class NamberPerson {
     public int getPerson() {
         return person;
     }
-
 } // в этом классе сохраняется ввод количества персон
