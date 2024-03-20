@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 public class BillCalculator {
     private HashMap<String, Double> products = new HashMap<>();
-    int numberOfPeople = 0;
+    private int numberOfPeople;
 
     public BillCalculator(double totalBill, int numberOfPeople) {
         this.numberOfPeople = numberOfPeople;
@@ -24,12 +24,12 @@ public class BillCalculator {
         double totalBill = getTotalBill();
         return totalBill / numberOfPeople;
     }
-
     public String getProductsList() {
         StringBuilder productList = new StringBuilder("Добавленные продукты:\n");
         for (String productName : products.keySet()) {
-            productList.append(productName).append(": $").append(products.get(productName)).append("\n");
+            productList.append(productName).append(": ").append(products.get(productName)).append("\n");
         }
         return productList.toString();
     }
+
 }
