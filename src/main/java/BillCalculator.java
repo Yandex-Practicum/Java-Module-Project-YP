@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.HashMap;import java.util.*;
 
 public class BillCalculator {
     private HashMap<String, Double> products = new HashMap<>();
@@ -26,8 +26,10 @@ public class BillCalculator {
     }
     public String getProductsList() {
         StringBuilder productList = new StringBuilder("Добавленные продукты:\n");
-        for (String productName : products.keySet()) {
-            productList.append(productName).append(": ").append(products.get(productName)).append("\n");
+        for (Map.Entry<String, Double> entry : products.entrySet()) {
+            String productName = entry.getKey();
+            double price = entry.getValue();
+            productList.append(productName).append(": ").append(price).append("\n");
         }
         return productList.toString();
     }

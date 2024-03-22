@@ -20,7 +20,7 @@ public class Main {
                 scanner.next();
             }
         }
-
+        boolean firstProductAdded = false;
         while (true) {
             System.out.print("Введите название продукта или напишите [Завершить]: ");
             String productName = scanner.next();
@@ -41,12 +41,13 @@ public class Main {
                     }
                 } else {
                     System.out.println("Ошибка: Введите число в формате \"рубли,копейки\".");
-                    scanner.nextLine();
+                    scanner.next();
 
                 }
             }
             if (billCalculator == null) {
                 billCalculator = new BillCalculator(price, numberOfPeople);
+                billCalculator.addProduct(productName, price);
             } else {
                 billCalculator.addProduct(productName, price);
             }
