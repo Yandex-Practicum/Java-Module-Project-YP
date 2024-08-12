@@ -25,6 +25,7 @@ public class Main {
 
     }
 }
+
 class Car{
     String nameCar;
     int speedCar;
