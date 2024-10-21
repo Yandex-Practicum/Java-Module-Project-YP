@@ -41,15 +41,10 @@ public class Main {
         newWheel.checkWhoWinnerFrom();
     }
 
-
     public static Car acceptRider(String name, Integer speed) {
         System.out.println(String.format("автомобиль %s принят", name));
         System.out.println("-----------------------------------");
         return new Car(name, speed);
     }
-
-
-
-
 
 }
