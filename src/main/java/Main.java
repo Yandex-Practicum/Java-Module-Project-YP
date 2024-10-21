@@ -10,9 +10,9 @@ public class Main {
         int successSpeed = 1;
         for (; successSpeed < 4; ) {
 
-            System.out.println("Введите название машины №" + successSpeed);
+            System.out.println("Введите название машины № " + successSpeed);
             nameCar = scanner.next();
-            System.out.print("Введите скорость машины №" + successSpeed);
+            System.out.print("Введите скорость машины № " + successSpeed);
             if (scanner.hasNextInt()) {
                 speedCar = scanner.nextInt();
                 if (0 < speedCar && speedCar <= 250) {
