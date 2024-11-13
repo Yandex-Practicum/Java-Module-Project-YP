@@ -15,7 +15,7 @@ public class Main {
             if(Races.speedLimit(speed)){
                 autoMap.put(name,speed);
             }else {
-                System.out.println("Неправильная скорzость");
+                System.out.println("Неправильная скорость");
                 i--;
             }
         }
