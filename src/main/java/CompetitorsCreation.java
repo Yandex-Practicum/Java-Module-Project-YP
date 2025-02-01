@@ -5,11 +5,9 @@ import java.util.Scanner;
 public class CompetitorsCreation {
     private final Scanner scanner = new Scanner(System.in);
     private final List<Car> cars = new ArrayList<>();
-    private final int competitors = 3;
-    private final int maxSpeed = 250;
-    private final int minSpeed = 1;
 
     void inputCompetitors() {
+        int competitors = 3;
         while (cars.size() < competitors) {
             int countCar = cars.size() + 1;
             Car car = new Car(nameCar(countCar), checkSpeed(countCar));
@@ -25,6 +23,8 @@ public class CompetitorsCreation {
             if (scanner.hasNextInt()) {
                 speed = scanner.nextInt();
                 scanner.nextLine();
+                int maxSpeed = 250;
+                int minSpeed = 1;
                 if (minSpeed <= speed && speed <= maxSpeed) {
                     return speed;
                 } else {
