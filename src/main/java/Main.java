@@ -8,8 +8,8 @@ public class Main {
 
         System.out.println("Введите трех участников гонки");
         while (maxParticipants <= 3) {
-            String name = "";
-            int speed = 0;
+            String name;
+            int speed;
 
             System.out.println("Введите название машины №" + maxParticipants + ":");
             name = scanner.next();
@@ -31,6 +31,6 @@ public class Main {
             Race.participantsArray(name, speed);
             maxParticipants += 1;
         }
-        System.out.println("Самая быстрая машина: " + Race.identifyingTheLeader());
+        System.out.println("Победитель гонки: " + Race.identifyingTheLeader());
     }
 }

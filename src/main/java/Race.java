@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Race {
     static ArrayList<Car> participants = new ArrayList<>();
     static final int hours = 24;
-    static String leader = "";
+    static String leader;
 
     public static String identifyingTheLeader() {
         int maxDistance = 0;
