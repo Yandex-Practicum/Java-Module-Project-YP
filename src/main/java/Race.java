@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Race {
     static final int hours = 24;
