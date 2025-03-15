@@ -1,26 +1,18 @@
 import java.util.ArrayList;
 
 public class Race {
-    static ArrayList<Car> participants = new ArrayList<>();
     static final int hours = 24;
-    static String leader;
+    static StringBuilder leaderBuffer = new StringBuilder();
+    static int maxDistance = 0;
 
-    public static String identifyingTheLeader() {
-        int maxDistance = 0;
+    public static void identifyingTheLeader(String name, int speed) {
 
-        for (Car element : participants) {
-            int distance = element.speed * hours;
-            if (distance > maxDistance) {
-                maxDistance = distance;
-                leader = element.name;
-            } else if (distance == maxDistance) {
-                leader = leader.concat(" и ").concat(element.name);
-            }
+        int distance = speed * hours;
+        if (distance > maxDistance) {
+            maxDistance = distance;
+            leaderBuffer.append(name);
+        } else if (distance == maxDistance) {
+            leaderBuffer.append(" и ").append(name);
         }
-        return leader;
-    }
-
-    public static void participantsArray(String name, int speed) {
-        participants.add(new Car(name, speed));
     }
 }
