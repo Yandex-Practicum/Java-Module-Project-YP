@@ -5,6 +5,7 @@ public class Main {
         Race race = new Race();
         Scanner scanner = new Scanner(System.in);
         String nameCar;
+        int speedCar;
         for (int i=1; i<4; i++) {
             while(true){
                 System.out.println("Введите название автомобиля " + i);
@@ -17,24 +18,19 @@ public class Main {
                 }
             }
             System.out.println("Введите скорость автомобиля " + i);
-            int speedCar;
             System.out.println("Скорость должна быть 0-250 км/ч");
             while(true) {
-                if (scanner.hasNextInt()){
+                if (scanner.hasNextInt()) {
                     speedCar = scanner.nextInt();
-                    String SpeedCstr = Integer.toString(speedCar);
-                    if ((speedCar<0) || (speedCar>250)  ){
+                    if ((speedCar < 0) || (speedCar > 250)) {
                         System.out.println("Скорость должна быть 0-250. Введите повторно!!!");
-                    } else if ((SpeedCstr.isEmpty())) {
-                        System.out.println("Скорость не может быть пустой строкой!! Введите значение повторно!");
-                    } else if (speedCar%10 != 0) {
-                        System.out.println("Скорость не может быть дробным значением! Введите значение повторно!");
                     } else {
                         break;
                     }
                 }
                 else {
                     System.out.println("Ошибка!! Ты вводишь нечисловое значение! Введи значение повторно!");
+                    scanner.next();
                 }
             }
             SportCar car = new SportCar(nameCar, speedCar);
