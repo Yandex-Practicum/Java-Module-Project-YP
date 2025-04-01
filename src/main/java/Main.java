@@ -24,20 +24,22 @@ public class Main {
                 String input = sc.nextLine().trim();
 
                 try {
+                    final int minSpeed=0;
+                    final int maxSpeed=250;
                     if (input.isEmpty()) {
                         throw new IllegalArgumentException("Скорость не может быть пустой. Попробуйте снова.");
                     }
 
                     car.speed = Integer.parseInt(input);
 
-                    if (car.speed <= 0 || car.speed > 250) {
+                    if (car.speed <= minSpeed || car.speed > maxSpeed) {
                         throw new IllegalArgumentException("Скорость должна быть от 1 до 250. Попробуйте снова.");
                     }
 
                     break;
                 } catch (NumberFormatException e) {
                     System.out.println("Некорректный ввод. Введите целое число.");
-                } catch (IllegalArgumentException e) {
+                } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             }
