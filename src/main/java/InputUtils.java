@@ -2,7 +2,6 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class InputUtils {
-    private final Scanner scanner = new Scanner(System.in);
     private final Pattern carNameValidationPattern = Pattern.compile("^[a-zA-Za-яА-Я0-9\\s]+$");
 
     final int MIN_SPEED = 0;
@@ -12,6 +11,7 @@ public class InputUtils {
         String input;
         boolean isValid;
         do {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Введите имя автомобиля " + autoNumber + ". Русские и английские буквы и цифры:");
             input = scanner.nextLine();
             isValid = !input.isEmpty() && carNameValidationPattern.matcher(input).matches();
@@ -24,38 +24,26 @@ public class InputUtils {
     }
 
     public int requestAutoSpeed() {
-        System.out.println("Введите скорость. Целое число в пределах от 0 до 250: ");
-        String number = scanner.nextLine().trim();
-
-        try {
-            int result = Integer.parseInt(number);
-            if (validateSpeed(result)) {
-                return result;
-            }
-        } catch (Exception e) {
-            String message;
-            if (e instanceof NumberFormatException) {
-                message = "Введенное значение не является числом";
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите скорость. Целое число в пределах от 0 до 250:");
+            String input = scanner.nextLine().trim();
+            int speed;
+            if (input.matches("^-?[1-9]\\d{0,8}|(0)$")) {
+                speed = Integer.parseInt(input);
             } else {
-                message = e.getMessage();
+                System.out.println("Введенное значение не является числом или вне рамок типа int");
+                continue;
             }
-            System.out.println(message);
-            requestAutoSpeed();
-        }
-        return 0;
-    }
-
-    private boolean validateSpeed(int speed) {
-        if (speed > MIN_SPEED && speed <= MAX_SPEED) {
-            return true;
-        } else {
-            throw new IncorrectSpeedException();
+            if (isSpeedIsValid(speed)) {
+                return speed;
+            } else {
+                System.out.println("Введенное значение не соответствует критериям");
+            }
         }
     }
 
-    static class IncorrectSpeedException extends IllegalArgumentException {
-        public IncorrectSpeedException() {
-            super("Скорость вне корректных значений");
-        }
+    private boolean isSpeedIsValid(int speed) {
+        return (speed > MIN_SPEED && speed <= MAX_SPEED);
     }
 }
