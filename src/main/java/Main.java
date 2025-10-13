@@ -11,11 +11,16 @@ public class Main {
             int speed;
             while (true) {
                 System.out.println("Скорость автомобиля от 0 до 250 км/ч");
-                speed = scanner.nextInt();
-                if (speed > 0 && speed <= 250) {
-                    break;
+                if (scanner.hasNextInt()) {
+                    speed = scanner.nextInt();
+                    if (speed > 0 && speed <= 250) {
+                        break;
+                    } else {
+                        System.out.println("Ошибка! Скорость должна быть от 1 до 250 км/ч. Введите значение скорости снова");
+                    }
                 } else {
-                    System.out.println("Ошибка! Скорость должна быть от 1 до 250 км/ч. Введите значение скорости снова");
+                    System.out.println("Ошибка! Введите числовое значение!");
+                    scanner.next();
                 }
             }
             Cars[i] = new Car(name, speed);
