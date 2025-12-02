@@ -26,7 +26,7 @@ public class Main {
             Car car = new Car(name, speed);
             race.whoLeader(car);
         }
-        System.out.println("Самая быстрая оказалась машина - " + race.lName());
+        System.out.println("Самой быстрой оказалась машина - " + race.lName());
     }
     private static boolean vNumber(String input) {
         if (input == null || input.isEmpty()) {
