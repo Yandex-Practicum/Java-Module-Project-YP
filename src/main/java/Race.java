@@ -1,8 +1,9 @@
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class Race {
+    private static final int MIN_CAR_SPEED = 0;
+    private static final int MAX_CAR_SPEED = 290;
     private final HashSet<Car> cars = new HashSet<>();
 
     void addCarToRace(Scanner scanner) {
@@ -32,22 +33,23 @@ public class Race {
     private int getSpeed(Scanner scanner) {
         int speed = -1;
         System.out.println("Введите скорость машины.");
-        System.out.println("Скорость должна быть целым значением в пределах от 1 до 250 включительно");
+        String getSpeedFormat = "Скорость должна быть целым значением больше %d и меньше или равно %d";
+        System.out.printf(getSpeedFormat + "\n", MIN_CAR_SPEED, MAX_CAR_SPEED);
         while (true) {
             String speedString = scanner.nextLine();
             if (speedString.isEmpty()) {
-                System.out.println("Пустое значение. Скорость должна быть целым значением в пределах от 1 до 250 включительно. Попробуйте еще раз");
+                System.out.printf("Пустое значение" + getSpeedFormat + "Попробуйте еще раз\n", MIN_CAR_SPEED, MAX_CAR_SPEED);
                 continue;
             }
             try {
                 speed = Integer.parseInt(speedString);
-                if (speed > 0 && speed <= 250) {
+                if (speed > MIN_CAR_SPEED && speed <= MAX_CAR_SPEED) {
                     break;
                 } else {
-                    System.out.println("Скорость должна быть целым значением в пределах от 1 до 250 включительно. Попробуйте еще раз");
+                    System.out.printf(getSpeedFormat + ". Попробуйте еще раз\n", MIN_CAR_SPEED, MAX_CAR_SPEED);
                 }
             } catch(NumberFormatException nfe) {
-                System.out.println("Кажется, вы ввели не целое число. Попробуйте еще раз: Введите скорость от 1 до 250 включительно");
+                System.out.printf("Кажется, вы ввели не целое число. Попробуйте еще раз: " + getSpeedFormat + "\n", MIN_CAR_SPEED, MAX_CAR_SPEED);
             }
         }
         return speed;
