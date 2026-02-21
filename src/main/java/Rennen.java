@@ -1,7 +1,7 @@
 
 class Rennen {
-     String winner; // потенциальный победитель
-     int wegWinner;  // расстояние
+    String winner; // потенциальный победитель
+    int wegWinner;  // расстояние
 
     Rennen() {
         this.winner = ""; // начальное значение
@@ -17,6 +17,8 @@ class Rennen {
             winner = auto.getName();// тоже используем геттер.
         }
     }
+
     public String getWinnerName() { //  метод для получения имени победителя
         return winner;
     }
+}

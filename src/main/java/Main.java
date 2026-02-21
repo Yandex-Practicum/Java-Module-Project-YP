@@ -11,7 +11,7 @@ import java.util.Scanner;
 
         for (int i = 1; i <= 3; i++) { // нам нужно только три авто
             System.out.print("Введите название автомобиля " + i);
-            String name = scanner.nextLine(); // считываем строку и только символы
+            String name = scanner.nextLine(); // считываем строку
 
             // Проверка на пустое название
             while (name.isEmpty()) {
