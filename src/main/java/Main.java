@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Main {
     static Car[] carList = new Car[3];
-    static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Добро пожаловать на гонки 24 часа Ле-Мана");
         String carmodel;
