@@ -6,4 +6,6 @@ public class Car {
         this.carMake = carMake;
         this.speed = speed;
     }
+    //комментарий мой
+    //new comment
 }
