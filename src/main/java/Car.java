@@ -7,4 +7,5 @@ public class Car {
         this.speed = speed;
     }
     //комментарий мой
+    //new comment
 }
