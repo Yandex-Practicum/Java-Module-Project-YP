@@ -76,4 +76,3 @@ class Race {
         System.out.println("Самая быстрая машина: " + leaderName);
     }
 }
-h
