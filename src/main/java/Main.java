@@ -5,14 +5,26 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Race race = new Race();
         for (int i = 1; i <= 3; i++) {
-            System.out.println("Введите название машины №"+ i +":");
-            String name = scanner.next();
-            int speed = 0;
+            String name = "";
+            while (true) {
+                System.out.println("Введите название машины №" + i + ":");
+                name = scanner.nextLine().trim();
+                if (!name.isEmpty()) {
+                    break;
+                }
+                System.out.println("Неправильное название");
+            }
+            int speed =0;
             while (true) {
                 System.out.println("Введите скорость машины №"+ i + ":");
-                speed = scanner.nextInt();
-                if (speed >0 && speed <=250) {
-                    break;
+                if (scanner.hasNextInt()) {
+                    speed = scanner.nextInt();
+                    scanner.nextLine();
+                    if (speed > 0 && speed <= 250) {
+                        break;
+                    }
+                } else {
+                    scanner.nextLine();
                 }
                 System.out.println("Неправильная скорость");
             }
